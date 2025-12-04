@@ -1,0 +1,970 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>STRIPERSHYM | Shows & Paquetes</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
+    /* ===== Estilos extra ===== */
+
+    /* Scrollbar oculta para carousels */
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+
+    /* Gradiente principal rojo-dorado */
+    .bg-main-gradient {
+      background: radial-gradient(circle at top, #fbbf24 0, #b91c1c 35%, #020617 75%);
+    }
+
+    /* Borde dorado suave */
+    .border-gold {
+      border-image: linear-gradient(45deg, #facc15, #fbbf24, #f59e0b) 1;
+      border-width: 1px;
+      border-style: solid;
+    }
+
+    /* Glow rojo */
+    .shadow-red-glow {
+      box-shadow: 0 0 25px rgba(248, 113, 113, 0.45);
+    }
+
+    /* Floating animation ligera */
+    @keyframes float-soft {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-4px); }
+    }
+    .animate-float-soft {
+      animation: float-soft 2.8s ease-in-out infinite;
+    }
+
+    /* Burbuja de WhatsApp */
+    @keyframes bubble-pop {
+      0% { opacity: 0; transform: translateX(10px) scale(0.9); }
+      20% { opacity: 1; transform: translateX(0) scale(1); }
+      80% { opacity: 1; transform: translateX(0) scale(1); }
+      100% { opacity: 0; transform: translateX(10px) scale(0.9); }
+    }
+    .bubble-anim {
+      animation: bubble-pop 3.4s ease-in-out forwards;
+    }
+  
+  /* Fondo del menú móvil 100% opaco */
+  #mobileMenu { background-color: #000000 !important; }
+</style>
+</head>
+
+<body class="bg-black text-gray-100 font-sans antialiased">
+<div class="min-h-screen flex flex-col bg-gradient-to-b from-black via-black to-slate-950">
+
+  <!-- ===== HEADER ===== -->
+  <header class="fixed top-0 inset-x-0 z-40 bg-black border-b border-red-700/40">
+    <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
+      <!-- Logo + Nombre -->
+      <div class="flex items-center gap-3">
+        <!-- Logo -->
+        <div class="w-10 h-10 rounded-full bg-main-gradient flex items-center justify-center shadow-red-glow">
+          <!-- Aquí va tu logo real -->
+          <span class="text-xs font-bold tracking-widest text-black">SH</span>
+        </div>
+        <!-- Nombre -->
+        <div class="leading-tight">
+          <div class="flex items-center gap-2">
+            <h1 class="text-lg font-extrabold tracking-[0.25em] text-red-500 uppercase">
+              STRIPERSHYM
+            </h1>
+            <span class="text-[10px] px-2 py-0.5 rounded-full bg-red-700/30 border border-red-500/40 uppercase tracking-[0.2em]">
+              México
+            </span>
+          </div>
+          <p class="text-[11px] text-gray-400">
+            Shows privados · Despedidas · Fiestas VIP
+          </p>
+        </div>
+      </div>
+
+      <!-- Menú desktop -->
+      <nav class="hidden md:flex items-center gap-6 text-[13px] font-medium tracking-wide">
+        <a href="#hero" class="hover:text-red-400 transition">Inicio</a>
+        <a href="#galeria" class="hover:text-red-400 transition">Galerías</a>
+        <a href="#paquetes" class="hover:text-red-400 transition">Paquetes</a>
+        <a href="#videos" class="hover:text-red-400 transition">Videos</a>
+        <a href="#pagos" class="hover:text-red-400 transition">Formas de pago</a>
+        <a href="#contacto" class="px-4 py-1.5 rounded-full bg-red-600 hover:bg-red-500 text-sm shadow-red-glow transition">
+          WhatsApp Directo
+        </a>
+      </nav>
+
+      <!-- Botón menú móvil -->
+      <button id="menuToggle" class="md:hidden inline-flex items-center justify-center w-10 h-10 rounded-full border border-red-500/60 bg-black/70 hover:bg-red-900/40 transition">
+        <span class="sr-only">Abrir menú</span>
+        <div class="space-y-1.5">
+          <span class="block w-5 h-0.5 bg-red-400"></span>
+          <span class="block w-5 h-0.5 bg-red-400"></span>
+          <span class="block w-5 h-0.5 bg-red-400"></span>
+        </div>
+      </button>
+    </div>
+
+    <!-- Menú móvil fullscreen -->
+    <div id="mobileMenu"
+     class="fixed inset-0 z-50 bg-black text-gray-100 transform translate-x-full transition-transform duration-300">
+  <div class="flex flex-col h-full">
+    <div class="flex items-center justify-between px-5 py-4 border-b border-red-800/60">
+      <span class="text-sm tracking-[0.3em] uppercase text-red-400">STRIPERSHYM</span>
+      <button id="menuClose" class="w-9 h-9 flex items-center justify-center rounded-full border border-red-500/70 hover:bg-red-900/40 transition">
+        ✕
+      </button>
+    </div>
+
+    <nav class="flex-1 px-6 py-6 space-y-4 text-sm">
+      <a href="#hero" class="block py-2 border-b border-white/5 hover:text-red-400">Inicio</a>
+      <a href="#galeria" class="block py-2 border-b border-white/5 hover:text-red-400">Galerías</a>
+      <a href="#paquetes" class="block py-2 border-b border-white/5 hover:text-red-400">Paquetes</a>
+      <a href="#videos" class="block py-2 border-b border-white/5 hover:text-red-400">Videos</a>
+      <a href="#pagos" class="block py-2 border-b border-white/5 hover:text-red-400">Formas de pago</a>
+      <a href="#contacto" class="mt-4 inline-flex items-center justify-center w-full py-2.5 rounded-full bg-red-600 text-white font-semibold shadow-red-glow hover:bg-red-500 transition">
+        Reservar por WhatsApp
+      </a>
+    </nav>
+
+    <div class="px-6 pb-6 text-xs text-gray-500">
+      Shows para adultos · Reserva con anticipación · Cupo limitado
+    </div>
+  </div>
+</div>
+  </header>
+
+  <!-- ===== MAIN ===== -->
+  <main class="flex-1 pt-24 pb-20">
+    <!-- ===== HERO ===== -->
+    <section id="hero" class="relative max-w-6xl mx-auto px-4 pt-6 pb-16">
+      <div class="grid md:grid-cols-[3fr,2fr] gap-10 items-center">
+
+        <!-- Video + Logo overlay -->
+        <div class="relative rounded-3xl overflow-hidden border-gold bg-slate-900/60 shadow-red-glow">
+          <div class="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent pointer-events-none"></div>
+
+          <!-- Video de fondo (reemplaza src con tu video) -->
+          <video
+            class="w-full h-full object-cover"
+            src="video-fragmento.mp4"
+            autoplay
+            muted
+            loop
+            playsinline
+          ></video>
+
+          <!-- Logo + texto superpuesto -->
+          <div class="absolute inset-0 flex flex-col justify-end p-6 md:p-8">
+            <div class="flex items-center gap-4 mb-3">
+              <div class="w-16 h-16 rounded-full bg-main-gradient flex items-center justify-center shadow-red-glow">
+                <!-- logo real aquí -->
+                <span class="text-xs font-extrabold tracking-[0.25em] text-black uppercase">SH</span>
+              </div>
+              <div>
+                <p class="text-xs uppercase tracking-[0.35em] text-red-400 mb-1">
+                  Shows privados & experiencias
+                </p>
+                <h2 class="text-2xl md:text-3xl font-extrabold tracking-[0.18em] text-white uppercase">
+                  STRIPERSHYM MÉXICO
+                </h2>
+              </div>
+            </div>
+            <p class="text-sm text-gray-200 max-w-xl">
+              Shows para despedidas de soltera, cumpleaños, fiestas privadas y eventos especiales
+              con bailarines y bailarinas profesionales. Llevamos la fiesta a tu casa, salón o
+              airbnb, con paquetes diseñados para que nadie se quede con ganas.
+            </p>
+          </div>
+        </div>
+
+        <!-- Texto intro / bullets -->
+        <div class="space-y-6">
+          <p class="text-xs uppercase tracking-[0.35em] text-red-400">
+            experiencia premium · ambiente seguro · vibe hot
+          </p>
+          <h3 class="text-2xl md:text-3xl font-bold text-white">
+            Shows sensuales, elegantes y muy divertidos.
+          </h3>
+          <p class="text-sm text-gray-300 leading-relaxed">
+            Elige entre <span class="text-red-400 font-semibold">ellos</span>,
+            <span class="text-red-400 font-semibold">ellas</span> o
+            <span class="text-red-400 font-semibold">mixto</span>, agrega extras como
+            payasos, fiestabús o dinámicas especiales, y arma la noche perfecta. Solo te
+            preocupas por disfrutar, nosotros nos encargamos del show.
+          </p>
+
+          <div class="grid grid-cols-2 gap-3 text-xs">
+            <div class="p-3 rounded-2xl bg-slate-900/70 border border-red-900/60">
+              <p class="text-[11px] text-gray-400 mb-1 uppercase tracking-[0.18em]">
+                Cobertura
+              </p>
+              <p class="font-semibold text-sm">CDMX y área metropolitana</p>
+            </div>
+            <div class="p-3 rounded-2xl bg-slate-900/70 border border-red-900/60">
+              <p class="text-[11px] text-gray-400 mb-1 uppercase tracking-[0.18em]">
+                Horarios
+              </p>
+              <p class="font-semibold text-sm">Viernes · Sábado · Eventos especiales</p>
+            </div>
+            <div class="p-3 rounded-2xl bg-slate-900/70 border border-red-900/60">
+              <p class="text-[11px] text-gray-400 mb-1 uppercase tracking-[0.18em]">
+                Reservaciones
+              </p>
+              <p class="font-semibold text-sm">Anticipo + contrato sencillo</p>
+            </div>
+            <div class="p-3 rounded-2xl bg-slate-900/70 border border-red-900/60">
+              <p class="text-[11px] text-gray-400 mb-1 uppercase tracking-[0.18em]">
+                Pagos
+              </p>
+              <p class="font-semibold text-sm">Efectivo · Transferencia · Depósito</p>
+            </div>
+          </div>
+
+          <div class="flex flex-wrap items-center gap-3">
+            <a href="#contacto"
+               class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-red-600 hover:bg-red-500 text-sm font-semibold shadow-red-glow transition">
+              Reservar por WhatsApp
+              <span>💬</span>
+            </a>
+            <span class="text-xs text-gray-400">
+              Respuesta rápida · Info de paquetes · Cotización sin compromiso
+            </span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== GALERÍAS ===== -->
+    <section id="galeria" class="max-w-6xl mx-auto px-4 pb-16 space-y-10">
+      <div class="flex items-end justify-between gap-4">
+        <div>
+          <p class="text-xs uppercase tracking-[0.35em] text-red-400 mb-2">
+            Galerías
+          </p>
+          <h3 class="text-2xl font-bold text-white">
+            Elige tu vibra: ellos o ellas.
+          </h3>
+          <p class="text-sm text-gray-300 max-w-xl">
+            Fotos de referencia para que conozcas el estilo de los shows:
+            elegantes, sensuales y siempre respetuosos.
+          </p>
+        </div>
+      </div>
+
+      <!-- Hombres -->
+      <div class="space-y-4">
+        <div class="flex items-center gap-3">
+          <span class="text-xs uppercase tracking-[0.25em] text-gray-400">
+            Galería · Ellos
+          </span>
+          <span class="h-px flex-1 bg-gradient-to-r from-red-600/80 via-red-500/40 to-transparent"></span>
+        </div>
+
+        <div class="relative">
+          <div class="overflow-x-auto no-scrollbar js-carousel">
+            <div class="flex gap-4 py-2">
+              <!-- Tarjeta foto hombre -->
+              <button class="relative shrink-0 w-44 sm:w-52 md:w-60 h-72 rounded-3xl overflow-hidden bg-slate-900/80 border border-red-900/60 group"
+                      data-fullsrc="https://via.placeholder.com/800x1200.png?text=Striper+Hombre+1">
+                <img src="https://via.placeholder.com/400x600.png?text=Hombre+1"
+                     alt="Striper hombre 1"
+                     class="w-full h-full object-cover group-hover:scale-110 transition duration-500" />
+                <div class="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-transparent opacity-80"></div>
+                <div class="absolute bottom-3 left-3 right-3">
+                  <p class="text-[11px] uppercase tracking-[0.25em] text-red-400">Él</p>
+                  <p class="text-sm font-semibold">Show clásico · Oil & Dance</p>
+                </div>
+              </button>
+
+              <button class="relative shrink-0 w-44 sm:w-52 md:w-60 h-72 rounded-3xl overflow-hidden bg-slate-900/80 border border-red-900/60 group"
+                      data-fullsrc="https://via.placeholder.com/800x1200.png?text=Striper+Hombre+2">
+                <img src="https://via.placeholder.com/400x600.png?text=Hombre+2"
+                     alt="Striper hombre 2"
+                     class="w-full h-full object-cover group-hover:scale-110 transition duration-500" />
+                <div class="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-transparent opacity-80"></div>
+                <div class="absolute bottom-3 left-3 right-3">
+                  <p class="text-[11px] uppercase tracking-[0.25em] text-red-400">Él</p>
+                  <p class="text-sm font-semibold">Fuego & Lluvia de billetes</p>
+                </div>
+              </button>
+
+              <button class="relative shrink-0 w-44 sm:w-52 md:w-60 h-72 rounded-3xl overflow-hidden bg-slate-900/80 border border-red-900/60 group"
+                      data-fullsrc="https://via.placeholder.com/800x1200.png?text=Striper+Hombre+3">
+                <img src="https://via.placeholder.com/400x600.png?text=Hombre+3"
+                     alt="Striper hombre 3"
+                     class="w-full h-full object-cover group-hover:scale-110 transition duration-500" />
+                <div class="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-transparent opacity-80"></div>
+                <div class="absolute bottom-3 left-3 right-3">
+                  <p class="text-[11px] uppercase tracking-[0.25em] text-red-400">Él</p>
+                  <p class="text-sm font-semibold">Policía / Bombero / Trajes</p>
+                </div>
+              </button>
+
+              <button class="relative shrink-0 w-44 sm:w-52 md:w-60 h-72 rounded-3xl overflow-hidden bg-slate-900/80 border border-red-900/60 group"
+                      data-fullsrc="https://via.placeholder.com/800x1200.png?text=Striper+Hombre+4">
+                <img src="https://via.placeholder.com/400x600.png?text=Hombre+4"
+                     alt="Striper hombre 4"
+                     class="w-full h-full object-cover group-hover:scale-110 transition duration-500" />
+                <div class="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-transparent opacity-80"></div>
+                <div class="absolute bottom-3 left-3 right-3">
+                  <p class="text-[11px] uppercase tracking-[0.25em] text-red-400">Él</p>
+                  <p class="text-sm font-semibold">Show romántico con silla</p>
+                </div>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mujeres -->
+      <div class="space-y-4">
+        <div class="flex items-center gap-3">
+          <span class="text-xs uppercase tracking-[0.25em] text-gray-400">
+            Galería · Ellas
+          </span>
+          <span class="h-px flex-1 bg-gradient-to-r from-pink-500/80 via-red-500/40 to-transparent"></span>
+        </div>
+
+        <div class="relative">
+          <div class="overflow-x-auto no-scrollbar js-carousel">
+            <div class="flex gap-4 py-2">
+              <!-- Tarjeta foto mujer -->
+              <button class="relative shrink-0 w-44 sm:w-52 md:w-60 h-72 rounded-3xl overflow-hidden bg-slate-900/80 border border-pink-900/60 group"
+                      data-fullsrc="https://via.placeholder.com/800x1200.png?text=Striper+Mujer+1">
+                <img src="https://via.placeholder.com/400x600.png?text=Mujer+1"
+                     alt="Striper mujer 1"
+                     class="w-full h-full object-cover group-hover:scale-110 transition duration-500" />
+                <div class="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-transparent opacity-80"></div>
+                <div class="absolute bottom-3 left-3 right-3">
+                  <p class="text-[11px] uppercase tracking-[0.25em] text-pink-300">Ella</p>
+                  <p class="text-sm font-semibold">Show sensual & pole style</p>
+                </div>
+              </button>
+
+              <button class="relative shrink-0 w-44 sm:w-52 md:w-60 h-72 rounded-3xl overflow-hidden bg-slate-900/80 border border-pink-900/60 group"
+                      data-fullsrc="https://via.placeholder.com/800x1200.png?text=Striper+Mujer+2">
+                <img src="https://via.placeholder.com/400x600.png?text=Mujer+2"
+                     alt="Striper mujer 2"
+                     class="w-full h-full object-cover group-hover:scale-110 transition duration-500" />
+                <div class="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-transparent opacity-80"></div>
+                <div class="absolute bottom-3 left-3 right-3">
+                  <p class="text-[11px] uppercase tracking-[0.25em] text-pink-300">Ella</p>
+                  <p class="text-sm font-semibold">Cumpleañero / Despedida</p>
+                </div>
+              </button>
+
+              <button class="relative shrink-0 w-44 sm:w-52 md:w-60 h-72 rounded-3xl overflow-hidden bg-slate-900/80 border border-pink-900/60 group"
+                      data-fullsrc="https://via.placeholder.com/800x1200.png?text=Striper+Mujer+3">
+                <img src="https://via.placeholder.com/400x600.png?text=Mujer+3"
+                     alt="Striper mujer 3"
+                     class="w-full h-full object-cover group-hover:scale-110 transition duration-500" />
+                <div class="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-transparent opacity-80"></div>
+                <div class="absolute bottom-3 left-3 right-3">
+                  <p class="text-[11px] uppercase tracking-[0.25em] text-pink-300">Ella</p>
+                  <p class="text-sm font-semibold">Temático · Uniformes</p>
+                </div>
+              </button>
+
+              <button class="relative shrink-0 w-44 sm:w-52 md:w-60 h-72 rounded-3xl overflow-hidden bg-slate-900/80 border border-pink-900/60 group"
+                      data-fullsrc="https://via.placeholder.com/800x1200.png?text=Striper+Mujer+4">
+                <img src="https://via.placeholder.com/400x600.png?text=Mujer+4"
+                     alt="Striper mujer 4"
+                     class="w-full h-full object-cover group-hover:scale-110 transition duration-500" />
+                <div class="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-transparent opacity-80"></div>
+                <div class="absolute bottom-3 left-3 right-3">
+                  <p class="text-[11px] uppercase tracking-[0.25em] text-pink-300">Ella</p>
+                  <p class="text-sm font-semibold">Show hot con silla</p>
+                </div>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== TEXTO EXTRA ===== -->
+    <section class="max-w-6xl mx-auto px-4 pb-16">
+      <div class="grid md:grid-cols-2 gap-10 items-center">
+        <div>
+          <p class="text-xs uppercase tracking-[0.35em] text-red-400 mb-2">
+            Seguridad · Respeto · Diversión
+          </p>
+          <h3 class="text-2xl font-bold mb-3">
+            Tu fiesta sube de nivel, pero siempre con límites claros.
+          </h3>
+          <p class="text-sm text-gray-300 mb-3">
+            Trabajamos con bailarines y bailarinas profesionales, cuidadosos con el ambiente,
+            los invitados y el festejado/a. Todo el show se arma de acuerdo a lo que tú quieras:
+            más relajado, más intenso o algo intermedio.
+          </p>
+          <p class="text-sm text-gray-300">
+            Podemos adaptar duración, cantidad de personas en el show, temática de vestuario
+            y dinámicas con el público. Tú marcas la energía de la noche.
+          </p>
+        </div>
+        <div class="rounded-3xl border-gold bg-slate-950/80 p-5 grid grid-cols-2 gap-4 text-xs">
+          <div class="p-3 rounded-2xl bg-black/70 border border-red-800/70">
+            <p class="text-[11px] uppercase tracking-[0.2em] text-red-400 mb-1">TIPO DE EVENTO</p>
+            <ul class="space-y-1 text-gray-200">
+              <li>• Despedidas de soltera / soltero</li>
+              <li>• Cumpleaños</li>
+              <li>• Girls / Boys night</li>
+            </ul>
+          </div>
+          <div class="p-3 rounded-2xl bg-black/70 border border-red-800/70">
+            <p class="text-[11px] uppercase tracking-[0.2em] text-red-400 mb-1">EXTRAS</p>
+            <ul class="space-y-1 text-gray-200">
+              <li>• Payaso + Striper</li>
+              <li>• Fiestabús</li>
+              <li>• Fotografía básica</li>
+            </ul>
+          </div>
+          <div class="p-3 rounded-2xl bg-black/70 border border-red-800/70">
+            <p class="text-[11px] uppercase tracking-[0.2em] text-red-400 mb-1">DURACIÓN</p>
+            <p class="text-gray-200">Paquetes desde 30 hasta 90 minutos por show.</p>
+          </div>
+          <div class="p-3 rounded-2xl bg-black/70 border border-red-800/70">
+            <p class="text-[11px] uppercase tracking-[0.2em] text-red-400 mb-1">RESERVA</p>
+            <p class="text-gray-200">Aparta con anticipo y liquida el día del evento.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== PAQUETES ===== -->
+    <section id="paquetes" class="max-w-6xl mx-auto px-4 pb-16">
+      <div class="mb-6">
+        <p class="text-xs uppercase tracking-[0.35em] text-red-400 mb-2">Paquetes</p>
+        <h3 class="text-2xl font-bold text-white mb-2">
+          Arma el show perfecto para tu grupo.
+        </h3>
+        <p class="text-sm text-gray-300 max-w-xl">
+          Elige si quieres show de <span class="text-red-400 font-semibold">ellos</span>,
+          <span class="text-red-400 font-semibold">ellas</span> o
+          <span class="text-red-400 font-semibold">mixto & otros</span>. Cada paquete incluye coreografía,
+          interacción con el festejado/a y un cierre espectacular.
+        </p>
+      </div>
+
+      <!-- Tabs -->
+      <div class="mb-6 flex flex-wrap gap-3 text-xs">
+        <button class="js-tab-btn px-4 py-1.5 rounded-full border border-red-500/70 bg-red-700/60 text-white font-semibold"
+                data-target="tab-ellos">
+          ELLOS
+        </button>
+        <button class="js-tab-btn px-4 py-1.5 rounded-full border border-red-500/40 bg-black/60 hover:bg-red-900/30"
+                data-target="tab-ellas">
+          ELLAS
+        </button>
+        <button class="js-tab-btn px-4 py-1.5 rounded-full border border-red-500/40 bg-black/60 hover:bg-red-900/30"
+                data-target="tab-mixto">
+          MIXTO y OTROS
+        </button>
+      </div>
+
+      <!-- Contenido tabs -->
+      <div class="space-y-8">
+        <!-- ELLOS -->
+        <div id="tab-ellos" class="js-tab-content grid md:grid-cols-3 gap-5">
+          <!-- DUETO -->
+          <article class="relative rounded-3xl overflow-hidden bg-slate-950/80 border border-red-800/80 shadow-red-glow group">
+            <div class="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent opacity-80"></div>
+            <div class="absolute inset-0 bg-[url('https://via.placeholder.com/800x600.png?text=Dueto+Hombres')] bg-cover bg-center"></div>
+            <div class="relative p-4 flex flex-col h-full justify-between">
+              <div>
+                <p class="text-[11px] uppercase tracking-[0.25em] text-red-300 mb-1">Paquete</p>
+                <h4 class="text-lg font-bold mb-1">Dueto Élite</h4>
+                <p class="text-xs text-gray-200 mb-2">
+                  Dos strippers hombres, coreografía coordinada, dinámicas con el público y cierre doble.
+                </p>
+              </div>
+              <div class="mt-2 text-xs text-gray-300 space-y-1">
+                <p>• Duración aproximada: 45–60 min</p>
+                <p>• Ideal para grupos de 10–20 personas</p>
+                <button class="mt-3 inline-flex text-[11px] px-3 py-1 rounded-full bg-red-600/90 hover:bg-red-500 text-white">
+                  Cotizar por WhatsApp
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <!-- TRIPLE -->
+          <article class="relative rounded-3xl overflow-hidden bg-slate-950/80 border border-red-800/80 shadow-red-glow group">
+            <div class="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent opacity-80"></div>
+            <div class="absolute inset-0 bg-[url('https://via.placeholder.com/800x600.png?text=Triple+Hombres')] bg-cover bg-center"></div>
+            <div class="relative p-4 flex flex-col h-full justify-between">
+              <div>
+                <p class="text-[11px] uppercase tracking-[0.25em] text-red-300 mb-1">Paquete</p>
+                <h4 class="text-lg font-bold mb-1">Triple Impacto</h4>
+                <p class="text-xs text-gray-200 mb-2">
+                  Tres bailarines en escena, entradas y salidas por bloques, interacción continua y cierre explosivo.
+                </p>
+              </div>
+              <div class="mt-2 text-xs text-gray-300 space-y-1">
+                <p>• Duración aproximada: 60–75 min</p>
+                <p>• Ideal para grupos grandes</p>
+                <button class="mt-3 inline-flex text-[11px] px-3 py-1 rounded-full bg-red-600/90 hover:bg-red-500 text-white">
+                  Cotizar por WhatsApp
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <!-- ÉL Y PAYASO -->
+          <article class="relative rounded-3xl overflow-hidden bg-slate-950/80 border border-red-800/80 shadow-red-glow group">
+            <div class="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent opacity-80"></div>
+            <div class="absolute inset-0 bg-[url('https://via.placeholder.com/800x600.png?text=Striper+%2B+Payaso')] bg-cover bg-center"></div>
+            <div class="relative p-4 flex flex-col h-full justify-between">
+              <div>
+                <p class="text-[11px] uppercase tracking-[0.25em] text-red-300 mb-1">Paquete</p>
+                <h4 class="text-lg font-bold mb-1">Striper & Payaso</h4>
+                <p class="text-xs text-gray-200 mb-2">
+                  Comedia + sensualidad: payaso animando, juegos con el público y cierre con show de striper.
+                </p>
+              </div>
+              <div class="mt-2 text-xs text-gray-300 space-y-1">
+                <p>• Duración aproximada: 60–80 min</p>
+                <p>• Ideal para fiestas muy relajadas y divertidas</p>
+                <button class="mt-3 inline-flex text-[11px] px-3 py-1 rounded-full bg-red-600/90 hover:bg-red-500 text-white">
+                  Cotizar por WhatsApp
+                </button>
+              </div>
+            </div>
+          </article>
+        </div>
+
+        <!-- ELLAS -->
+        <div id="tab-ellas" class="js-tab-content hidden grid md:grid-cols-3 gap-5">
+          <article class="relative rounded-3xl overflow-hidden bg-slate-950/80 border border-pink-800/80 group">
+            <div class="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent opacity-80"></div>
+            <div class="absolute inset-0 bg-[url('https://via.placeholder.com/800x600.png?text=Dueto+Ellas')] bg-cover bg-center"></div>
+            <div class="relative p-4 flex flex-col h-full justify-between">
+              <div>
+                <p class="text-[11px] uppercase tracking-[0.25em] text-pink-300 mb-1">Paquete</p>
+                <h4 class="text-lg font-bold mb-1">Dueto Glam</h4>
+                <p class="text-xs text-gray-200 mb-2">
+                  Dos bailarinas, show sensual con coreografía y participación del festejado/a.
+                </p>
+              </div>
+              <div class="mt-2 text-xs text-gray-300 space-y-1">
+                <p>• Duración: 45–60 min</p>
+                <button class="mt-3 inline-flex text-[11px] px-3 py-1 rounded-full bg-pink-600/90 hover:bg-pink-500 text-white">
+                  Cotizar por WhatsApp
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <article class="relative rounded-3xl overflow-hidden bg-slate-950/80 border border-pink-800/80 group">
+            <div class="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent opacity-80"></div>
+            <div class="absolute inset-0 bg-[url('https://via.placeholder.com/800x600.png?text=Triple+Ellas')] bg-cover bg-center"></div>
+            <div class="relative p-4 flex flex-col h-full justify-between">
+              <div>
+                <p class="text-[11px] uppercase tracking-[0.25em] text-pink-300 mb-1">Paquete</p>
+                <h4 class="text-lg font-bold mb-1">Trío Deluxe</h4>
+                <p class="text-xs text-gray-200 mb-2">
+                  Tres bailarinas, cambios de vestuario y show muy dinámico.
+                </p>
+              </div>
+              <div class="mt-2 text-xs text-gray-300 space-y-1">
+                <p>• Duración: 60–75 min</p>
+                <button class="mt-3 inline-flex text-[11px] px-3 py-1 rounded-full bg-pink-600/90 hover:bg-pink-500 text-white">
+                  Cotizar por WhatsApp
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <article class="relative rounded-3xl overflow-hidden bg-slate-950/80 border border-pink-800/80 group">
+            <div class="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent opacity-80"></div>
+            <div class="absolute inset-0 bg-[url('https://via.placeholder.com/800x600.png?text=Show+Premium+Ella')] bg-cover bg-center"></div>
+            <div class="relative p-4 flex flex-col h-full justify-between">
+              <div>
+                <p class="text-[11px] uppercase tracking-[0.25em] text-pink-300 mb-1">Paquete</p>
+                <h4 class="text-lg font-bold mb-1">Show Premium</h4>
+                <p class="text-xs text-gray-200 mb-2">
+                  Una bailarina estrella, show personalizado según el festejado/a.
+                </p>
+              </div>
+              <div class="mt-2 text-xs text-gray-300 space-y-1">
+                <p>• Duración: 40–60 min</p>
+                <button class="mt-3 inline-flex text-[11px] px-3 py-1 rounded-full bg-pink-600/90 hover:bg-pink-500 text-white">
+                  Cotizar por WhatsApp
+                </button>
+              </div>
+            </div>
+          </article>
+        </div>
+
+        <!-- MIXTO Y OTROS -->
+        <div id="tab-mixto" class="js-tab-content hidden grid md:grid-cols-3 gap-5">
+          <!-- MIXTO -->
+          <article class="relative rounded-3xl overflow-hidden bg-slate-950/80 border border-red-800/80 group">
+            <div class="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent opacity-80"></div>
+            <div class="absolute inset-0 bg-[url('https://via.placeholder.com/800x600.png?text=Mixto')] bg-cover bg-center"></div>
+            <div class="relative p-4 flex flex-col h-full justify-between">
+              <div>
+                <p class="text-[11px] uppercase tracking-[0.25em] text-red-300 mb-1">Paquete</p>
+                <h4 class="text-lg font-bold mb-1">Mixto Power</h4>
+                <p class="text-xs text-gray-200 mb-2">
+                  Striper hombre + striper mujer, bloques alternados y cierre conjunto.
+                </p>
+              </div>
+              <div class="mt-2 text-xs text-gray-300 space-y-1">
+                <p>• Duración: 60–75 min</p>
+                <button class="mt-3 inline-flex text-[11px] px-3 py-1 rounded-full bg-red-600/90 hover:bg-red-500 text-white">
+                  Cotizar por WhatsApp
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <!-- STRIPER Y PAYASO -->
+          <article class="relative rounded-3xl overflow-hidden bg-slate-950/80 border border-red-800/80 group">
+            <div class="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent opacity-80"></div>
+            <div class="absolute inset-0 bg-[url('https://via.placeholder.com/800x600.png?text=Payaso+%2B+Mixto')] bg-cover bg-center"></div>
+            <div class="relative p-4 flex flex-col h-full justify-between">
+              <div>
+                <p class="text-[11px] uppercase tracking-[0.25em] text-red-300 mb-1">Paquete</p>
+                <h4 class="text-lg font-bold mb-1">Mixto con Payaso</h4>
+                <p class="text-xs text-gray-200 mb-2">
+                  Animación cómica más shows de stripers, ideal para grupos muy mezclados.
+                </p>
+              </div>
+              <div class="mt-2 text-xs text-gray-300 space-y-1">
+                <p>• Duración: 70–90 min</p>
+                <button class="mt-3 inline-flex text-[11px] px-3 py-1 rounded-full bg-red-600/90 hover:bg-red-500 text-white">
+                  Cotizar por WhatsApp
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <!-- FIESTABÚS -->
+          <article class="relative rounded-3xl overflow-hidden bg-slate-950/80 border border-red-800/80 group">
+            <div class="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent opacity-80"></div>
+            <div class="absolute inset-0 bg-[url('https://via.placeholder.com/800x600.png?text=Fiestabus')] bg-cover bg-center"></div>
+            <div class="relative p-4 flex flex-col h-full justify-between">
+              <div>
+                <p class="text-[11px] uppercase tracking-[0.25em] text-red-300 mb-1">Paquete</p>
+                <h4 class="text-lg font-bold mb-1">Fiestabús</h4>
+                <p class="text-xs text-gray-200 mb-2">
+                  Recorrido nocturno con música, luces, baile y show a bordo.
+                </p>
+              </div>
+              <div class="mt-2 text-xs text-gray-300 space-y-1">
+                <p>• Duración: según ruta y dinámica</p>
+                <button class="mt-3 inline-flex text-[11px] px-3 py-1 rounded-full bg-red-600/90 hover:bg-red-500 text-white">
+                  Cotizar por WhatsApp
+                </button>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== VIDEOS ===== -->
+    <section id="videos" class="max-w-6xl mx-auto px-4 pb-16">
+      <div class="mb-6">
+        <p class="text-xs uppercase tracking-[0.35em] text-red-400 mb-2">
+          Clips & reels
+        </p>
+        <h3 class="text-2xl font-bold text-white mb-2">
+          Mira un poco de la energía en acción.
+        </h3>
+        <p class="text-sm text-gray-300 max-w-xl">
+          Muestra corta de videos para que te des una idea del ritmo, la actitud y la vibra
+          de los shows. Los clips completos se comparten directamente por WhatsApp.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-5 text-xs">
+        <!-- Card de video (reemplaza src/iframe con tus videos reales) -->
+        <article class="rounded-3xl overflow-hidden bg-slate-950/80 border border-red-800/70">
+          <div class="aspect-video bg-black">
+            <video src="video-demo-1.mp4" class="w-full h-full object-cover" controls></video>
+          </div>
+          <div class="p-3">
+            <p class="text-[11px] uppercase tracking-[0.2em] text-red-400 mb-1">Clip</p>
+            <p class="text-sm font-semibold">Show de despedida · Dueto hombres</p>
+          </div>
+        </article>
+
+        <article class="rounded-3xl overflow-hidden bg-slate-950/80 border border-red-800/70">
+          <div class="aspect-video bg-black">
+            <video src="video-demo-2.mp4" class="w-full h-full object-cover" controls></video>
+          </div>
+          <div class="p-3">
+            <p class="text-[11px] uppercase tracking-[0.2em] text-red-400 mb-1">Clip</p>
+            <p class="text-sm font-semibold">Show mixto en salón privado</p>
+          </div>
+        </article>
+
+        <article class="rounded-3xl overflow-hidden bg-slate-950/80 border border-red-800/70">
+          <div class="aspect-video bg-black">
+            <video src="video-demo-3.mp4" class="w-full h-full object-cover" controls></video>
+          </div>
+          <div class="p-3">
+            <p class="text-[11px] uppercase tracking-[0.2em] text-red-400 mb-1">Clip</p>
+            <p class="text-sm font-semibold">Striper & Payaso · Fiesta en casa</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ===== FORMAS DE PAGO ===== -->
+    <section id="pagos" class="max-w-6xl mx-auto px-4 pb-16">
+      <div class="mb-6">
+        <p class="text-xs uppercase tracking-[0.35em] text-red-400 mb-2">
+          Pagos
+        </p>
+        <h3 class="text-2xl font-bold text-white mb-2">
+          Pagos claros, sin letras chiquitas.
+        </h3>
+        <p class="text-sm text-gray-300 max-w-xl">
+          Te explicamos todo antes de reservar: qué incluye tu paquete, cuánto es el anticipo
+          y cómo se liquida el día del evento.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-5 text-sm">
+        <div class="p-4 rounded-3xl bg-slate-950/80 border border-red-800/70">
+          <p class="text-[11px] uppercase tracking-[0.25em] text-red-400 mb-1">Efectivo</p>
+          <p class="text-gray-200">
+            Pago directo el día del evento para la parte pendiente del show.
+          </p>
+        </div>
+        <div class="p-4 rounded-3xl bg-slate-950/80 border border-red-800/70">
+          <p class="text-[11px] uppercase tracking-[0.25em] text-red-400 mb-1">Transferencia</p>
+          <p class="text-gray-200">
+            Anticipo mediante transferencia o depósito bancario. Datos se comparten por WhatsApp.
+          </p>
+        </div>
+        <div class="p-4 rounded-3xl bg-slate-950/80 border border-red-800/70">
+          <p class="text-[11px] uppercase tracking-[0.25em] text-red-400 mb-1">Políticas</p>
+          <p class="text-gray-200">
+            Horarios, cambios y reprogramaciones se acuerdan desde el inicio para evitar confusiones.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== CTA WHATSAPP ===== -->
+    <section id="contacto" class="max-w-6xl mx-auto px-4 pb-16">
+      <div class="rounded-3xl border-gold bg-gradient-to-r from-black via-red-950/60 to-black p-6 md:p-8 flex flex-col md:flex-row items-center md:items-center gap-5">
+        <div class="flex-1">
+          <p class="text-xs uppercase tracking-[0.35em] text-red-200 mb-2">
+            Listo para armar el show
+          </p>
+          <h3 class="text-2xl font-bold text-white mb-2">
+            Cuéntanos qué tipo de fiesta quieres… y lo hacemos realidad.
+          </h3>
+          <p class="text-sm text-gray-200 max-w-xl">
+            Mándanos un mensaje por WhatsApp con fecha, zona, tipo de evento y cuántas
+            personas son. Te respondemos con opciones de paquetes, precios y extras.
+          </p>
+        </div>
+        <div class="flex flex-col items-center gap-3">
+          <a href="https://wa.me/5210000000000?text=Hola%20quiero%20informes%20de%20paquetes%20STRIPERSHYM"
+             class="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-green-500 hover:bg-green-400 text-black font-semibold text-sm shadow-red-glow animate-float-soft">
+            <span>Escribir por WhatsApp</span>
+            <span>💬</span>
+          </a>
+          <p class="text-[11px] text-gray-400 text-center">
+            Atención de <span class="text-red-300">lun a sáb</span> en horario extendido.
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="border-t border-red-900/60 bg-black/90">
+    <div class="max-w-6xl mx-auto px-4 py-6 text-xs text-gray-400 flex flex-col md:flex-row gap-4 md:items-center md:justify-between">
+      <div>
+        <p class="text-[11px] uppercase tracking-[0.25em] text-red-400 mb-1">
+          STRIPERSHYM MÉXICO
+        </p>
+        <p class="max-w-md">
+          Shows para adultos. No se permite el acceso a menores de edad.
+          Reservaciones sujetas a disponibilidad y confirmación de anticipo.
+        </p>
+      </div>
+      <div class="flex flex-col items-start md:items-end gap-2">
+        <div class="flex items-center gap-3 text-[11px]">
+          <a href="#" class="hover:text-red-400">Aviso de privacidad</a>
+          <span class="w-px h-3 bg-gray-600/60"></span>
+          <a href="#" class="hover:text-red-400">Términos y condiciones</a>
+        </div>
+        <div class="flex items-center gap-3 text-lg">
+          <a href="#" aria-label="Facebook" class="hover:text-red-400 transition">📘</a>
+          <a href="#" aria-label="Instagram" class="hover:text-red-400 transition">📸</a>
+          <a href="#" aria-label="TikTok" class="hover:text-red-400 transition">🎵</a>
+        </div>
+        <p class="text-[11px] text-gray-500">
+          © <span id="yearSpan"></span> STRIPERSHYM. Todos los derechos reservados.
+        </p>
+      </div>
+    </div>
+  </footer>
+</div>
+
+<!-- ===== MODAL IMAGEN FULLSCREEN ===== -->
+<div id="imageModal" class="fixed inset-0 z-50 hidden bg-black/90 backdrop-blur flex items-center justify-center">
+  <button id="imageModalClose" class="absolute top-4 right-4 w-9 h-9 rounded-full bg-black/70 border border-white/40 text-white">
+    ✕
+  </button>
+  <img id="imageModalImg" src="" alt="Foto ampliada" class="max-h-[90vh] max-w-[90vw] object-contain rounded-3xl border border-red-500/60 shadow-red-glow">
+</div>
+
+<!-- ===== BOTONES FLOTANTES ===== -->
+<!-- WhatsApp flotante -->
+<a id="floatWhats"
+   href="https://wa.me/5210000000000?text=Hola%20quiero%20informes%20de%20paquetes%20STRIPERSHYM"
+   class="fixed bottom-5 right-4 z-40 w-12 h-12 rounded-full bg-green-500 flex items-center justify-center text-xl shadow-red-glow hover:bg-green-400 transition">
+  💬
+  <!-- Burbuja -->
+  <span id="whatsBubble"
+        class="absolute right-full mr-2 px-3 py-1 rounded-full bg-white text-black text-[11px] shadow-lg hidden">
+    ¿Informes?
+  </span>
+</a>
+
+<!-- Teléfono flotante -->
+<a id="floatPhone"
+   href="tel:+5210000000000"
+   class="fixed bottom-20 right-4 z-40 w-11 h-11 rounded-full bg-red-600 flex items-center justify-center text-lg shadow-red-glow hover:bg-red-500 transition">
+  📞
+</a>
+
+<!-- Scroll up -->
+<button id="scrollUpBtn"
+        class="fixed bottom-36 right-4 z-40 w-10 h-10 rounded-full bg-black/80 border border-red-500/70 text-white text-lg hidden hover:bg-red-900/60 transition">
+  ↑
+</button>
+
+<!-- ===== JS ===== -->
+<script>
+  // Año footer
+  document.getElementById('yearSpan').textContent = new Date().getFullYear();
+
+  // ===== Menú móvil =====
+  const menuToggle = document.getElementById('menuToggle');
+  const menuClose = document.getElementById('menuClose');
+  const mobileMenu = document.getElementById('mobileMenu');
+
+  function openMenu() {
+    mobileMenu.classList.remove('translate-x-full');
+    document.body.classList.add('overflow-hidden');
+  }
+  function closeMenu() {
+    mobileMenu.classList.add('translate-x-full');
+    document.body.classList.remove('overflow-hidden');
+  }
+
+  menuToggle.addEventListener('click', openMenu);
+  menuClose.addEventListener('click', closeMenu);
+
+  // Cerrar menú al dar click en enlaces internos
+  mobileMenu.querySelectorAll('a[href^="#"]').forEach(link => {
+    link.addEventListener('click', () => {
+      closeMenu();
+    });
+  });
+
+  // ===== Carousels auto-scroll =====
+  document.querySelectorAll('.js-carousel').forEach(carousel => {
+    const speed = 1.2; // px por tick
+    setInterval(() => {
+      if (carousel.scrollWidth <= carousel.clientWidth) return;
+      carousel.scrollLeft += speed;
+      if (carousel.scrollLeft + carousel.clientWidth >= carousel.scrollWidth - 2) {
+        carousel.scrollLeft = 0;
+      }
+    }, 30);
+  });
+
+  // ===== Modal de imágenes =====
+  const imageModal = document.getElementById('imageModal');
+  const imageModalImg = document.getElementById('imageModalImg');
+  const imageModalClose = document.getElementById('imageModalClose');
+
+  document.querySelectorAll('[data-fullsrc]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const src = btn.getAttribute('data-fullsrc') || btn.querySelector('img').src;
+      imageModalImg.src = src;
+      imageModal.classList.remove('hidden');
+    });
+  });
+
+  imageModalClose.addEventListener('click', () => {
+    imageModal.classList.add('hidden');
+  });
+
+  imageModal.addEventListener('click', (e) => {
+    if (e.target === imageModal) {
+      imageModal.classList.add('hidden');
+    }
+  });
+
+  // ===== Tabs paquetes =====
+  const tabButtons = document.querySelectorAll('.js-tab-btn');
+  const tabContents = document.querySelectorAll('.js-tab-content');
+
+  tabButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const target = btn.getAttribute('data-target');
+
+      tabButtons.forEach(b => {
+        b.classList.remove('bg-red-700/60', 'border-red-500/70', 'text-white', 'font-semibold');
+        b.classList.add('bg-black/60');
+      });
+      btn.classList.add('bg-red-700/60', 'border-red-500/70', 'text-white', 'font-semibold');
+
+      tabContents.forEach(c => {
+        c.classList.add('hidden');
+      });
+      document.getElementById(target).classList.remove('hidden');
+    });
+  });
+
+  // ===== Botón scroll up =====
+  const scrollUpBtn = document.getElementById('scrollUpBtn');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 250) {
+      scrollUpBtn.classList.remove('hidden');
+    } else {
+      scrollUpBtn.classList.add('hidden');
+    }
+  });
+  scrollUpBtn.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+
+  // ===== Burbuja WhatsApp a ratos =====
+  const whatsBubble = document.getElementById('whatsBubble');
+  function showBubble() {
+    whatsBubble.classList.remove('hidden');
+    whatsBubble.classList.add('bubble-anim');
+    setTimeout(() => {
+      whatsBubble.classList.add('hidden');
+      whatsBubble.classList.remove('bubble-anim');
+    }, 3400);
+  }
+  // cada ~25 segundos lanza "¿Informes?"
+  setInterval(showBubble, 25000);
+  // la primera vez después de unos segundos
+  setTimeout(showBubble, 6000);
+</script>
+</body>
+</html>

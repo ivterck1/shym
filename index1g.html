@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>STRIPERSHYM | Exclusive Entertainment</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;800&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            black: '#050505',
+                            dark: '#0f0f0f',
+                            gold: '#D4AF37', 
+                            goldLight: '#F3E5AB',
+                            red: '#8B0000', 
+                            redBright: '#DC143C'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Montserrat', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                    },
+                    backgroundImage: {
+                        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+                        'gold-gradient': 'linear-gradient(to right, #bf953f, #fcf6ba, #b38728, #fbf5b7, #aa771c)',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #000000;
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #000; }
+        ::-webkit-scrollbar-thumb { background: #D4AF37; border-radius: 4px; }
+
+        /* Utilities */
+        .text-gold-gradient {
+            background: linear-gradient(to right, #bf953f, #fcf6ba, #b38728, #fbf5b7, #aa771c);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .hide-scroll-bar::-webkit-scrollbar { display: none; }
+        .hide-scroll-bar { -ms-overflow-style: none; scrollbar-width: none; }
+
+        /* Animaciones */
+        .mobile-menu-enter { transform: translateX(100%); transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
+        .mobile-menu-active { transform: translateX(0); }
+        
+        @keyframes floatBubble {
+            0% { opacity: 0; transform: translateY(10px) scale(0.9); }
+            10% { opacity: 1; transform: translateY(0) scale(1); }
+            90% { opacity: 1; transform: translateY(0) scale(1); }
+            100% { opacity: 0; transform: translateY(10px) scale(0.9); }
+        }
+        .bubble-anim { animation: floatBubble 4s ease-in-out forwards; }
+        
+        .neon-red-hover:hover {
+            box-shadow: 0 0 15px rgba(220, 20, 60, 0.6);
+            border-color: #DC143C;
+        }
+
+        /* Fade in logic */
+        .fade-enter { opacity: 0; transform: translateY(20px); }
+        .fade-enter-active { opacity: 1; transform: translateY(0); transition: opacity 0.5s ease-out, transform 0.5s ease-out; }
+        .hidden-view { display: none !important; }
+
+        /* Estados de tarjetas principales */
+        .card-active {
+            border-color: #D4AF37 !important; 
+            transform: scale(1.05);
+            opacity: 1 !important;
+            z-index: 10;
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
+        }
+        .card-dimmed {
+            opacity: 0.4;
+            transform: scale(0.95);
+            filter: grayscale(80%);
+        }
+    </style>
+</head>
+<body class="antialiased relative">
+
+    <!-- HEADER -->
+    <header class="fixed w-full top-0 z-50 transition-all duration-300 bg-black/80 backdrop-blur-md border-b border-white/10" id="main-header">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <div class="flex-shrink-0 flex items-center gap-3 cursor-pointer" onclick="window.scrollTo(0,0)">
+                    <img src="logo.png" alt="Logo" class="h-10 w-auto object-contain brightness-110 drop-shadow-[0_0_5px_rgba(212,175,55,0.5)]">
+                    <span class="font-serif text-xl tracking-widest font-bold text-white hidden sm:block">STRIPERSHYM</span>
+                </div>
+                <nav class="hidden lg:flex space-x-8">
+                    <a href="#hero" class="text-sm font-medium hover:text-brand-gold transition-colors tracking-widest uppercase">Inicio</a>
+                    <a href="#gallery" class="text-sm font-medium hover:text-brand-gold transition-colors tracking-widest uppercase">Galería</a>
+                    <a href="#packages" class="text-sm font-medium hover:text-brand-gold transition-colors tracking-widest uppercase">Paquetes</a>
+                    <a href="#videos" class="text-sm font-medium hover:text-brand-gold transition-colors tracking-widest uppercase">Videos</a>
+                    <a href="#contact" class="px-5 py-2 border border-brand-gold text-brand-gold hover:bg-brand-gold hover:text-black transition-all duration-300 rounded-sm text-sm font-bold uppercase">Reservar</a>
+                </nav>
+                <div class="lg:hidden">
+                    <button id="menu-btn" class="text-brand-gold focus:outline-none p-2"><i class="fa-solid fa-bars-staggered text-2xl"></i></button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- MOBILE MENU -->
+    <div id="mobile-menu" class="fixed inset-0 z-[60] bg-black bg-opacity-95 mobile-menu-enter flex flex-col justify-center items-center space-y-8 text-center backdrop-blur-xl">
+        <button id="close-menu-btn" class="absolute top-6 right-6 text-white hover:text-brand-red transition-colors"><i class="fa-solid fa-xmark text-4xl"></i></button>
+        <img src="logo-mobile.png" alt="Logo Mobile" class="h-20 mb-4 animate-pulse">
+        <a href="#hero" class="mobile-link text-3xl font-serif text-white hover:text-brand-gold transition-all">INICIO</a>
+        <a href="#gallery" class="mobile-link text-3xl font-serif text-white hover:text-brand-gold transition-all">TALENTOS</a>
+        <a href="#packages" class="mobile-link text-3xl font-serif text-white hover:text-brand-gold transition-all">PAQUETES</a>
+        <a href="#contact" class="mobile-link text-3xl font-serif text-brand-red font-bold hover:scale-110 transition-transform">RESERVAR AHORA</a>
+    </div>
+
+    <!-- HERO -->
+    <section id="hero" class="relative h-screen w-full overflow-hidden flex items-center justify-center">
+        <div class="absolute inset-0 z-0">
+            <video autoplay muted loop playsinline class="w-full h-full object-cover opacity-50">
+                <source src="https://assets.mixkit.co/videos/preview/mixkit-black-and-white-abstract-pattern-1688-large.mp4" type="video/mp4">
+            </video>
+            <div class="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-black/30"></div>
+        </div>
+        <div class="relative z-10 text-center px-4 max-w-4xl mx-auto mt-16" data-aos="fade-up">
+            <img src="logo.png" alt="Main Logo" class="w-64 md:w-80 mx-auto mb-6 drop-shadow-[0_0_20px_rgba(255,255,255,0.2)]">
+            <h1 class="text-4xl md:text-6xl lg:text-7xl font-serif font-bold text-white mb-4 tracking-tighter">
+                <span class="block text-xl md:text-2xl font-sans font-light tracking-[0.5em] mb-2 text-brand-gold">EXPERIENCIA</span>
+                PREMIUM
+            </h1>
+            <p class="text-gray-300 text-lg md:text-xl font-light max-w-2xl mx-auto leading-relaxed">
+                Si no hay competencia, no hay calidad. Descubre el entretenimiento de élite diseñado para momentos inolvidables.
+            </p>
+            <div class="mt-10 flex flex-col md:flex-row gap-4 justify-center">
+                <a href="#packages" class="px-8 py-3 bg-brand-red hover:bg-red-700 text-white font-bold tracking-wider rounded-sm transition-all shadow-[0_0_20px_rgba(139,0,0,0.5)]">VER PAQUETES</a>
+                <a href="#gallery" class="px-8 py-3 border border-white/30 hover:border-brand-gold hover:text-brand-gold text-white font-bold tracking-wider rounded-sm transition-all backdrop-blur-sm">CONOCER ELENCO</a>
+            </div>
+        </div>
+        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce text-brand-gold"><i class="fa-solid fa-chevron-down text-2xl"></i></div>
+    </section>
+
+    <!-- INTRO -->
+    <section class="py-20 bg-brand-black relative">
+        <div class="max-w-4xl mx-auto px-6 text-center">
+            <i class="fa-solid fa-crown text-4xl text-brand-gold mb-6"></i>
+            <h2 class="text-3xl md:text-4xl font-serif text-white mb-6">El Arte de la Seducción</h2>
+            <p class="text-gray-400 leading-8 text-lg">
+                En STRIPERSHYM transformamos eventos ordinarios en recuerdos extraordinarios. 
+                Nuestro elenco seleccionado cumple con los más altos estándares de estética y profesionalismo.
+            </p>
+            <div class="w-24 h-1 bg-brand-red mx-auto mt-8"></div>
+        </div>
+    </section>
+
+    <!-- GALLERY -->
+    <section id="gallery" class="py-10 bg-brand-dark overflow-hidden relative">
+        <div class="text-center mb-12">
+            <h3 class="text-5xl font-serif text-transparent bg-clip-text bg-gradient-to-b from-white to-gray-600 opacity-20 absolute w-full top-0 left-0 -z-10 select-none">GALERÍA</h3>
+            <h2 class="text-3xl font-bold text-white mt-4"><span class="text-brand-gold">ELLOS</span></h2>
+        </div>
+        <div class="relative group max-w-full">
+            <button id="prev-men" class="absolute left-2 top-1/2 -translate-y-1/2 z-20 bg-black/50 p-3 rounded-full text-white hover:bg-brand-red transition-all hidden md:block"><i class="fa-solid fa-chevron-left"></i></button>
+            <div id="carousel-men" class="flex overflow-x-auto space-x-4 p-4 hide-scroll-bar scroll-smooth">
+                <!-- Images Men -->
+                <div class="flex-none w-64 h-96 relative cursor-pointer transform hover:scale-105 transition-all duration-300 gallery-item">
+                    <img src="https://images.unsplash.com/photo-1542596594-649edbc13630?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" class="w-full h-full object-cover rounded-lg brightness-75 hover:brightness-100" alt="Alex">
+                    <div class="absolute bottom-0 left-0 w-full p-4 bg-gradient-to-t from-black to-transparent"><p class="text-white font-bold text-lg">Alex</p></div>
+                </div>
+                <div class="flex-none w-64 h-96 relative cursor-pointer transform hover:scale-105 transition-all duration-300 gallery-item">
+                    <img src="https://images.unsplash.com/photo-1534030347209-7147fd69a3f2?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" class="w-full h-full object-cover rounded-lg brightness-75 hover:brightness-100" alt="Leo">
+                    <div class="absolute bottom-0 left-0 w-full p-4 bg-gradient-to-t from-black to-transparent"><p class="text-white font-bold text-lg">Leo</p></div>
+                </div>
+                 <div class="flex-none w-64 h-96 relative cursor-pointer transform hover:scale-105 transition-all duration-300 gallery-item">
+                    <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" class="w-full h-full object-cover rounded-lg brightness-75 hover:brightness-100" alt="Max">
+                    <div class="absolute bottom-0 left-0 w-full p-4 bg-gradient-to-t from-black to-transparent"><p class="text-white font-bold text-lg">Max</p></div>
+                </div>
+                <div class="flex-none w-64 h-96 relative cursor-pointer transform hover:scale-105 transition-all duration-300 gallery-item">
+                    <img src="https://images.unsplash.com/photo-1568316684617-5789f289417f?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" class="w-full h-full object-cover rounded-lg brightness-75 hover:brightness-100" alt="Dante">
+                    <div class="absolute bottom-0 left-0 w-full p-4 bg-gradient-to-t from-black to-transparent"><p class="text-white font-bold text-lg">Dante</p></div>
+                </div>
+            </div>
+            <button id="next-men" class="absolute right-2 top-1/2 -translate-y-1/2 z-20 bg-black/50 p-3 rounded-full text-white hover:bg-brand-red transition-all hidden md:block"><i class="fa-solid fa-chevron-right"></i></button>
+        </div>
+        
+        <div class="h-20"></div>
+
+        <div class="text-center mb-12">
+            <h2 class="text-3xl font-bold text-white"><span class="text-brand-redBright">ELLAS</span></h2>
+        </div>
+        <div class="relative group max-w-full">
+             <button id="prev-women" class="absolute left-2 top-1/2 -translate-y-1/2 z-20 bg-black/50 p-3 rounded-full text-white hover:bg-brand-red transition-all hidden md:block"><i class="fa-solid fa-chevron-left"></i></button>
+            <div id="carousel-women" class="flex overflow-x-auto space-x-4 p-4 hide-scroll-bar scroll-smooth">
+                <!-- Images Women -->
+                <div class="flex-none w-64 h-96 relative cursor-pointer transform hover:scale-105 transition-all duration-300 gallery-item">
+                    <img src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" class="w-full h-full object-cover rounded-lg brightness-75 hover:brightness-100" alt="Sasha">
+                    <div class="absolute bottom-0 left-0 w-full p-4 bg-gradient-to-t from-black to-transparent"><p class="text-white font-bold text-lg">Sasha</p></div>
+                </div>
+                <div class="flex-none w-64 h-96 relative cursor-pointer transform hover:scale-105 transition-all duration-300 gallery-item">
+                    <img src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" class="w-full h-full object-cover rounded-lg brightness-75 hover:brightness-100" alt="Ruby">
+                    <div class="absolute bottom-0 left-0 w-full p-4 bg-gradient-to-t from-black to-transparent"><p class="text-white font-bold text-lg">Ruby</p></div>
+                </div>
+                <div class="flex-none w-64 h-96 relative cursor-pointer transform hover:scale-105 transition-all duration-300 gallery-item">
+                    <img src="https://images.unsplash.com/photo-1485230405346-71acb9518d9c?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" class="w-full h-full object-cover rounded-lg brightness-75 hover:brightness-100" alt="Jade">
+                    <div class="absolute bottom-0 left-0 w-full p-4 bg-gradient-to-t from-black to-transparent"><p class="text-white font-bold text-lg">Jade</p></div>
+                </div>
+                 <div class="flex-none w-64 h-96 relative cursor-pointer transform hover:scale-105 transition-all duration-300 gallery-item">
+                    <img src="https://images.unsplash.com/photo-1616002411355-49593fd89721?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" class="w-full h-full object-cover rounded-lg brightness-75 hover:brightness-100" alt="Valeria">
+                    <div class="absolute bottom-0 left-0 w-full p-4 bg-gradient-to-t from-black to-transparent"><p class="text-white font-bold text-lg">Valeria</p></div>
+                </div>
+            </div>
+            <button id="next-women" class="absolute right-2 top-1/2 -translate-y-1/2 z-20 bg-black/50 p-3 rounded-full text-white hover:bg-brand-red transition-all hidden md:block"><i class="fa-solid fa-chevron-right"></i></button>
+        </div>
+    </section>
+
+    <!-- LIGHTBOX -->
+    <div id="lightbox" class="fixed inset-0 z-[100] bg-black bg-opacity-95 hidden flex justify-center items-center opacity-0 transition-opacity duration-300">
+        <button id="close-lightbox" class="absolute top-5 right-5 text-white text-4xl hover:text-brand-red cursor-pointer z-[101]"><i class="fa-solid fa-times"></i></button>
+        <img id="lightbox-img" src="" class="max-w-[90vw] max-h-[90vh] object-contain shadow-2xl border-2 border-brand-gold rounded-sm">
+    </div>
+
+    <!-- TEXT TRANSITION -->
+    <section class="py-24 bg-brand-black flex items-center justify-center px-6">
+        <div class="text-center border-l-4 border-brand-gold pl-6 md:pl-10">
+            <h3 class="text-2xl md:text-3xl font-light text-white italic">"La noche es joven, y las posibilidades son <span class="text-brand-gold font-bold">infinitas</span>."</h3>
+        </div>
+    </section>
+
+    <!-- PACKAGES SECTION (UPDATED INTERACTION) -->
+    <section id="packages" class="py-20 bg-gradient-to-b from-brand-dark to-black px-4">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <span class="text-brand-red text-sm font-bold tracking-[0.3em] uppercase">Exclusividad</span>
+                <h2 class="text-4xl md:text-5xl font-serif text-white mt-2 mb-4">Nuestros Paquetes</h2>
+                <div class="w-16 h-1 bg-brand-gold mx-auto"></div>
+            </div>
+
+            <!-- VIEW 1: MAIN CATEGORIES (ALWAYS VISIBLE) -->
+            <div id="packages-main" class="grid grid-cols-1 md:grid-cols-3 gap-8 transition-all duration-500 mb-12">
+                
+                <!-- MAIN CARD: ELLOS -->
+                <div id="card-ellos" onclick="showPackageDetails('ellos')" class="main-card group relative h-[400px] w-full bg-gray-900 rounded-xl overflow-hidden shadow-lg border border-gray-800 transition-all duration-500 cursor-pointer">
+                    <img src="https://images.unsplash.com/photo-1566419809331-52e529a9978c?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" class="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:scale-105 transition-transform duration-700">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent"></div>
+                    <div class="absolute inset-0 flex flex-col items-center justify-center transition-all duration-300">
+                        <h3 class="text-4xl font-serif text-brand-gold mb-2">ELLOS</h3>
+                        <p class="text-gray-300 text-sm tracking-widest mt-4">SELECCIONAR</p>
+                    </div>
+                </div>
+
+                <!-- MAIN CARD: ELLAS -->
+                <div id="card-ellas" onclick="showPackageDetails('ellas')" class="main-card group relative h-[400px] w-full bg-gray-900 rounded-xl overflow-hidden shadow-lg border border-gray-800 transition-all duration-500 cursor-pointer">
+                    <img src="https://images.unsplash.com/photo-1583316166472-171457894a86?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" class="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:scale-105 transition-transform duration-700">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent"></div>
+                    <div class="absolute inset-0 flex flex-col items-center justify-center transition-all duration-300">
+                        <h3 class="text-4xl font-serif text-brand-redBright mb-2">ELLAS</h3>
+                        <p class="text-gray-300 text-sm tracking-widest mt-4">SELECCIONAR</p>
+                    </div>
+                </div>
+
+                <!-- MAIN CARD: MIXTO -->
+                <div id="card-mixto" onclick="showPackageDetails('mixto')" class="main-card group relative h-[400px] w-full bg-gray-900 rounded-xl overflow-hidden shadow-lg border border-gray-800 transition-all duration-500 cursor-pointer">
+                    <img src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" class="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:scale-105 transition-transform duration-700">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent"></div>
+                    <div class="absolute inset-0 flex flex-col items-center justify-center transition-all duration-300">
+                        <h3 class="text-4xl font-serif text-purple-400 mb-2">MIXTO</h3>
+                        <p class="text-gray-300 text-sm tracking-widest mt-4">SELECCIONAR</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- VIEW 2: DETAILS CONTAINER -->
+            <!-- Removed min-h-[500px] so it collapses when empty -->
+            <div id="package-details-container" class="relative">
+                <!-- Placeholder Text Removed for cleaner look -->
+
+                <!-- ELLOS DETAILS (Removed absolute positioning) -->
+                <div id="details-ellos" class="hidden-view fade-enter w-full">
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                        <!-- SUB CARD 1 -->
+                        <div class="group relative h-[450px] w-full bg-gray-900 rounded-xl overflow-hidden shadow-lg border border-gray-800 hover:border-brand-gold transition-all duration-500">
+                            <img src="https://images.unsplash.com/photo-1542596594-649edbc13630?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" class="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:scale-110 transition-transform duration-700">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent"></div>
+                            <div class="absolute bottom-0 left-0 w-full p-8 transition-all duration-300 group-hover:bottom-1/4">
+                                <h3 class="text-2xl font-serif text-brand-gold mb-1">UN GUERRERO</h3>
+                                <p class="text-gray-400 text-xs uppercase">Show Solista</p>
+                            </div>
+                            <div class="absolute -bottom-full left-0 w-full h-1/2 bg-black/90 backdrop-blur-sm p-6 flex flex-col justify-center transition-all duration-500 group-hover:bottom-0 border-t border-brand-gold">
+                                <p class="text-gray-300 text-sm mb-4">El show individual perfecto para encender la noche.</p>
+                                <a href="https://wa.me/5211234567890?text=Info%20Un%20Guerrero" class="w-full py-2 bg-brand-gold text-black font-bold text-center hover:bg-white transition-colors">COTIZAR</a>
+                            </div>
+                        </div>
+                        <!-- SUB CARD 2 -->
+                        <div class="group relative h-[450px] w-full bg-gray-900 rounded-xl overflow-hidden shadow-lg border border-gray-800 hover:border-brand-gold transition-all duration-500">
+                            <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" class="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:scale-110 transition-transform duration-700">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent"></div>
+                            <div class="absolute bottom-0 left-0 w-full p-8 transition-all duration-300 group-hover:bottom-1/4">
+                                <h3 class="text-2xl font-serif text-brand-gold mb-1">PAR DE ASES</h3>
+                                <p class="text-gray-400 text-xs uppercase">Show Dueto</p>
+                            </div>
+                            <div class="absolute -bottom-full left-0 w-full h-1/2 bg-black/90 backdrop-blur-sm p-6 flex flex-col justify-center transition-all duration-500 group-hover:bottom-0 border-t border-brand-gold">
+                                <p class="text-gray-300 text-sm mb-4">Doble intensidad, doble diversión. Coreografía sincronizada.</p>
+                                <a href="https://wa.me/5211234567890?text=Info%20Par%20de%20Ases" class="w-full py-2 bg-brand-gold text-black font-bold text-center hover:bg-white transition-colors">COTIZAR</a>
+                            </div>
+                        </div>
+                        <!-- SUB CARD 3 -->
+                        <div class="group relative h-[450px] w-full bg-gray-900 rounded-xl overflow-hidden shadow-lg border border-gray-800 hover:border-brand-gold transition-all duration-500">
+                            <img src="https://images.unsplash.com/photo-1487222477894-8943e31ef7b2?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" class="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:scale-110 transition-transform duration-700">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent"></div>
+                            <div class="absolute bottom-0 left-0 w-full p-8 transition-all duration-300 group-hover:bottom-1/4">
+                                <h3 class="text-2xl font-serif text-brand-gold mb-1">TRIO SALVAJE</h3>
+                                <p class="text-gray-400 text-xs uppercase">Mega Paquete</p>
+                            </div>
+                            <div class="absolute -bottom-full left-0 w-full h-1/2 bg-black/90 backdrop-blur-sm p-6 flex flex-col justify-center transition-all duration-500 group-hover:bottom-0 border-t border-brand-gold">
+                                <p class="text-gray-300 text-sm mb-4">La experiencia definitiva. Tres talentos a tu disposición.</p>
+                                <a href="https://wa.me/5211234567890?text=Info%20Trio%20Salvaje" class="w-full py-2 bg-brand-gold text-black font-bold text-center hover:bg-white transition-colors">COTIZAR</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ELLAS DETAILS (Removed absolute positioning) -->
+                <div id="details-ellas" class="hidden-view fade-enter w-full">
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                         <!-- SUB CARD 1 -->
+                         <div class="group relative h-[450px] w-full bg-gray-900 rounded-xl overflow-hidden shadow-lg border border-gray-800 hover:border-brand-red transition-all duration-500">
+                            <img src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" class="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:scale-110 transition-transform duration-700">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent"></div>
+                            <div class="absolute bottom-0 left-0 w-full p-8 transition-all duration-300 group-hover:bottom-1/4">
+                                <h3 class="text-2xl font-serif text-brand-redBright mb-1">UNA PRINCESA</h3>
+                                <p class="text-gray-400 text-xs uppercase">Show Individual</p>
+                            </div>
+                            <div class="absolute -bottom-full left-0 w-full h-1/2 bg-black/90 backdrop-blur-sm p-6 flex flex-col justify-center transition-all duration-500 group-hover:bottom-0 border-t border-brand-red">
+                                <p class="text-gray-300 text-sm mb-4">Sensualidad y elegancia en un show exclusivo.</p>
+                                <a href="https://wa.me/5211234567890?text=Info%20Una%20Princesa" class="w-full py-2 bg-brand-red text-white font-bold text-center hover:bg-white hover:text-black transition-colors">COTIZAR</a>
+                            </div>
+                        </div>
+                         <!-- SUB CARD 2 -->
+                         <div class="group relative h-[450px] w-full bg-gray-900 rounded-xl overflow-hidden shadow-lg border border-gray-800 hover:border-brand-red transition-all duration-500">
+                            <img src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" class="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:scale-110 transition-transform duration-700">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent"></div>
+                            <div class="absolute bottom-0 left-0 w-full p-8 transition-all duration-300 group-hover:bottom-1/4">
+                                <h3 class="text-2xl font-serif text-brand-redBright mb-1">DUO DE ENSUEÑO</h3>
+                                <p class="text-gray-400 text-xs uppercase">Show Lesbico / Dueto</p>
+                            </div>
+                            <div class="absolute -bottom-full left-0 w-full h-1/2 bg-black/90 backdrop-blur-sm p-6 flex flex-col justify-center transition-all duration-500 group-hover:bottom-0 border-t border-brand-red">
+                                <p class="text-gray-300 text-sm mb-4">Fantasía al doble. Un espectáculo visual impresionante.</p>
+                                <a href="https://wa.me/5211234567890?text=Info%20Duo%20Ensueño" class="w-full py-2 bg-brand-red text-white font-bold text-center hover:bg-white hover:text-black transition-colors">COTIZAR</a>
+                            </div>
+                        </div>
+                         <!-- SUB CARD 3 -->
+                         <div class="group relative h-[450px] w-full bg-gray-900 rounded-xl overflow-hidden shadow-lg border border-gray-800 hover:border-brand-red transition-all duration-500">
+                            <img src="https://images.unsplash.com/photo-1616002411355-49593fd89721?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" class="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:scale-110 transition-transform duration-700">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent"></div>
+                            <div class="absolute bottom-0 left-0 w-full p-8 transition-all duration-300 group-hover:bottom-1/4">
+                                <h3 class="text-2xl font-serif text-brand-redBright mb-1">TRES DE CORAZONES</h3>
+                                <p class="text-gray-400 text-xs uppercase">Show Premium</p>
+                            </div>
+                            <div class="absolute -bottom-full left-0 w-full h-1/2 bg-black/90 backdrop-blur-sm p-6 flex flex-col justify-center transition-all duration-500 group-hover:bottom-0 border-t border-brand-red">
+                                <p class="text-gray-300 text-sm mb-4">Para quienes no se conforman con poco. El máximo nivel.</p>
+                                <a href="https://wa.me/5211234567890?text=Info%20Tres%20De%20Corazones" class="w-full py-2 bg-brand-red text-white font-bold text-center hover:bg-white hover:text-black transition-colors">COTIZAR</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- MIXTO DETAILS (Removed absolute positioning) -->
+                <div id="details-mixto" class="hidden-view fade-enter w-full">
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                        <!-- SUB CARD 1 -->
+                        <div class="group relative h-[450px] w-full bg-gray-900 rounded-xl overflow-hidden shadow-lg border border-gray-800 hover:border-purple-500 transition-all duration-500">
+                            <img src="https://images.unsplash.com/photo-1534030347209-7147fd69a3f2?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" class="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:scale-110 transition-transform duration-700">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent"></div>
+                            <div class="absolute bottom-0 left-0 w-full p-8 transition-all duration-300 group-hover:bottom-1/4">
+                                <h3 class="text-2xl font-serif text-purple-400 mb-1">STRIPPER Y PAYASO</h3>
+                                <p class="text-gray-400 text-xs uppercase">Comedia Picante</p>
+                            </div>
+                            <div class="absolute -bottom-full left-0 w-full h-1/2 bg-black/90 backdrop-blur-sm p-6 flex flex-col justify-center transition-all duration-500 group-hover:bottom-0 border-t border-purple-500">
+                                <p class="text-gray-300 text-sm mb-4">La combinación perfecta de risas y sensualidad.</p>
+                                <a href="https://wa.me/5211234567890?text=Info%20Stripper%20Y%20Payaso" class="w-full py-2 bg-purple-600 text-white font-bold text-center hover:bg-white hover:text-black transition-colors">COTIZAR</a>
+                            </div>
+                        </div>
+                         <!-- SUB CARD 2 -->
+                         <div class="group relative h-[450px] w-full bg-gray-900 rounded-xl overflow-hidden shadow-lg border border-gray-800 hover:border-purple-500 transition-all duration-500">
+                            <img src="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" class="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:scale-110 transition-transform duration-700">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent"></div>
+                            <div class="absolute bottom-0 left-0 w-full p-8 transition-all duration-300 group-hover:bottom-1/4">
+                                <h3 class="text-2xl font-serif text-purple-400 mb-1">SHOW CÓMICO</h3>
+                                <p class="text-gray-400 text-xs uppercase">Para Eventos</p>
+                            </div>
+                            <div class="absolute -bottom-full left-0 w-full h-1/2 bg-black/90 backdrop-blur-sm p-6 flex flex-col justify-center transition-all duration-500 group-hover:bottom-0 border-t border-purple-500">
+                                <p class="text-gray-300 text-sm mb-4">Un show de stand-up o animación para adultos.</p>
+                                <a href="https://wa.me/5211234567890?text=Info%20Show%20Comico" class="w-full py-2 bg-purple-600 text-white font-bold text-center hover:bg-white hover:text-black transition-colors">COTIZAR</a>
+                            </div>
+                        </div>
+                         <!-- SUB CARD 3 -->
+                         <div class="group relative h-[450px] w-full bg-gray-900 rounded-xl overflow-hidden shadow-lg border border-gray-800 hover:border-purple-500 transition-all duration-500">
+                            <img src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" class="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:scale-110 transition-transform duration-700">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent"></div>
+                            <div class="absolute bottom-0 left-0 w-full p-8 transition-all duration-300 group-hover:bottom-1/4">
+                                <h3 class="text-2xl font-serif text-purple-400 mb-1">FIESTABUS</h3>
+                                <p class="text-gray-400 text-xs uppercase">Fiesta Movil</p>
+                            </div>
+                            <div class="absolute -bottom-full left-0 w-full h-1/2 bg-black/90 backdrop-blur-sm p-6 flex flex-col justify-center transition-all duration-500 group-hover:bottom-0 border-t border-purple-500">
+                                <p class="text-gray-300 text-sm mb-4">Recorre la ciudad con música, bebidas y show a bordo.</p>
+                                <a href="https://wa.me/5211234567890?text=Info%20Fiestabus" class="w-full py-2 bg-purple-600 text-white font-bold text-center hover:bg-white hover:text-black transition-colors">COTIZAR</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- VIDEO -->
+    <section id="videos" class="py-16 bg-black relative">
+        <div class="absolute inset-0 opacity-10 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]"></div>
+        <div class="max-w-6xl mx-auto px-4 relative z-10">
+            <h2 class="text-3xl font-bold text-white mb-8 text-center border-b border-gray-800 pb-4">EXPERIENCIA EN VIVO</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                 <div class="aspect-video bg-gray-900 rounded-lg overflow-hidden border border-gray-800 hover:border-brand-gold transition-colors flex items-center justify-center group cursor-pointer">
+                    <div class="w-16 h-16 rounded-full bg-brand-gold flex items-center justify-center group-hover:scale-110 transition-transform"><i class="fa-solid fa-play text-black text-2xl ml-1"></i></div>
+                </div>
+                 <div class="aspect-video bg-gray-900 rounded-lg overflow-hidden border border-gray-800 hover:border-brand-gold transition-colors flex items-center justify-center group cursor-pointer">
+                    <div class="w-16 h-16 rounded-full bg-brand-gold flex items-center justify-center group-hover:scale-110 transition-transform"><i class="fa-solid fa-play text-black text-2xl ml-1"></i></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PAYMENTS -->
+    <section class="py-12 bg-brand-dark border-t border-gray-900">
+        <div class="max-w-4xl mx-auto px-4 text-center">
+            <h3 class="text-xl text-gray-400 uppercase tracking-widest mb-8">Métodos de Pago</h3>
+            <div class="flex justify-center gap-8 md:gap-16 flex-wrap">
+                <div class="flex flex-col items-center gap-2 group">
+                    <i class="fa-solid fa-money-bill-wave text-3xl text-gray-500 group-hover:text-green-500 transition-colors"></i><span class="text-sm text-gray-400">Efectivo</span>
+                </div>
+                <div class="flex flex-col items-center gap-2 group">
+                    <i class="fa-regular fa-credit-card text-3xl text-gray-500 group-hover:text-brand-gold transition-colors"></i><span class="text-sm text-gray-400">Tarjetas</span>
+                </div>
+                <div class="flex flex-col items-center gap-2 group">
+                    <i class="fa-solid fa-building-columns text-3xl text-gray-500 group-hover:text-blue-400 transition-colors"></i><span class="text-sm text-gray-400">Transferencia</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="py-24 relative overflow-hidden flex items-center justify-center">
+        <div class="absolute inset-0 bg-gradient-to-r from-brand-red to-black opacity-30"></div>
+        <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/dark-leather.png')] opacity-50"></div>
+        <div class="relative z-10 text-center px-4">
+            <h2 class="text-4xl md:text-6xl font-serif font-bold text-white mb-6">¿LISTO PARA LA FIESTA?</h2>
+            <p class="text-xl text-gray-200 mb-8 max-w-2xl mx-auto">No dejes que te lo cuenten. Vive la experiencia STRIPERSHYM hoy mismo.</p>
+            <a href="https://wa.me/5211234567890" target="_blank" class="inline-flex items-center gap-3 px-10 py-5 bg-green-600 hover:bg-green-500 text-white font-bold text-lg rounded-full shadow-[0_0_30px_rgba(34,197,94,0.4)] transition-all transform hover:-translate-y-1">
+                <i class="fa-brands fa-whatsapp text-2xl"></i> RESERVAR POR WHATSAPP
+            </a>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-black border-t border-gray-900 py-12 text-center">
+        <div class="max-w-7xl mx-auto px-4">
+            <img src="logo.png" alt="Footer Logo" class="h-12 mx-auto mb-6 opacity-80 grayscale hover:grayscale-0 transition-all">
+            <div class="flex justify-center space-x-8 mb-8">
+                <a href="#" class="text-gray-500 hover:text-blue-500 transition-colors text-2xl"><i class="fa-brands fa-facebook"></i></a>
+                <a href="#" class="text-gray-500 hover:text-pink-500 transition-colors text-2xl"><i class="fa-brands fa-instagram"></i></a>
+                <a href="#" class="text-gray-500 hover:text-white transition-colors text-2xl"><i class="fa-brands fa-tiktok"></i></a>
+            </div>
+            <div class="text-gray-600 text-sm space-y-2">
+                <p>STRIPERSHYM &copy; 2024. Todos los derechos reservados.</p>
+                <p>Servicio exclusivo para mayores de edad (+18).</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- FLOATING BUTTONS -->
+    <div class="fixed bottom-6 right-6 z-40 flex flex-col gap-4 items-end">
+        <button id="scroll-up" class="w-10 h-10 bg-gray-800 text-white rounded-full shadow-lg items-center justify-center hover:bg-brand-gold hover:text-black transition-all hidden"><i class="fa-solid fa-arrow-up"></i></button>
+        <a href="tel:+521234567890" class="w-14 h-14 bg-brand-red text-white rounded-full shadow-xl flex items-center justify-center hover:scale-110 transition-transform neon-red-hover"><i class="fa-solid fa-phone text-2xl"></i></a>
+        <div class="relative">
+            <div id="wa-bubble" class="absolute right-full mr-4 top-2 bg-white text-black text-sm px-3 py-1 rounded-lg shadow-lg whitespace-nowrap opacity-0 transition-opacity">
+                ¿Informes? <span class="absolute right-[-6px] top-3 border-l-[6px] border-l-white border-t-[6px] border-t-transparent border-b-[6px] border-b-transparent"></span>
+            </div>
+            <a href="https://wa.me/5211234567890" target="_blank" class="w-16 h-16 bg-green-500 text-white rounded-full shadow-[0_0_20px_rgba(34,197,94,0.5)] flex items-center justify-center hover:scale-110 transition-transform animate-pulse"><i class="fa-brands fa-whatsapp text-4xl"></i></a>
+        </div>
+    </div>
+
+    <!-- JS -->
+    <script>
+        // --- Package Selection Logic (Updated) ---
+        function showPackageDetails(category) {
+            const allCards = ['ellos', 'ellas', 'mixto'];
+            const allDetails = ['details-ellos', 'details-ellas', 'details-mixto'];
+            
+            // 1. Update Main Cards Visuals
+            allCards.forEach(c => {
+                const card = document.getElementById('card-' + c);
+                if (c === category) {
+                    card.classList.add('card-active');
+                    card.classList.remove('card-dimmed');
+                } else {
+                    card.classList.remove('card-active');
+                    card.classList.add('card-dimmed');
+                }
+            });
+
+            // 2. Manage Details Visibility
+            // Hide all active details first
+            allDetails.forEach(d => {
+                const el = document.getElementById(d);
+                if (!el.classList.contains('hidden-view')) {
+                    el.classList.remove('fade-enter-active');
+                    el.classList.add('hidden-view');
+                }
+            });
+
+            // Show target detail
+            const targetId = 'details-' + category;
+            const targetView = document.getElementById(targetId);
+            
+            targetView.classList.remove('hidden-view');
+            void targetView.offsetWidth; // Trigger reflow
+            targetView.classList.add('fade-enter-active');
+        }
+
+        // --- Existing Logic ---
+        const menuBtn = document.getElementById('menu-btn');
+        const closeMenuBtn = document.getElementById('close-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+
+        function toggleMenu() {
+            const isOpen = mobileMenu.classList.contains('mobile-menu-active');
+            if (isOpen) mobileMenu.classList.remove('mobile-menu-active');
+            else mobileMenu.classList.add('mobile-menu-active');
+        }
+
+        menuBtn.addEventListener('click', toggleMenu);
+        closeMenuBtn.addEventListener('click', toggleMenu);
+        mobileLinks.forEach(link => link.addEventListener('click', toggleMenu));
+
+        function setupCarousel(containerId, prevId, nextId) {
+            const container = document.getElementById(containerId);
+            const prevBtn = document.getElementById(prevId);
+            const nextBtn = document.getElementById(nextId);
+            
+            nextBtn.addEventListener('click', () => {
+                container.scrollBy({ left: 300, behavior: 'smooth' });
+                if(container.scrollLeft + container.clientWidth >= container.scrollWidth - 10) {
+                     container.scrollTo({ left: 0, behavior: 'smooth' });
+                }
+            });
+
+            prevBtn.addEventListener('click', () => container.scrollBy({ left: -300, behavior: 'smooth' }));
+        }
+
+        setupCarousel('carousel-men', 'prev-men', 'next-men');
+        setupCarousel('carousel-women', 'prev-women', 'next-women');
+
+        const galleryItems = document.querySelectorAll('.gallery-item img');
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+        const closeLightbox = document.getElementById('close-lightbox');
+
+        galleryItems.forEach(img => {
+            img.parentElement.addEventListener('click', () => {
+                lightboxImg.src = img.src; 
+                lightbox.classList.remove('hidden');
+                setTimeout(() => lightbox.classList.remove('opacity-0'), 10);
+            });
+        });
+
+        function hideLightbox() {
+            lightbox.classList.add('opacity-0');
+            setTimeout(() => lightbox.classList.add('hidden'), 300);
+        }
+
+        closeLightbox.addEventListener('click', hideLightbox);
+        lightbox.addEventListener('click', (e) => { if (e.target === lightbox) hideLightbox(); });
+
+        const waBubble = document.getElementById('wa-bubble');
+        function showBubble() {
+            waBubble.classList.add('bubble-anim');
+            setTimeout(() => waBubble.classList.remove('bubble-anim'), 4000);
+        }
+        setInterval(showBubble, 10000);
+        setTimeout(showBubble, 2000);
+
+        const scrollUpBtn = document.getElementById('scroll-up');
+        const header = document.getElementById('main-header');
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                scrollUpBtn.classList.remove('hidden');
+                scrollUpBtn.classList.add('flex');
+                header.classList.add('bg-black');
+                header.classList.remove('bg-black/80');
+            } else {
+                scrollUpBtn.classList.add('hidden');
+                scrollUpBtn.classList.remove('flex');
+                header.classList.remove('bg-black');
+                header.classList.add('bg-black/80');
+            }
+        });
+
+        scrollUpBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+    </script>
+</body>
+</html>
