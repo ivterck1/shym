@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>STRIPERSHYM | White Diamond Edition</title>
+    
+    <!-- Google Fonts: Cinzel para lujo y Lato para modernidad -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        diamond: {
+                            white: '#ffffff',
+                            glass: 'rgba(255, 255, 255, 0.7)',
+                            silver: '#C0C0C0', 
+                            black: '#000000',
+                            gold: '#D4AF37',   // Dorado Real
+                            red: '#A50021'     // Rojo Carmesí Elegante
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Lato', 'sans-serif'],
+                        serif: ['Cinzel', 'serif'],
+                    },
+                    boxShadow: {
+                        'glass': '0 8px 32px 0 rgba(31, 38, 135, 0.1)',
+                        'float': '0 20px 50px -10px rgba(0,0,0,0.1)',
+                        'glow-gold': '0 0 15px rgba(212, 175, 55, 0.3)',
+                        'glow-red': '0 0 15px rgba(165, 0, 33, 0.2)'
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #ffffff;
+            color: #1a1a1a;
+            overflow-x: hidden;
+        }
+
+        /* Glassmorphism Classes */
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        
+        .glass-card {
+            background: rgba(255, 255, 255, 0.9);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            transition: all 0.4s ease;
+        }
+        .glass-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+            border-color: #D4AF37; /* Borde dorado al pasar mouse */
+        }
+
+        /* Hide Scrollbar util */
+        .hide-scroll-bar::-webkit-scrollbar { display: none; }
+        .hide-scroll-bar { -ms-overflow-style: none; scrollbar-width: none; }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #fff; }
+        ::-webkit-scrollbar-thumb { background: #D4AF37; border-radius: 4px; }
+
+        /* Tab Animations */
+        .nav-pill {
+            position: relative;
+            z-index: 1;
+            transition: all 0.3s;
+        }
+        .nav-pill::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; bottom: 0; right: 0;
+            background: #A50021; /* Fondo ROJO activo */
+            z-index: -1;
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 0.4s ease;
+            border-radius: 9999px;
+        }
+        .nav-pill:hover::before, .nav-pill.active::before {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
+        .nav-pill:hover, .nav-pill.active {
+            color: #fff !important;
+        }
+
+        /* Mobile Menu */
+        .mobile-menu-enter { transform: translateY(-100%); transition: transform 0.5s cubic-bezier(0.77, 0, 0.175, 1); }
+        .mobile-menu-active { transform: translateY(0); }
+
+        /* Animations */
+        .fade-in-up { opacity: 0; transform: translateY(30px); animation: fadeInUp 0.8s forwards; }
+        @keyframes fadeInUp { to { opacity: 1; transform: translateY(0); } }
+        
+        .fade-enter { opacity: 0; transform: translateY(20px); }
+        .fade-enter-active { opacity: 1; transform: translateY(0); transition: opacity 0.5s ease-out, transform 0.5s ease-out; }
+        .hidden-view { display: none !important; }
+
+        /* Floating Bubble */
+        @keyframes pulse-ring {
+            0% { transform: scale(0.33); }
+            80%, 100% { opacity: 0; }
+        }
+        .pulse-ring::before {
+            content: '';
+            position: absolute;
+            left: -10px; top: -10px; right: -10px; bottom: -10px;
+            border: 1px solid #25D366;
+            border-radius: 50%;
+            animation: pulse-ring 2s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
+        }
+        
+        .bubble-anim {
+            animation: floatBubble 4s ease-in-out forwards;
+        }
+        @keyframes floatBubble {
+            0% { opacity: 0; transform: translateY(10px) scale(0.9); }
+            10% { opacity: 1; transform: translateY(0) scale(1); }
+            90% { opacity: 1; transform: translateY(0) scale(1); }
+            100% { opacity: 0; transform: translateY(10px) scale(0.9); }
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-diamond-red selection:text-white">
+
+    <!-- HEADER -->
+    <header class="fixed w-full top-0 z-50 transition-all duration-300 bg-white/90 backdrop-blur-md border-b border-gray-100 shadow-sm" id="main-header">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex justify-between items-center h-20">
+                <!-- Logo -->
+                <div class="flex items-center gap-4 cursor-pointer group" onclick="window.scrollTo(0,0)">
+                    <div class="relative">
+                        <!-- Usar el logo normal, asegurando contraste -->
+                        <img src="logo.png" alt="Logo" class="h-10 w-auto object-contain transition-all duration-500">
+                    </div>
+                    <span class="font-serif text-2xl font-black tracking-[0.2em] text-black hidden sm:block">STRIPERSHYM</span>
+                </div>
+
+                <!-- Desktop Menu -->
+                <nav class="hidden lg:flex items-center gap-8">
+                    <a href="#hero" class="text-xs font-bold tracking-[0.15em] uppercase hover:text-diamond-red transition-colors text-gray-800">Inicio</a>
+                    <a href="#gallery" class="text-xs font-bold tracking-[0.15em] uppercase hover:text-diamond-red transition-colors text-gray-800">Talento</a>
+                    <a href="#packages" class="text-xs font-bold tracking-[0.15em] uppercase hover:text-diamond-red transition-colors text-gray-800">Paquetes</a>
+                    <a href="#videos" class="text-xs font-bold tracking-[0.15em] uppercase hover:text-diamond-red transition-colors text-gray-800">En Vivo</a>
+                    <a href="#contact" class="px-6 py-2 bg-black text-white text-xs font-bold tracking-[0.2em] hover:bg-diamond-red transition-colors uppercase shadow-lg">Reservar</a>
+                </nav>
+
+                <!-- Mobile Button -->
+                <button id="menu-btn" class="lg:hidden text-black p-2 hover:bg-gray-100 rounded-full transition-colors">
+                    <i class="fa-solid fa-bars-staggered text-xl"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- MOBILE MENU -->
+    <div id="mobile-menu" class="fixed inset-0 z-[40] bg-white mobile-menu-enter flex flex-col justify-center items-center pt-20">
+        <div class="absolute top-0 w-full h-20 flex justify-end items-center px-6">
+            <button id="close-menu-btn" class="text-black text-3xl hover:text-diamond-red transition-colors"><i class="fa-solid fa-times"></i></button>
+        </div>
+        
+        <div class="flex flex-col gap-8 text-center">
+            <img src="logo-mobile.png" alt="Logo" class="h-16 mx-auto mb-4">
+            <a href="#hero" class="mobile-link text-4xl font-serif font-bold text-black hover:text-diamond-red transition-colors">INICIO</a>
+            <a href="#gallery" class="mobile-link text-4xl font-serif font-bold text-black hover:text-diamond-red transition-colors">TALENTO</a>
+            <a href="#packages" class="mobile-link text-4xl font-serif font-bold text-black hover:text-diamond-red transition-colors">PAQUETES</a>
+            <a href="#contact" class="mobile-link text-4xl font-serif font-bold text-diamond-red">RESERVAR</a>
+        </div>
+        <div class="absolute bottom-10 text-gray-400 text-xs tracking-widest">STRIPERSHYM © 2024</div>
+    </div>
+
+    <!-- HERO SECTION (Updated Background Color) -->
+    <section id="hero" class="relative h-screen w-full overflow-hidden flex items-center justify-center bg-gray-100">
+        <!-- Background Video (Con fallback gris claro en lugar de negro) -->
+        <div class="absolute inset-0 z-0">
+            <video autoplay muted loop playsinline class="w-full h-full object-cover grayscale opacity-70">
+                <source src="video/tu_video.mp4" type="video/mp4">
+                <source src="https://assets.mixkit.co/videos/preview/mixkit-black-and-white-abstract-pattern-1688-large.mp4" type="video/mp4">
+            </video>
+            <!-- Overlay Blanco Brillante -->
+            <div class="absolute inset-0 bg-white/20 backdrop-blur-[1px]"></div>
+        </div>
+
+        <!-- Glass Box Content -->
+        <div class="relative z-10 p-8 md:p-16 max-w-4xl mx-auto text-center glass-panel shadow-2xl fade-in-up border-t-4 border-diamond-gold">
+            <div class="mb-6 inline-block border-b-2 border-black pb-2">
+                <span class="text-xs font-bold tracking-[0.4em] uppercase text-black">High Class Entertainment</span>
+            </div>
+            
+            <h1 class="text-5xl md:text-8xl font-serif font-black text-black mb-2 tracking-tighter leading-none drop-shadow-sm">
+                STRIPERS<br><span class="text-transparent bg-clip-text bg-gradient-to-r from-gray-700 to-black">HYM</span>
+            </h1>
+            
+            <p class="text-gray-900 text-lg font-light tracking-wide max-w-lg mx-auto mb-10 mt-6 italic font-serif">
+                "La sofisticación no es una opción, es nuestra esencia."
+            </p>
+            
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="#packages" class="px-8 py-4 bg-diamond-red text-white font-bold text-sm tracking-[0.2em] hover:bg-black transition-all shadow-glow-red">
+                    VER PAQUETES
+                </a>
+                <a href="#gallery" class="px-8 py-4 bg-transparent text-black font-bold text-sm tracking-[0.2em] hover:bg-black hover:text-white transition-all border border-black hover:border-transparent">
+                    ELENCO
+                </a>
+            </div>
+        </div>
+        
+        <div class="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2">
+            <span class="text-[10px] uppercase tracking-widest font-bold">Scroll</span>
+            <div class="w-[1px] h-12 bg-black"></div>
+        </div>
+    </section>
+
+    <!-- INTRO -->
+    <section class="py-32 bg-white relative">
+        <div class="absolute top-0 right-0 w-1/3 h-full bg-gray-50 -z-0 border-l border-diamond-gold/20"></div>
+        <div class="max-w-5xl mx-auto px-6 relative z-10 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+            <div>
+                <h2 class="text-5xl md:text-6xl font-serif font-bold text-black mb-8 leading-tight">
+                    El Arte de la <br><span class="text-diamond-red italic">Seducción.</span>
+                </h2>
+                <div class="w-20 h-1 bg-diamond-gold mb-8"></div>
+            </div>
+            <div>
+                <p class="text-gray-600 text-lg font-light leading-relaxed mb-6">
+                    En <strong class="text-black">STRIPERSHYM</strong>, elevamos el estándar. Dejamos atrás lo convencional para curar experiencias visuales y sensoriales diseñadas para el público más exigente.
+                </p>
+                <p class="text-gray-600 text-lg font-light leading-relaxed">
+                    Cada detalle, cada movimiento y cada momento están orquestados para crear una atmósfera de exclusividad absoluta.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- GALLERY (Polaroid Style) -->
+    <section id="gallery" class="py-20 bg-gray-100 overflow-hidden relative">
+        <div class="max-w-screen-2xl mx-auto px-4">
+            
+            <div class="flex justify-between items-end mb-12 px-4 border-b border-gray-300 pb-4">
+                <div>
+                    <span class="text-xs font-bold text-diamond-gold tracking-[0.3em] uppercase block mb-2">Talento Exclusivo</span>
+                    <h2 class="text-4xl font-serif font-bold text-black">ELLOS</h2>
+                </div>
+                <div class="flex gap-2">
+                    <button id="prev-men" class="w-12 h-12 border border-black flex items-center justify-center hover:bg-diamond-red hover:border-diamond-red hover:text-white transition-colors"><i class="fa-solid fa-arrow-left"></i></button>
+                    <button id="next-men" class="w-12 h-12 border border-black flex items-center justify-center hover:bg-diamond-red hover:border-diamond-red hover:text-white transition-colors"><i class="fa-solid fa-arrow-right"></i></button>
+                </div>
+            </div>
+
+            <!-- Carousel Men -->
+            <div id="carousel-men" class="flex overflow-x-auto space-x-8 pb-12 hide-scroll-bar px-4">
+                <!-- Items -->
+                <div class="flex-none w-80 bg-white p-4 shadow-float transform hover:-translate-y-2 transition-all duration-500 cursor-pointer group">
+                    <div class="h-[400px] overflow-hidden grayscale group-hover:grayscale-0 transition-all duration-500">
+                        <img src="https://images.unsplash.com/photo-1542596594-649edbc13630?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" class="w-full h-full object-cover">
+                    </div>
+                    <div class="pt-6 flex justify-between items-center">
+                        <h3 class="text-2xl font-serif font-bold">ALEX</h3>
+                        <span class="text-xs font-bold border border-diamond-gold text-diamond-gold px-2 py-1 uppercase">Top</span>
+                    </div>
+                </div>
+                <div class="flex-none w-80 bg-white p-4 shadow-float transform hover:-translate-y-2 transition-all duration-500 cursor-pointer group">
+                    <div class="h-[400px] overflow-hidden grayscale group-hover:grayscale-0 transition-all duration-500">
+                        <img src="https://images.unsplash.com/photo-1534030347209-7147fd69a3f2?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" class="w-full h-full object-cover">
+                    </div>
+                    <div class="pt-6 flex justify-between items-center">
+                        <h3 class="text-2xl font-serif font-bold">LEO</h3>
+                        <span class="text-xs font-bold border border-diamond-gold text-diamond-gold px-2 py-1 uppercase">Dancer</span>
+                    </div>
+                </div>
+                 <div class="flex-none w-80 bg-white p-4 shadow-float transform hover:-translate-y-2 transition-all duration-500 cursor-pointer group">
+                    <div class="h-[400px] overflow-hidden grayscale group-hover:grayscale-0 transition-all duration-500">
+                        <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" class="w-full h-full object-cover">
+                    </div>
+                    <div class="pt-6 flex justify-between items-center">
+                        <h3 class="text-2xl font-serif font-bold">MAX</h3>
+                        <span class="text-xs font-bold border border-diamond-gold text-diamond-gold px-2 py-1 uppercase">Fire</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="h-20"></div>
+
+            <div class="flex justify-between items-end mb-12 px-4 border-b border-gray-300 pb-4">
+                <div>
+                    <span class="text-xs font-bold text-diamond-gold tracking-[0.3em] uppercase block mb-2">Belleza Pura</span>
+                    <h2 class="text-4xl font-serif font-bold text-black">ELLAS</h2>
+                </div>
+                <div class="flex gap-2">
+                    <button id="prev-women" class="w-12 h-12 border border-black flex items-center justify-center hover:bg-diamond-red hover:border-diamond-red hover:text-white transition-colors"><i class="fa-solid fa-arrow-left"></i></button>
+                    <button id="next-women" class="w-12 h-12 border border-black flex items-center justify-center hover:bg-diamond-red hover:border-diamond-red hover:text-white transition-colors"><i class="fa-solid fa-arrow-right"></i></button>
+                </div>
+            </div>
+
+            <div id="carousel-women" class="flex overflow-x-auto space-x-8 pb-12 hide-scroll-bar px-4">
+                <div class="flex-none w-80 bg-white p-4 shadow-float transform hover:-translate-y-2 transition-all duration-500 cursor-pointer group">
+                    <div class="h-[400px] overflow-hidden grayscale group-hover:grayscale-0 transition-all duration-500">
+                        <img src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" class="w-full h-full object-cover">
+                    </div>
+                    <div class="pt-6 flex justify-between items-center">
+                        <h3 class="text-2xl font-serif font-bold">SASHA</h3>
+                        <span class="text-xs font-bold border border-diamond-gold text-diamond-gold px-2 py-1 uppercase">Model</span>
+                    </div>
+                </div>
+                <div class="flex-none w-80 bg-white p-4 shadow-float transform hover:-translate-y-2 transition-all duration-500 cursor-pointer group">
+                    <div class="h-[400px] overflow-hidden grayscale group-hover:grayscale-0 transition-all duration-500">
+                        <img src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" class="w-full h-full object-cover">
+                    </div>
+                    <div class="pt-6 flex justify-between items-center">
+                        <h3 class="text-2xl font-serif font-bold">RUBY</h3>
+                        <span class="text-xs font-bold border border-diamond-gold text-diamond-gold px-2 py-1 uppercase">Dancer</span>
+                    </div>
+                </div>
+                 <div class="flex-none w-80 bg-white p-4 shadow-float transform hover:-translate-y-2 transition-all duration-500 cursor-pointer group">
+                    <div class="h-[400px] overflow-hidden grayscale group-hover:grayscale-0 transition-all duration-500">
+                        <img src="https://images.unsplash.com/photo-1485230405346-71acb9518d9c?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" class="w-full h-full object-cover">
+                    </div>
+                    <div class="pt-6 flex justify-between items-center">
+                        <h3 class="text-2xl font-serif font-bold">JADE</h3>
+                        <span class="text-xs font-bold border border-diamond-gold text-diamond-gold px-2 py-1 uppercase">Star</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PACKAGES (Corrected Tabs Logic) -->
+    <section id="packages" class="py-24 bg-white relative">
+        <div class="max-w-7xl mx-auto px-4">
+            
+            <h2 class="text-5xl md:text-7xl font-serif font-bold text-center text-gray-200 absolute top-10 left-0 right-0 -z-0 opacity-50 select-none">EXPERIENCES</h2>
+            
+            <div class="text-center mb-16 relative z-10 pt-10">
+                 <h2 class="text-4xl font-serif font-bold text-black mb-2">PAQUETES VIP</h2>
+                 <div class="w-12 h-1 bg-diamond-gold mx-auto"></div>
+            </div>
+
+            <!-- TABS (Default Active: ELLOS) -->
+            <div class="flex justify-center mb-16 relative z-10">
+                <div class="inline-flex bg-gray-100 p-1 rounded-full shadow-inner">
+                    <button id="tab-ellos" onclick="showPackageDetails('ellos')" class="nav-pill active px-8 py-3 rounded-full text-sm font-bold tracking-widest uppercase text-gray-500">ELLOS</button>
+                    <button id="tab-ellas" onclick="showPackageDetails('ellas')" class="nav-pill px-8 py-3 rounded-full text-sm font-bold tracking-widest uppercase text-gray-500">ELLAS</button>
+                    <button id="tab-mixto" onclick="showPackageDetails('mixto')" class="nav-pill px-8 py-3 rounded-full text-sm font-bold tracking-widest uppercase text-gray-500">MIXTO</button>
+                </div>
+            </div>
+
+            <!-- CONTENT (Corrected: ELLOS Visible by default) -->
+            <div id="package-details-container" class="min-h-[500px] relative z-10">
+                
+                <!-- ELLOS (VISIBLE BY DEFAULT - Added fade-enter-active) -->
+                <div id="details-ellos" class="fade-enter fade-enter-active w-full">
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div class="glass-card p-10 flex flex-col items-center text-center group cursor-default">
+                            <div class="w-16 h-16 rounded-full bg-gray-100 flex items-center justify-center mb-6 group-hover:bg-diamond-gold group-hover:text-white transition-colors">
+                                <i class="fa-solid fa-user text-xl"></i>
+                            </div>
+                            <h3 class="text-2xl font-serif font-bold mb-2">UN GUERRERO</h3>
+                            <span class="text-[10px] uppercase tracking-[0.2em] text-gray-400 mb-6">Show Solista</span>
+                            <p class="text-gray-500 text-sm mb-8 leading-relaxed">Energía pura y carisma. El detalle perfecto para una noche inolvidable.</p>
+                            <a href="https://wa.me/5211234567890?text=Info%20Un%20Guerrero" class="mt-auto text-xs font-bold border-b border-black pb-1 hover:text-diamond-red hover:border-diamond-red transition-colors uppercase tracking-widest">COTIZAR AHORA</a>
+                        </div>
+
+                        <!-- Highlighted Card -->
+                        <div class="glass-card p-10 flex flex-col items-center text-center group cursor-default bg-black text-white transform md:-translate-y-4 shadow-2xl border-t-4 border-diamond-gold">
+                            <div class="w-16 h-16 rounded-full bg-white/20 flex items-center justify-center mb-6 text-diamond-gold">
+                                <i class="fa-solid fa-user-group text-xl"></i>
+                            </div>
+                            <h3 class="text-2xl font-serif font-bold mb-2 text-white">PAR DE ASES</h3>
+                            <span class="text-[10px] uppercase tracking-[0.2em] text-gray-400 mb-6">Dueto Dinámico</span>
+                            <p class="text-gray-300 text-sm mb-8 leading-relaxed">Doble impacto visual. Coreografía sincronizada que eleva la temperatura.</p>
+                            <a href="https://wa.me/5211234567890?text=Info%20Par%20de%20Ases" class="mt-auto px-6 py-3 bg-diamond-red text-white text-xs font-bold tracking-widest hover:bg-white hover:text-black transition-colors uppercase rounded-sm">COTIZAR AHORA</a>
+                        </div>
+
+                        <div class="glass-card p-10 flex flex-col items-center text-center group cursor-default">
+                            <div class="w-16 h-16 rounded-full bg-gray-100 flex items-center justify-center mb-6 group-hover:bg-diamond-gold group-hover:text-white transition-colors">
+                                <i class="fa-solid fa-users text-xl"></i>
+                            </div>
+                            <h3 class="text-2xl font-serif font-bold mb-2">TRÍO SALVAJE</h3>
+                            <span class="text-[10px] uppercase tracking-[0.2em] text-gray-400 mb-6">Mega Paquete</span>
+                            <p class="text-gray-500 text-sm mb-8 leading-relaxed">La experiencia definitiva. Tres talentos a tu entera disposición.</p>
+                            <a href="https://wa.me/5211234567890?text=Info%20Trio%20Salvaje" class="mt-auto text-xs font-bold border-b border-black pb-1 hover:text-diamond-red hover:border-diamond-red transition-colors uppercase tracking-widest">COTIZAR AHORA</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ELLAS (HIDDEN) -->
+                <div id="details-ellas" class="hidden-view fade-enter w-full">
+                     <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div class="glass-card p-10 flex flex-col items-center text-center group cursor-default">
+                            <div class="w-16 h-16 rounded-full bg-gray-100 flex items-center justify-center mb-6 group-hover:bg-diamond-red group-hover:text-white transition-colors">
+                                <i class="fa-solid fa-venus text-xl"></i>
+                            </div>
+                            <h3 class="text-2xl font-serif font-bold mb-2">UNA PRINCESA</h3>
+                            <span class="text-[10px] uppercase tracking-[0.2em] text-gray-400 mb-6">Show Individual</span>
+                            <p class="text-gray-500 text-sm mb-8 leading-relaxed">Belleza y sensualidad en su máxima expresión.</p>
+                            <a href="https://wa.me/5211234567890?text=Info%20Una%20Princesa" class="mt-auto text-xs font-bold border-b border-black pb-1 hover:text-diamond-red hover:border-diamond-red transition-colors uppercase tracking-widest">COTIZAR AHORA</a>
+                        </div>
+
+                        <div class="glass-card p-10 flex flex-col items-center text-center group cursor-default bg-black text-white transform md:-translate-y-4 shadow-2xl border-t-4 border-diamond-red">
+                            <div class="w-16 h-16 rounded-full bg-white/20 flex items-center justify-center mb-6 text-diamond-red">
+                                <i class="fa-solid fa-heart text-xl"></i>
+                            </div>
+                            <h3 class="text-2xl font-serif font-bold mb-2">DÚO DE ENSUEÑO</h3>
+                            <span class="text-[10px] uppercase tracking-[0.2em] text-gray-400 mb-6">Fantasía Doble</span>
+                            <p class="text-gray-300 text-sm mb-8 leading-relaxed">Un espectáculo visual impresionante que despierta todos los sentidos.</p>
+                            <a href="https://wa.me/5211234567890?text=Info%20Duo%20Ensueño" class="mt-auto px-6 py-3 bg-diamond-red text-white text-xs font-bold tracking-widest hover:bg-white hover:text-black transition-colors uppercase rounded-sm">COTIZAR AHORA</a>
+                        </div>
+
+                        <div class="glass-card p-10 flex flex-col items-center text-center group cursor-default">
+                            <div class="w-16 h-16 rounded-full bg-gray-100 flex items-center justify-center mb-6 group-hover:bg-diamond-red group-hover:text-white transition-colors">
+                                <i class="fa-solid fa-crown text-xl"></i>
+                            </div>
+                            <h3 class="text-2xl font-serif font-bold mb-2">TRES CORAZONES</h3>
+                            <span class="text-[10px] uppercase tracking-[0.2em] text-gray-400 mb-6">Show Premium</span>
+                            <p class="text-gray-500 text-sm mb-8 leading-relaxed">Para quienes exigen lo extraordinario. Un trío espectacular.</p>
+                            <a href="https://wa.me/5211234567890?text=Info%20Tres%20Corazones" class="mt-auto text-xs font-bold border-b border-black pb-1 hover:text-diamond-red hover:border-diamond-red transition-colors uppercase tracking-widest">COTIZAR AHORA</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- MIXTO (HIDDEN) -->
+                <div id="details-mixto" class="hidden-view fade-enter w-full">
+                     <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div class="glass-card p-10 flex flex-col items-center text-center group cursor-default">
+                            <h3 class="text-2xl font-serif font-bold mb-2">STRIPPER & PAYASO</h3>
+                            <span class="text-[10px] uppercase tracking-[0.2em] text-purple-500 mb-6">Mix Divertido</span>
+                            <p class="text-gray-500 text-sm mb-8 leading-relaxed">La combinación perfecta de risas y sensualidad.</p>
+                            <a href="https://wa.me/5211234567890?text=Info%20Stripper%20Y%20Payaso" class="mt-auto text-xs font-bold border-b border-black pb-1 hover:text-purple-600 hover:border-purple-600 transition-colors uppercase tracking-widest">COTIZAR AHORA</a>
+                        </div>
+                        <div class="glass-card p-10 flex flex-col items-center text-center group cursor-default border-t-4 border-purple-600">
+                            <h3 class="text-2xl font-serif font-bold mb-2">SHOW CÓMICO</h3>
+                            <span class="text-[10px] uppercase tracking-[0.2em] text-purple-500 mb-6">Stand Up</span>
+                            <p class="text-gray-500 text-sm mb-8 leading-relaxed">Animación profesional para romper el hielo y reír sin parar.</p>
+                            <a href="https://wa.me/5211234567890?text=Info%20Show%20Comico" class="mt-auto text-xs font-bold border-b border-black pb-1 hover:text-purple-600 hover:border-purple-600 transition-colors uppercase tracking-widest">COTIZAR AHORA</a>
+                        </div>
+                        <div class="glass-card p-10 flex flex-col items-center text-center group cursor-default">
+                            <h3 class="text-2xl font-serif font-bold mb-2">FIESTABUS</h3>
+                            <span class="text-[10px] uppercase tracking-[0.2em] text-purple-500 mb-6">On The Go</span>
+                            <p class="text-gray-500 text-sm mb-8 leading-relaxed">Recorre la ciudad con música, bebidas y el mejor show a bordo.</p>
+                            <a href="https://wa.me/5211234567890?text=Info%20Fiestabus" class="mt-auto text-xs font-bold border-b border-black pb-1 hover:text-purple-600 hover:border-purple-600 transition-colors uppercase tracking-widest">COTIZAR AHORA</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- VIDEOS -->
+    <section id="videos" class="py-20 bg-gray-50 border-t border-gray-200">
+        <div class="max-w-7xl mx-auto px-4">
+             <div class="flex items-center gap-4 mb-12 justify-center">
+                <span class="w-16 h-[1px] bg-black"></span>
+                <h2 class="text-2xl font-bold text-black uppercase tracking-[0.3em]">En Vivo</h2>
+                <span class="w-16 h-[1px] bg-black"></span>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-0">
+                <div class="aspect-video bg-black relative group cursor-pointer overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80" class="w-full h-full object-cover opacity-60 group-hover:opacity-40 transition-opacity duration-500">
+                    <div class="absolute inset-0 flex items-center justify-center">
+                        <div class="w-20 h-20 border border-white rounded-full flex items-center justify-center group-hover:bg-white group-hover:text-black transition-all text-white"><i class="fa-solid fa-play text-2xl ml-1"></i></div>
+                    </div>
+                    <div class="absolute bottom-6 left-6 text-white translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500"><p class="font-serif text-xl font-bold">ATMÓSFERA EXCLUSIVA</p></div>
+                </div>
+                <div class="aspect-video bg-gray-900 relative group cursor-pointer overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1540039155733-5bb30b53aa14?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80" class="w-full h-full object-cover opacity-60 group-hover:opacity-40 transition-opacity duration-500">
+                    <div class="absolute inset-0 flex items-center justify-center">
+                        <div class="w-20 h-20 border border-white rounded-full flex items-center justify-center group-hover:bg-white group-hover:text-black transition-all text-white"><i class="fa-solid fa-play text-2xl ml-1"></i></div>
+                    </div>
+                    <div class="absolute bottom-6 left-6 text-white translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500"><p class="font-serif text-xl font-bold">EVENTOS PRIVADOS</p></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PAYMENTS -->
+    <section class="py-12 bg-white">
+        <div class="max-w-4xl mx-auto px-4 text-center">
+            <div class="flex justify-center gap-8 md:gap-16 flex-wrap text-gray-400">
+                <div class="flex items-center gap-3 group"><i class="fa-solid fa-circle-check text-green-500"></i><span class="text-xs font-bold uppercase tracking-widest text-black group-hover:text-green-600 transition-colors">Efectivo</span></div>
+                <div class="flex items-center gap-3 group"><i class="fa-solid fa-circle-check text-black"></i><span class="text-xs font-bold uppercase tracking-widest text-black group-hover:text-diamond-gold transition-colors">Tarjetas</span></div>
+                <div class="flex items-center gap-3 group"><i class="fa-solid fa-circle-check text-blue-500"></i><span class="text-xs font-bold uppercase tracking-widest text-black group-hover:text-blue-600 transition-colors">Transferencia</span></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CALL TO ACTION -->
+    <section id="contact" class="py-32 bg-fixed bg-center bg-cover relative flex items-center justify-center" style="background-image: url('https://images.unsplash.com/photo-1496337589254-7e19d01cec44?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80');">
+        <div class="absolute inset-0 bg-black/60"></div>
+        <div class="relative z-10 text-center px-6 border-2 border-white/30 p-12 backdrop-blur-sm max-w-3xl mx-4">
+            <h2 class="text-4xl md:text-6xl font-serif font-bold text-white mb-6">MAKE IT HAPPEN</h2>
+            <p class="text-lg text-gray-200 mb-10 font-light tracking-wide">No dejes que te lo cuenten. Reserva hoy.</p>
+            <a href="https://wa.me/5211234567890" target="_blank" class="inline-block px-12 py-4 bg-diamond-red text-white font-bold tracking-[0.2em] hover:bg-white hover:text-diamond-red transition-all uppercase text-sm shadow-glow-red">CONTACTAR WHATSAPP</a>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-black py-16 text-center text-white">
+        <div class="max-w-7xl mx-auto px-4">
+            <h2 class="font-serif text-3xl font-bold mb-8 tracking-widest">STRIPERSHYM</h2>
+            <div class="flex justify-center gap-8 mb-10">
+                <a href="#" class="w-10 h-10 border border-white/20 rounded-full flex items-center justify-center hover:bg-white hover:text-black transition-all"><i class="fa-brands fa-facebook-f"></i></a>
+                <a href="#" class="w-10 h-10 border border-white/20 rounded-full flex items-center justify-center hover:bg-white hover:text-black transition-all"><i class="fa-brands fa-instagram"></i></a>
+                <a href="#" class="w-10 h-10 border border-white/20 rounded-full flex items-center justify-center hover:bg-white hover:text-black transition-all"><i class="fa-brands fa-tiktok"></i></a>
+            </div>
+            <div class="text-[10px] font-bold tracking-[0.3em] space-y-2 uppercase text-gray-500">
+                <p>Derechos Reservados © 2024</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- FLOATING BUTTONS (FIXED) -->
+    <div class="fixed bottom-8 right-8 z-40 flex flex-col gap-4 items-end">
+        <button id="scroll-up" class="w-12 h-12 bg-white text-black shadow-2xl flex items-center justify-center hover:bg-black hover:text-white transition-all hidden border border-gray-100">
+            <i class="fa-solid fa-arrow-up"></i>
+        </button>
+        
+        <!-- PHONE BUTTON -->
+        <a href="tel:+521234567890" class="w-12 h-12 bg-white text-black shadow-xl flex items-center justify-center hover:bg-diamond-red hover:text-white transition-all rounded-full border border-gray-100 group">
+            <i class="fa-solid fa-phone text-xl group-hover:animate-bounce"></i>
+        </a>
+
+        <!-- WHATSAPP BUTTON -->
+        <div class="relative pulse-ring">
+            <div id="wa-bubble" class="absolute right-full mr-6 top-3 bg-black text-white text-xs font-bold px-4 py-2 shadow-xl whitespace-nowrap opacity-0 transition-opacity tracking-widest">
+                ¿Informes? <!-- Mensaje Corregido -->
+            </div>
+            <a href="https://wa.me/5211234567890" target="_blank" class="w-16 h-16 bg-green-500 text-white rounded-full shadow-2xl flex items-center justify-center hover:scale-110 transition-transform relative z-10">
+                <i class="fa-brands fa-whatsapp text-4xl"></i>
+            </a>
+        </div>
+    </div>
+    
+    <!-- LIGHTBOX -->
+    <div id="lightbox" class="fixed inset-0 z-[100] bg-white/95 hidden flex justify-center items-center opacity-0 transition-opacity duration-300 backdrop-blur-md">
+        <button id="close-lightbox" class="absolute top-5 right-5 text-black text-5xl hover:text-gray-500 cursor-pointer z-[101] font-light">&times;</button>
+        <div class="p-4 bg-white shadow-2xl border border-gray-100">
+            <img id="lightbox-img" src="" class="max-w-[85vw] max-h-[85vh] object-contain">
+        </div>
+    </div>
+
+    <!-- JS -->
+    <script>
+        // --- Package Tabs Logic (Corrected) ---
+        function showPackageDetails(category) {
+            const allTabs = ['ellos', 'ellas', 'mixto'];
+            const allDetails = ['details-ellos', 'details-ellas', 'details-mixto'];
+            
+            // Toggle active tab visual
+            allTabs.forEach(c => {
+                const tab = document.getElementById('tab-' + c);
+                if (c === category) tab.classList.add('active');
+                else tab.classList.remove('active');
+            });
+
+            // Toggle contents
+            allDetails.forEach(d => {
+                const el = document.getElementById(d);
+                // Force reset classes
+                el.classList.remove('fade-enter-active'); 
+                el.classList.add('hidden-view');
+            });
+
+            const targetId = 'details-' + category;
+            const targetView = document.getElementById(targetId);
+            
+            // Remove hidden and animate
+            targetView.classList.remove('hidden-view');
+            void targetView.offsetWidth; // Trigger reflow for animation
+            targetView.classList.add('fade-enter-active');
+        }
+
+        const menuBtn = document.getElementById('menu-btn');
+        const closeMenuBtn = document.getElementById('close-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+
+        function toggleMenu() {
+            const isOpen = mobileMenu.classList.contains('mobile-menu-active');
+            if (isOpen) mobileMenu.classList.remove('mobile-menu-active');
+            else mobileMenu.classList.add('mobile-menu-active');
+        }
+
+        menuBtn.addEventListener('click', toggleMenu);
+        closeMenuBtn.addEventListener('click', toggleMenu);
+        mobileLinks.forEach(link => link.addEventListener('click', toggleMenu));
+
+        function setupCarousel(containerId, prevId, nextId) {
+            const container = document.getElementById(containerId);
+            const prevBtn = document.getElementById(prevId);
+            const nextBtn = document.getElementById(nextId);
+            
+            nextBtn.addEventListener('click', () => container.scrollBy({ left: 340, behavior: 'smooth' }));
+            prevBtn.addEventListener('click', () => container.scrollBy({ left: -340, behavior: 'smooth' }));
+        }
+
+        setupCarousel('carousel-men', 'prev-men', 'next-men');
+        setupCarousel('carousel-women', 'prev-women', 'next-women');
+
+        const galleryItems = document.querySelectorAll('#gallery img');
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+        const closeLightbox = document.getElementById('close-lightbox');
+
+        galleryItems.forEach(img => {
+            img.parentElement.parentElement.addEventListener('click', () => { 
+                lightboxImg.src = img.src; 
+                lightbox.classList.remove('hidden');
+                setTimeout(() => lightbox.classList.remove('opacity-0'), 10);
+            });
+        });
+
+        function hideLightbox() {
+            lightbox.classList.add('opacity-0');
+            setTimeout(() => lightbox.classList.add('hidden'), 300);
+        }
+
+        closeLightbox.addEventListener('click', hideLightbox);
+        lightbox.addEventListener('click', (e) => { if (e.target === lightbox) hideLightbox(); });
+
+        const scrollUpBtn = document.getElementById('scroll-up');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 500) {
+                scrollUpBtn.classList.remove('hidden');
+                scrollUpBtn.classList.add('flex');
+            } else {
+                scrollUpBtn.classList.add('hidden');
+                scrollUpBtn.classList.remove('flex');
+            }
+        });
+
+        scrollUpBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+        const waBubble = document.getElementById('wa-bubble');
+        function showBubble() {
+            waBubble.classList.add('bubble-anim');
+            setTimeout(() => waBubble.classList.remove('bubble-anim'), 4000);
+        }
+        setInterval(showBubble, 8000);
+        setTimeout(showBubble, 2000);
+    </script>
+</body>
+</html>

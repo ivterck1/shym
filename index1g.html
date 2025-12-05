@@ -85,18 +85,34 @@
         .fade-enter-active { opacity: 1; transform: translateY(0); transition: opacity 0.5s ease-out, transform 0.5s ease-out; }
         .hidden-view { display: none !important; }
 
-        /* Estados de tarjetas principales */
-        .card-active {
-            border-color: #D4AF37 !important; 
-            transform: scale(1.05);
-            opacity: 1 !important;
-            z-index: 10;
-            box-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
+        /* Estilos de Pestañas (Tabs) */
+        .tab-btn {
+            position: relative;
+            transition: all 0.3s ease;
+            opacity: 0.6;
+            border-bottom: 2px solid transparent;
         }
-        .card-dimmed {
-            opacity: 0.4;
-            transform: scale(0.95);
-            filter: grayscale(80%);
+        .tab-btn:hover {
+            opacity: 1;
+            color: #D4AF37;
+        }
+        .tab-active {
+            opacity: 1 !important;
+            color: #D4AF37 !important;
+            border-bottom: 2px solid #D4AF37;
+            text-shadow: 0 0 10px rgba(212, 175, 55, 0.4);
+        }
+        .tab-active::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0; 
+            height: 0; 
+            border-left: 6px solid transparent;
+            border-right: 6px solid transparent;
+            border-bottom: 6px solid #D4AF37; /* Triangulito indicador */
         }
     </style>
 </head>
@@ -107,8 +123,8 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-20">
                 <div class="flex-shrink-0 flex items-center gap-3 cursor-pointer" onclick="window.scrollTo(0,0)">
-                    <img src="logo.png" alt="Logo" class="h-10 w-auto object-contain brightness-110 drop-shadow-[0_0_5px_rgba(212,175,55,0.5)]">
-                    <span class="font-serif text-xl tracking-widest font-bold text-white hidden sm:block">STRIPERSHYM</span>
+                    <img src="img/logo.png" alt="Logo" class="h-12 w-auto object-contain brightness-110 drop-shadow-[0_0_5px_rgba(212,175,55,0.5)]">
+                  <!--  <span class="font-serif text-xl tracking-widest font-bold text-white hidden sm:block">STRIPERSHYM</span> -->
                 </div>
                 <nav class="hidden lg:flex space-x-8">
                     <a href="#hero" class="text-sm font-medium hover:text-brand-gold transition-colors tracking-widest uppercase">Inicio</a>
@@ -127,23 +143,24 @@
     <!-- MOBILE MENU -->
     <div id="mobile-menu" class="fixed inset-0 z-[60] bg-black bg-opacity-95 mobile-menu-enter flex flex-col justify-center items-center space-y-8 text-center backdrop-blur-xl">
         <button id="close-menu-btn" class="absolute top-6 right-6 text-white hover:text-brand-red transition-colors"><i class="fa-solid fa-xmark text-4xl"></i></button>
-        <img src="logo-mobile.png" alt="Logo Mobile" class="h-20 mb-4 animate-pulse">
+        <img src="img/logo-mobile.png" alt="Logo Mobile" class="h-20 mb-4 animate-pulse">
         <a href="#hero" class="mobile-link text-3xl font-serif text-white hover:text-brand-gold transition-all">INICIO</a>
         <a href="#gallery" class="mobile-link text-3xl font-serif text-white hover:text-brand-gold transition-all">TALENTOS</a>
         <a href="#packages" class="mobile-link text-3xl font-serif text-white hover:text-brand-gold transition-all">PAQUETES</a>
         <a href="#contact" class="mobile-link text-3xl font-serif text-brand-red font-bold hover:scale-110 transition-transform">RESERVAR AHORA</a>
     </div>
 
-    <!-- HERO -->
+    <!-- HERO (Video Background Confirmado) -->
     <section id="hero" class="relative h-screen w-full overflow-hidden flex items-center justify-center">
         <div class="absolute inset-0 z-0">
+            <!-- VIDEO DE FONDO -->
             <video autoplay muted loop playsinline class="w-full h-full object-cover opacity-50">
                 <source src="https://assets.mixkit.co/videos/preview/mixkit-black-and-white-abstract-pattern-1688-large.mp4" type="video/mp4">
             </video>
             <div class="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-black/30"></div>
         </div>
         <div class="relative z-10 text-center px-4 max-w-4xl mx-auto mt-16" data-aos="fade-up">
-            <img src="logo.png" alt="Main Logo" class="w-64 md:w-80 mx-auto mb-6 drop-shadow-[0_0_20px_rgba(255,255,255,0.2)]">
+            <img src="img/logo.png" alt="Main Logo" class="w-64 md:w-80 mx-auto mb-6 drop-shadow-[0_0_20px_rgba(255,255,255,0.2)]">
             <h1 class="text-4xl md:text-6xl lg:text-7xl font-serif font-bold text-white mb-4 tracking-tighter">
                 <span class="block text-xl md:text-2xl font-sans font-light tracking-[0.5em] mb-2 text-brand-gold">EXPERIENCIA</span>
                 PREMIUM
@@ -245,56 +262,33 @@
         </div>
     </section>
 
-    <!-- PACKAGES SECTION (UPDATED INTERACTION) -->
+    <!-- PACKAGES SECTION (UPDATED - TABS DESIGN) -->
     <section id="packages" class="py-20 bg-gradient-to-b from-brand-dark to-black px-4">
         <div class="max-w-7xl mx-auto">
-            <div class="text-center mb-16">
+            <div class="text-center mb-10">
                 <span class="text-brand-red text-sm font-bold tracking-[0.3em] uppercase">Exclusividad</span>
                 <h2 class="text-4xl md:text-5xl font-serif text-white mt-2 mb-4">Nuestros Paquetes</h2>
                 <div class="w-16 h-1 bg-brand-gold mx-auto"></div>
             </div>
 
-            <!-- VIEW 1: MAIN CATEGORIES (ALWAYS VISIBLE) -->
-            <div id="packages-main" class="grid grid-cols-1 md:grid-cols-3 gap-8 transition-all duration-500 mb-12">
-                
-                <!-- MAIN CARD: ELLOS -->
-                <div id="card-ellos" onclick="showPackageDetails('ellos')" class="main-card group relative h-[400px] w-full bg-gray-900 rounded-xl overflow-hidden shadow-lg border border-gray-800 transition-all duration-500 cursor-pointer">
-                    <img src="https://images.unsplash.com/photo-1566419809331-52e529a9978c?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" class="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:scale-105 transition-transform duration-700">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent"></div>
-                    <div class="absolute inset-0 flex flex-col items-center justify-center transition-all duration-300">
-                        <h3 class="text-4xl font-serif text-brand-gold mb-2">ELLOS</h3>
-                        <p class="text-gray-300 text-sm tracking-widest mt-4">SELECCIONAR</p>
-                    </div>
-                </div>
-
-                <!-- MAIN CARD: ELLAS -->
-                <div id="card-ellas" onclick="showPackageDetails('ellas')" class="main-card group relative h-[400px] w-full bg-gray-900 rounded-xl overflow-hidden shadow-lg border border-gray-800 transition-all duration-500 cursor-pointer">
-                    <img src="https://images.unsplash.com/photo-1583316166472-171457894a86?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" class="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:scale-105 transition-transform duration-700">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent"></div>
-                    <div class="absolute inset-0 flex flex-col items-center justify-center transition-all duration-300">
-                        <h3 class="text-4xl font-serif text-brand-redBright mb-2">ELLAS</h3>
-                        <p class="text-gray-300 text-sm tracking-widest mt-4">SELECCIONAR</p>
-                    </div>
-                </div>
-
-                <!-- MAIN CARD: MIXTO -->
-                <div id="card-mixto" onclick="showPackageDetails('mixto')" class="main-card group relative h-[400px] w-full bg-gray-900 rounded-xl overflow-hidden shadow-lg border border-gray-800 transition-all duration-500 cursor-pointer">
-                    <img src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" class="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:scale-105 transition-transform duration-700">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent"></div>
-                    <div class="absolute inset-0 flex flex-col items-center justify-center transition-all duration-300">
-                        <h3 class="text-4xl font-serif text-purple-400 mb-2">MIXTO</h3>
-                        <p class="text-gray-300 text-sm tracking-widest mt-4">SELECCIONAR</p>
-                    </div>
-                </div>
+            <!-- TABS NAVIGATION (Replacing Cards) -->
+            <div class="flex flex-wrap justify-center gap-2 md:gap-8 mb-12 border-b border-gray-800 pb-2">
+                <button id="tab-ellos" onclick="showPackageDetails('ellos')" class="tab-btn tab-active text-xl md:text-2xl font-serif uppercase px-4 py-2 text-white tracking-widest">
+                    ELLOS
+                </button>
+                <button id="tab-ellas" onclick="showPackageDetails('ellas')" class="tab-btn text-xl md:text-2xl font-serif uppercase px-4 py-2 text-white tracking-widest">
+                    ELLAS
+                </button>
+                <button id="tab-mixto" onclick="showPackageDetails('mixto')" class="tab-btn text-xl md:text-2xl font-serif uppercase px-4 py-2 text-white tracking-widest">
+                    MIXTO
+                </button>
             </div>
 
-            <!-- VIEW 2: DETAILS CONTAINER -->
-            <!-- Removed min-h-[500px] so it collapses when empty -->
+            <!-- DETAILS CONTAINER -->
             <div id="package-details-container" class="relative">
-                <!-- Placeholder Text Removed for cleaner look -->
-
-                <!-- ELLOS DETAILS (Removed absolute positioning) -->
-                <div id="details-ellos" class="hidden-view fade-enter w-full">
+                
+                <!-- ELLOS DETAILS -->
+                <div id="details-ellos" class="fade-enter w-full">
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                         <!-- SUB CARD 1 -->
                         <div class="group relative h-[450px] w-full bg-gray-900 rounded-xl overflow-hidden shadow-lg border border-gray-800 hover:border-brand-gold transition-all duration-500">
@@ -338,7 +332,7 @@
                     </div>
                 </div>
 
-                <!-- ELLAS DETAILS (Removed absolute positioning) -->
+                <!-- ELLAS DETAILS -->
                 <div id="details-ellas" class="hidden-view fade-enter w-full">
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                          <!-- SUB CARD 1 -->
@@ -383,7 +377,7 @@
                     </div>
                 </div>
 
-                <!-- MIXTO DETAILS (Removed absolute positioning) -->
+                <!-- MIXTO DETAILS -->
                 <div id="details-mixto" class="hidden-view fade-enter w-full">
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                         <!-- SUB CARD 1 -->
@@ -482,7 +476,7 @@
     <!-- FOOTER -->
     <footer class="bg-black border-t border-gray-900 py-12 text-center">
         <div class="max-w-7xl mx-auto px-4">
-            <img src="logo.png" alt="Footer Logo" class="h-12 mx-auto mb-6 opacity-80 grayscale hover:grayscale-0 transition-all">
+            <img src="img/logo.png" alt="Footer Logo" class="h-12 mx-auto mb-6 opacity-80 grayscale hover:grayscale-0 transition-all">
             <div class="flex justify-center space-x-8 mb-8">
                 <a href="#" class="text-gray-500 hover:text-blue-500 transition-colors text-2xl"><i class="fa-brands fa-facebook"></i></a>
                 <a href="#" class="text-gray-500 hover:text-pink-500 transition-colors text-2xl"><i class="fa-brands fa-instagram"></i></a>
@@ -509,25 +503,22 @@
 
     <!-- JS -->
     <script>
-        // --- Package Selection Logic (Updated) ---
+        // --- Package Selection Logic (Updated to Tabs) ---
         function showPackageDetails(category) {
-            const allCards = ['ellos', 'ellas', 'mixto'];
+            const allTabs = ['ellos', 'ellas', 'mixto'];
             const allDetails = ['details-ellos', 'details-ellas', 'details-mixto'];
             
-            // 1. Update Main Cards Visuals
-            allCards.forEach(c => {
-                const card = document.getElementById('card-' + c);
+            // 1. Update Tabs Visuals
+            allTabs.forEach(c => {
+                const tab = document.getElementById('tab-' + c);
                 if (c === category) {
-                    card.classList.add('card-active');
-                    card.classList.remove('card-dimmed');
+                    tab.classList.add('tab-active');
                 } else {
-                    card.classList.remove('card-active');
-                    card.classList.add('card-dimmed');
+                    tab.classList.remove('tab-active');
                 }
             });
 
             // 2. Manage Details Visibility
-            // Hide all active details first
             allDetails.forEach(d => {
                 const el = document.getElementById(d);
                 if (!el.classList.contains('hidden-view')) {
