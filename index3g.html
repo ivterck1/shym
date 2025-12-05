@@ -128,7 +128,7 @@
 </head>
 <body class="antialiased selection:bg-royale-gold selection:text-black bg-royale-black">
 
-    <!-- HEADER (Transparente para integración visual) -->
+    <!-- HEADER -->
     <header class="fixed w-full top-0 z-50 transition-all duration-300 bg-transparent" id="main-header">
         <div class="max-w-7xl mx-auto px-6">
             <div class="flex justify-between items-center h-24">
@@ -180,8 +180,8 @@
         </div>
     </div>
 
-    <!-- HERO SECTION (Alineado arriba 'items-start' con padding para eliminar espacio) -->
-    <section id="hero" class="relative h-screen w-full overflow-hidden flex items-start justify-center bg-royale-black pt-32 md:pt-48">
+    <!-- HERO SECTION (Centrado perfecto: items-center y justify-center) -->
+    <section id="hero" class="relative h-screen w-full overflow-hidden flex items-center justify-center bg-royale-black">
         <div class="absolute inset-0 z-0">
             <video autoplay muted loop playsinline class="w-full h-full object-cover">
                 <source src="video/one.mp4" type="video/mp4">
@@ -192,9 +192,10 @@
         </div>
 
         <div class="relative z-10 p-4 max-w-7xl mx-auto w-full text-center">
-            <div class="mb-4 inline-flex items-center gap-4 justify-center animate-pulse">
+            
+            <div class="mb-2 inline-flex items-center gap-4 justify-center animate-pulse">
                 <div class="h-[1px] w-12 bg-royale-gold"></div>
-                <span class="text-sm font-bold tracking-[0.4em] uppercase text-royale-gold">The Red Carpet Experience</span>
+                <span class="text-xs font-bold tracking-[0.4em] uppercase text-royale-gold">The Red Carpet Experience</span>
                 <div class="h-[1px] w-12 bg-royale-gold"></div>
             </div>
             
