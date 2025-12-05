@@ -53,9 +53,9 @@
 
         /* Glassmorphism Classes */
         .glass-panel {
-            background: rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
+            background: rgba(255, 255, 255, 0.02);
+            backdrop-filter: blur(0px);
+            -webkit-backdrop-filter: blur(0px);
             border: 1px solid rgba(255, 255, 255, 0.3);
         }
         
@@ -151,7 +151,7 @@
                 <div class="flex items-center gap-4 cursor-pointer group" onclick="window.scrollTo(0,0)">
                     <div class="relative">
                         <!-- Usar el logo normal, asegurando contraste -->
-                        <img src="logo.png" alt="Logo" class="h-10 w-auto object-contain transition-all duration-500">
+                        <img src="img/logo.png" alt="Logo" class="h-10 w-auto object-contain transition-all duration-500">
                     </div>
                     <span class="font-serif text-2xl font-black tracking-[0.2em] text-black hidden sm:block">STRIPERSHYM</span>
                 </div>
@@ -180,7 +180,7 @@
         </div>
         
         <div class="flex flex-col gap-8 text-center">
-            <img src="logo-mobile.png" alt="Logo" class="h-16 mx-auto mb-4">
+            <img src="img/logo.png" alt="Logo" class="h-16 mx-auto mb-4">
             <a href="#hero" class="mobile-link text-4xl font-serif font-bold text-black hover:text-diamond-red transition-colors">INICIO</a>
             <a href="#gallery" class="mobile-link text-4xl font-serif font-bold text-black hover:text-diamond-red transition-colors">TALENTO</a>
             <a href="#packages" class="mobile-link text-4xl font-serif font-bold text-black hover:text-diamond-red transition-colors">PAQUETES</a>
@@ -194,7 +194,7 @@
         <!-- Background Video (Con fallback gris claro en lugar de negro) -->
         <div class="absolute inset-0 z-0">
             <video autoplay muted loop playsinline class="w-full h-full object-cover grayscale opacity-70">
-                <source src="video/tu_video.mp4" type="video/mp4">
+                <source src="video/one.mp4" type="video/mp4">
                 <source src="https://assets.mixkit.co/videos/preview/mixkit-black-and-white-abstract-pattern-1688-large.mp4" type="video/mp4">
             </video>
             <!-- Overlay Blanco Brillante -->
