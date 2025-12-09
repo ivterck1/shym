@@ -21,11 +21,11 @@
                 extend: {
                     colors: {
                         vogue: {
-                            red: '#880000',      // Rojo Sangre Más Oscuro
-                            bright: '#B30000',   // Rojo Acento
-                            black: '#050505',    // Negro Profundo
-                            white: '#F0F0F0',    // Blanco Roto
-                            gold: '#C5A059'      // Dorado Mate
+                            red: '#880000',      
+                            bright: '#B30000',   
+                            black: '#050505',    
+                            white: '#F0F0F0',    
+                            gold: '#C5A059'      
                         }
                     },
                     fontFamily: {
@@ -61,10 +61,7 @@
             overflow-x: hidden;
         }
 
-        /* Scrollbar */
-        ::-webkit-scrollbar { width: 6px; }
-        ::-webkit-scrollbar-track { background: #050505; }
-        ::-webkit-scrollbar-thumb { background: #880000; }
+        /* Scrollbar Oculto */
         .hide-scroll-bar::-webkit-scrollbar { display: none; }
         .hide-scroll-bar { -ms-overflow-style: none; scrollbar-width: none; }
 
@@ -76,6 +73,7 @@
             transition: all 0.5s ease;
             font-family: 'Prata', serif;
             letter-spacing: 0.1em;
+            cursor: pointer;
         }
         .tab-btn::after {
             content: '';
@@ -94,6 +92,8 @@
             border: 1px solid rgba(255,255,255,0.1);
             transition: all 0.5s ease;
             background-color: #0a0a0a;
+            display: flex;
+            flex-direction: column;
         }
         .card-integrated:hover {
             border-color: #C5A059;
@@ -133,10 +133,12 @@
         .fade-enter-active { opacity: 1; transform: translateY(0); transition: opacity 0.5s ease, transform 0.5s ease; }
         .hidden-view { display: none !important; }
         
-        /* Menú Móvil - Estado Inicial Oculto */
-        .mobile-menu-hidden { transform: translateX(100%); }
-        .mobile-menu-visible { transform: translateX(0); }
-        #mobile-menu { transition: transform 0.4s ease-in-out; }
+        /* Menú Móvil Transiciones */
+        #mobile-menu {
+            transition: transform 0.4s ease-in-out;
+        }
+        .translate-x-full { transform: translateX(100%); }
+        .translate-x-0 { transform: translateX(0); }
 
         .bubble-anim { animation: floatBubble 4s ease-in-out infinite; }
         @keyframes floatBubble {
@@ -151,8 +153,9 @@
     <header class="fixed w-full top-0 z-50 transition-all duration-300 bg-gradient-to-b from-black/90 to-transparent pt-4 pb-8" id="main-header">
         <div class="max-w-7xl mx-auto px-6 flex justify-between items-center">
             <div class="flex items-center gap-3 cursor-pointer" onclick="window.scrollTo(0,0)">
-                <img src="img/logo.png" alt="Logo" class="h-8 w-auto object-contain brightness-0 invert opacity-90">
-                <span class="font-serif text-xl tracking-[0.2em] font-bold text-white hidden sm:block">STRIPERSHYM</span>
+                <!-- Logo blanco puro -->
+                <img src="img/logo.png" alt="Logo" class="h-14 w-auto object-contain  opacity-90">
+              <!--  <span class="font-serif text-xl tracking-[0.2em] font-bold text-white hidden sm:block">STRIPERSHYM</span> -->
             </div>
 
             <nav class="hidden lg:flex items-center gap-10">
@@ -162,16 +165,16 @@
                 <a href="#contact" class="px-5 py-1 border border-white/50 text-white text-[10px] font-bold tracking-editorial hover:bg-white hover:text-black transition-all uppercase">Reservar</a>
             </nav>
 
-            <button id="menu-btn" class="lg:hidden text-white text-3xl p-2 z-[70]">
-                <i class="fa-solid fa-bars-staggered"></i>
+              <button id="menu-btn" class="lg:hidden text-white text-3xl p-2 z-[70] focus:outline-none relative">
+              <i class="fa-solid fa-bars-staggered"></i>
             </button>
         </div>
     </header>
 
-    <!-- MOBILE MENU (Corrección: z-index alto y clases de transición) -->
-    <div id="mobile-menu" class="fixed inset-0 z-[60] bg-vogue-red mobile-menu-hidden flex flex-col justify-center items-center">
+    <!-- MOBILE MENU -->
+    <div id="mobile-menu" class="fixed inset-0 z-[60] bg-vogue-red translate-x-full flex flex-col justify-center items-center">
         <button id="close-menu-btn" class="absolute top-8 right-8 text-white text-4xl font-thin p-2"><i class="fa-solid fa-xmark"></i></button>
-        <img src="img/logo.png" alt="Logo Mobile" class="h-16 mb-12 brightness-0 invert">
+          <img src="img/logo.png" alt="Logo Mobile" class="h-16 mb-12 ">
         <nav class="flex flex-col gap-8 text-center">
             <a href="#hero" class="mobile-link text-3xl font-serif text-white hover:text-black transition-colors tracking-widest uppercase">Portada</a>
             <a href="#gallery" class="mobile-link text-3xl font-serif text-white hover:text-black transition-colors tracking-widest uppercase">Talento</a>
@@ -185,28 +188,31 @@
         <div class="absolute inset-0 z-0">
             <!-- Mobile Video -->
             <video autoplay muted loop playsinline class="absolute inset-0 w-full h-full object-cover md:hidden">
-                <source src="video/one_movil.mp4" type="video/mp4">
+                 <source src="video/one_movil.mp4" type="video/mp4">
             </video>
             <!-- Desktop Video -->
             <video autoplay muted loop playsinline class="absolute inset-0 w-full h-full object-cover hidden md:block">
                 <source src="video/one.mp4" type="video/mp4">
             </video>
-            <div class="absolute inset-0 bg-vogue-red mix-blend-multiply opacity-40"></div>
-            <div class="absolute inset-0 bg-black/30"></div>
+            
+            <!-- FILTRO ROJO RESTAURADO Y POTENCIADO -->
+            <div class="absolute inset-0 bg-vogue-red mix-blend-multiply opacity-80"></div>
+            <!-- Gradiente negro para asegurar legibilidad -->
+            <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black/40"></div>
         </div>
 
         <div class="relative z-10 text-center px-6 max-w-5xl w-full pt-10">
-            <p class="text-vogue-gold text-[10px] tracking-[0.3em] uppercase mb-4 opacity-80">The Exclusive Experience</p>
-            <h1 class="text-5xl md:text-8xl font-serif text-white mb-6 leading-none tracking-tight drop-shadow-2xl">
-                STRIPERS<span class="italic text-vogue-bright font-light">HYM</span>
+            <p class="text-vogue-gold text-[10px] tracking-[0.3em] uppercase mb-4 opacity-90 animate-pulse drop-shadow-md">The Exclusive Experience</p>
+            <h1 class="text-4xl md:text-8xl font-serif text-white mb-6 leading-none tracking-tight drop-shadow-2xl">
+                STRIPPERS<span class="italic text-vogue-bright font-light">HYM</span>
             </h1>
-            <div class="w-[1px] h-12 bg-white mx-auto mb-6 opacity-50"></div>
-            <p class="text-white/90 text-sm md:text-lg font-light max-w-lg mx-auto leading-relaxed mb-10 font-sans tracking-wide">
-                Donde la elegancia se encuentra con la seducción. <br> Una experiencia reservada para pocos.
+            <div class="w-[1px] h-12 bg-white mx-auto mb-6 opacity-70"></div>
+            <p class="text-white text-sm md:text-lg font-light max-w-lg mx-auto leading-relaxed mb-10 font-sans tracking-wide drop-shadow-lg">
+                Si no hay competencia no hay calidad. <br> Una experiencia reservada para pocos.
             </p>
             <div class="flex flex-col sm:flex-row justify-center gap-4">
-                <a href="#packages" class="px-8 py-3 bg-vogue-bright text-white text-[10px] font-bold tracking-editorial hover:bg-white hover:text-black transition-all uppercase border border-vogue-bright">Ver Colección</a>
-                <a href="#gallery" class="px-8 py-3 bg-transparent text-white text-[10px] font-bold tracking-editorial hover:bg-white hover:text-black transition-all uppercase border border-white">Elenco</a>
+                <a href="#packages" class="px-8 py-3 bg-vogue-bright text-white text-[10px] font-bold tracking-editorial hover:bg-white hover:text-black transition-all uppercase border border-vogue-bright shadow-lg">Ver Colección</a>
+                <a href="#gallery" class="px-8 py-3 bg-transparent text-white text-[10px] font-bold tracking-editorial hover:bg-white hover:text-black transition-all uppercase border border-white backdrop-blur-sm">Elenco</a>
             </div>
         </div>
     </section>
@@ -214,85 +220,52 @@
     <!-- INTRO -->
     <section class="py-24 bg-white text-black px-6">
         <div class="max-w-4xl mx-auto text-center">
-            <span class="text-vogue-red text-[10px] font-bold tracking-editorial block mb-4">— MANIFIESTO —</span>
+            <span class="text-vogue-red text-[10px] font-bold tracking-editorial block mb-4">— AGENCIA DE STRIPPERS HYM MÉXICO —</span>
             <h2 class="text-3xl md:text-5xl font-serif mb-6 leading-tight">
                 EL ARTE DE LA <br> <span class="italic font-light text-vogue-bright">SEDUCCIÓN.</span>
             </h2>
             <p class="text-lg font-light leading-relaxed text-gray-800 max-w-2xl mx-auto">
-                En <strong>STRIPERSHYM</strong>, redefinimos el entretenimiento adulto. Dejamos atrás lo convencional para curar experiencias visuales y sensoriales diseñadas para el público más exigente.
+              <strong>STRIPPERS HYM</strong> es una agencia de stripers y bailarinas profesionales en México 100% seria y profesional. Nosotros te brindamos un magnífico servicio para la contratación de strippers para tu despedida de soltera.  También contamos con stripers mujeres para tu despedida de soltero o si lo prefieres strippers para despedida mixtas.
+Excelente servicio para fiestas de cumpleaños, pasarelas, eventos masivos y todo lo relacionado con entretenimiento visual en Ciudad de México, Estado de México, Toluca, Pachuca, Puebla.
+Sin duda tenemos a las mejores stripers México para Despedidas de Soltera.
+
+Llevamos el entretenimiento hasta las puertas de tu casa, salones de fiestas, antros, bares, restaurantes y reuniones, además  traemos para ti un nuevo concepto donde recorrerás las principales avenidas de la ciudad de México con nuestra divertida fiesta móvil.
             </p>
         </div>
     </section>
 
-    <!-- GALLERY (Infinite Loop + Lightbox Trigger) -->
+    <!-- GALLERY (Fixed Auto Scroll + Manual Control + Lightbox Nav) -->
     <section id="gallery" class="bg-[#0f0f0f] py-24 overflow-hidden border-t border-white/5">
         
-        <!-- SECTION ELLOS -->
+        <!-- SECTION ELLOS (Left Flow) -->
         <div class="mb-16">
-            <div class="px-6 md:px-12 mb-6 flex items-center gap-4">
+            <div class="px-6 md:px-12 mb-6 flex items-center justify-between">
                 <h3 class="text-3xl font-serif text-white italic">ELLOS</h3>
-                <div class="h-[1px] bg-white/20 flex-grow"></div>
+                <!-- Manual Controls -->
+                <div class="flex gap-2">
+                    <button id="prev-ellos" class="w-10 h-10 border border-white/20 hover:bg-white hover:text-black text-white rounded-full flex items-center justify-center transition-all"><i class="fa-solid fa-chevron-left"></i></button>
+                    <button id="next-ellos" class="w-10 h-10 border border-white/20 hover:bg-white hover:text-black text-white rounded-full flex items-center justify-center transition-all"><i class="fa-solid fa-chevron-right"></i></button>
+                </div>
             </div>
             
-            <div class="relative w-full overflow-hidden">
-                <div class="flex animate-scroll w-max gap-4 hover:pause">
-                    <!-- Gallery Items -->
-                    <div class="w-[280px] h-[400px] relative group overflow-hidden cursor-pointer lightbox-trigger">
-                        <img src="https://images.unsplash.com/photo-1542596594-649edbc13630?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700">
-                        <div class="absolute bottom-4 left-4 text-white pointer-events-none">
-                            <p class="text-xs tracking-widest text-vogue-gold mb-1">Alex</p>
-                            <p class="text-2xl font-serif leading-none">THE STAR</p>
-                        </div>
-                    </div>
-                    <div class="w-[280px] h-[400px] relative group overflow-hidden cursor-pointer lightbox-trigger">
-                        <img src="https://images.unsplash.com/photo-1534030347209-7147fd69a3f2?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700">
-                        <div class="absolute bottom-4 left-4 text-white pointer-events-none"><p class="text-xs tracking-widest text-vogue-gold mb-1">Leo</p><p class="text-2xl font-serif leading-none">DANCER</p></div>
-                    </div>
-                    <div class="w-[280px] h-[400px] relative group overflow-hidden cursor-pointer lightbox-trigger">
-                        <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700">
-                        <div class="absolute bottom-4 left-4 text-white pointer-events-none"><p class="text-xs tracking-widest text-vogue-gold mb-1">Max</p><p class="text-2xl font-serif leading-none">FIRE</p></div>
-                    </div>
-                     <!-- Duplicates for loop -->
-                     <div class="w-[280px] h-[400px] relative group overflow-hidden cursor-pointer lightbox-trigger">
-                        <img src="https://images.unsplash.com/photo-1542596594-649edbc13630?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700">
-                        <div class="absolute bottom-4 left-4 text-white pointer-events-none"><p class="text-xs tracking-widest text-vogue-gold mb-1">Alex</p><p class="text-2xl font-serif leading-none">THE STAR</p></div>
-                    </div>
-                     <div class="w-[280px] h-[400px] relative group overflow-hidden cursor-pointer lightbox-trigger">
-                        <img src="https://images.unsplash.com/photo-1534030347209-7147fd69a3f2?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700">
-                        <div class="absolute bottom-4 left-4 text-white pointer-events-none"><p class="text-xs tracking-widest text-vogue-gold mb-1">Leo</p><p class="text-2xl font-serif leading-none">DANCER</p></div>
-                    </div>
-                </div>
+            <!-- Gallery Container -->
+            <div id="gallery-ellos" class="flex overflow-x-auto gap-4 hide-scroll-bar px-4 cursor-grab active:cursor-grabbing w-full">
+                <!-- JS Populates this -->
             </div>
         </div>
 
-        <!-- SECTION ELLAS -->
+        <!-- SECTION ELLAS (Right Flow) -->
         <div>
-            <div class="px-6 md:px-12 mb-6 flex items-center gap-4 flex-row-reverse text-right">
+            <div class="px-6 md:px-12 mb-6 flex items-center justify-between flex-row-reverse">
                 <h3 class="text-3xl font-serif text-white italic">ELLAS</h3>
-                <div class="h-[1px] bg-white/20 flex-grow"></div>
+                <div class="flex gap-2">
+                    <button id="prev-ellas" class="w-10 h-10 border border-white/20 hover:bg-white hover:text-black text-white rounded-full flex items-center justify-center transition-all"><i class="fa-solid fa-chevron-left"></i></button>
+                    <button id="next-ellas" class="w-10 h-10 border border-white/20 hover:bg-white hover:text-black text-white rounded-full flex items-center justify-center transition-all"><i class="fa-solid fa-chevron-right"></i></button>
+                </div>
             </div>
             
-            <div class="relative w-full overflow-hidden">
-                <div class="flex animate-scroll-reverse w-max gap-4 hover:pause">
-                    <!-- Gallery Items -->
-                    <div class="w-[280px] h-[400px] relative group overflow-hidden cursor-pointer lightbox-trigger">
-                        <img src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700">
-                        <div class="absolute bottom-4 left-4 text-white pointer-events-none"><p class="text-xs tracking-widest text-vogue-gold mb-1">Sasha</p><p class="text-2xl font-serif leading-none">MODEL</p></div>
-                    </div>
-                    <div class="w-[280px] h-[400px] relative group overflow-hidden cursor-pointer lightbox-trigger">
-                        <img src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700">
-                        <div class="absolute bottom-4 left-4 text-white pointer-events-none"><p class="text-xs tracking-widest text-vogue-gold mb-1">Ruby</p><p class="text-2xl font-serif leading-none">QUEEN</p></div>
-                    </div>
-                    <div class="w-[280px] h-[400px] relative group overflow-hidden cursor-pointer lightbox-trigger">
-                        <img src="https://images.unsplash.com/photo-1616002411355-49593fd89721?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700">
-                        <div class="absolute bottom-4 left-4 text-white pointer-events-none"><p class="text-xs tracking-widest text-vogue-gold mb-1">Valeria</p><p class="text-2xl font-serif leading-none">ICON</p></div>
-                    </div>
-                     <!-- Duplicates -->
-                    <div class="w-[280px] h-[400px] relative group overflow-hidden cursor-pointer lightbox-trigger">
-                        <img src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700">
-                        <div class="absolute bottom-4 left-4 text-white pointer-events-none"><p class="text-xs tracking-widest text-vogue-gold mb-1">Sasha</p><p class="text-2xl font-serif leading-none">MODEL</p></div>
-                    </div>
-                </div>
+            <div id="gallery-ellas" class="flex overflow-x-auto gap-4 hide-scroll-bar px-4 cursor-grab active:cursor-grabbing w-full">
+                <!-- JS Populates this -->
             </div>
         </div>
     </section>
@@ -301,13 +274,18 @@
     <section id="packages" class="py-24 bg-vogue-red text-white relative">
         <div class="max-w-6xl mx-auto px-6 relative z-10">
             <div class="text-center mb-16">
-                <h2 class="text-4xl md:text-7xl font-serif text-white mb-8">COLECCIÓN VIP</h2>
+                <h2 class="text-4xl md:text-7xl font-serif text-white mb-8">PAQUETES</h2>
                 <!-- TABS -->
                 <div class="inline-flex gap-8 md:gap-16 border-b border-white/20 pb-0">
-                    <button onclick="switchTab('ellos')" id="tab-ellos" class="tab-btn active text-lg font-serif uppercase tracking-widest cursor-pointer">ELLOS</button>
+                   <!--    <button onclick="switchTab('ellos')" id="tab-ellos" class="tab-btn active text-lg font-serif uppercase tracking-widest cursor-pointer">DESPEDIDA DE SOLTERA</button>
+                    <button onclick="switchTab('ellas')" id="tab-ellas" class="tab-btn text-lg font-serif uppercase tracking-widest cursor-pointer">DESPEDIDA DE SOLTERO</button>
+                    <button onclick="switchTab('mixto')" id="tab-mixto" class="tab-btn text-lg font-serif uppercase tracking-widest cursor-pointer">DESPEDIDAS MIXTAS Y OTRAS</button>
+ -->               
+	<button onclick="switchTab('ellos')" id="tab-ellos" class="tab-btn active text-lg font-serif uppercase tracking-widest cursor-pointer">ELLOS</button>
                     <button onclick="switchTab('ellas')" id="tab-ellas" class="tab-btn text-lg font-serif uppercase tracking-widest cursor-pointer">ELLAS</button>
-                    <button onclick="switchTab('mixto')" id="tab-mixto" class="tab-btn text-lg font-serif uppercase tracking-widest cursor-pointer">MIXTO</button>
-                </div>
+                    <button onclick="switchTab('mixto')" id="tab-mixto" class="tab-btn text-lg font-serif uppercase tracking-widest cursor-pointer">MIXTAS Y OTRAS</button>
+ 
+	</div>
             </div>
 
             <!-- CONTENT -->
@@ -318,18 +296,39 @@
                     <!-- Card 1 -->
                     <div class="card-integrated rounded-lg flex flex-col group h-full">
                         <div class="h-64 relative overflow-hidden">
-                             <div class="price-ribbon">$1,500</div>
-                             <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" class="card-bg w-full h-full object-cover opacity-60">
+                             <div class="price-ribbon">$2,000</div>
+                             <img src="img/ellos/paq1.png" class="card-bg w-full h-full object-cover object-top opacity-60">
                              <div class="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] to-transparent"></div>
-                             <h3 class="absolute bottom-4 left-5 text-2xl font-serif text-white">UN GUERRERO</h3>
+                             <h3 class="absolute bottom-4 left-5 text-2xl font-serif text-white">PAQUETE 1 </h3>
                         </div>
                         <div class="p-5 flex-grow flex flex-col bg-[#0a0a0a]">
-                            <span class="text-[10px] tracking-editorial text-vogue-gold mb-4 block uppercase border-b border-white/10 pb-2">Solista Edition</span>
+                            <span class="text-[10px] tracking-editorial text-vogue-gold mb-4 block uppercase border-b border-white/10 pb-2">Sencillo</span>
                             <ul class="text-xs font-light text-gray-300 space-y-3 mb-6 flex-grow">
-                                <li class="flex gap-2"><i class="fa-solid fa-check text-vogue-gold"></i> 1 Stripper Profesional</li>
-                                <li class="flex gap-2"><i class="fa-solid fa-check text-vogue-gold"></i> 45 min show continuo</li>
-                                <li class="flex gap-2"><i class="fa-solid fa-check text-vogue-gold"></i> Animación y Juegos</li>
-                                <li class="flex gap-2"><i class="fa-solid fa-check text-vogue-gold"></i> Música incluida</li>
+                                <li class="flex gap-2">
+									  <i class="fa-solid fa-check text-vogue-gold"></i> 1 Stripper Profesional
+									</li>
+									<li class="flex gap-2">
+									  <i class="fa-solid fa-check text-vogue-gold"></i> 1 hora de show continuo
+									</li>
+									<li class="flex gap-2">
+									  <i class="fa-solid fa-check text-vogue-gold"></i> Show de baile sensual
+									</li>
+									<li class="flex gap-2">
+									  <i class="fa-solid fa-check text-vogue-gold"></i> Show muy dinámico
+									</li>
+									<li class="flex gap-2">
+									  <i class="fa-solid fa-check text-vogue-gold"></i> Animación del evento
+									</li>
+									<li class="flex gap-2">
+									  <i class="fa-solid fa-check text-vogue-gold"></i> (3) Concurso y Juegos
+									</li>
+									<li class="flex gap-2">
+									  <i class="fa-solid fa-check text-vogue-gold"></i> Fotografías con el Stripper
+									</li>
+									<li class="flex gap-2">
+									  <i class="fa-solid fa-check text-vogue-gold"></i> Vestuario de fantasía
+									</li>
+
                             </ul>
                             <a href="https://wa.me/5211234567890?text=Info%20Un%20Guerrero" class="w-full py-3 border border-white/30 text-center text-[10px] font-bold tracking-editorial uppercase hover:bg-white hover:text-black transition-colors">COTIZAR</a>
                         </div>
@@ -339,18 +338,38 @@
                     <div class="card-integrated rounded-lg flex flex-col group h-full border-vogue-gold transform md:-translate-y-4 shadow-2xl">
                         <div class="h-72 relative overflow-hidden">
                              <div class="price-ribbon price-ribbon-red">$3,500</div>
-                             <img src="https://images.unsplash.com/photo-1542596594-649edbc13630?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" class="card-bg w-full h-full object-cover opacity-80">
-                             <div class="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] to-transparent"></div>
-                             <h3 class="absolute bottom-4 left-5 text-3xl font-serif text-white">PAR DE ASES</h3>
+                             <img src="img/ellos/paq2.png" class="card-bg w-full h-full object-cover object-top opacity-80">
+							 <div class="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] to-transparent"></div>
+                             <h3 class="absolute bottom-4 left-5 text-3xl font-serif text-white">PAQUETE 2</h3>
                         </div>
                         <div class="p-6 flex-grow flex flex-col bg-[#0a0a0a]">
-                            <span class="text-[10px] tracking-editorial text-white mb-4 block uppercase border-b border-white/30 pb-2">Duo Edition</span>
+                            <span class="text-[10px] tracking-editorial text-white mb-4 block uppercase border-b border-white/30 pb-2">Doble o Nada</span>
                             <ul class="text-xs font-medium text-white space-y-3 mb-6 flex-grow">
-                                <li class="flex gap-2"><i class="fa-solid fa-star text-vogue-gold"></i> 2 Strippers Pro</li>
-                                <li class="flex gap-2"><i class="fa-solid fa-star text-vogue-gold"></i> 1h 15m show continuo</li>
-                                <li class="flex gap-2"><i class="fa-solid fa-star text-vogue-gold"></i> Show doble impacto</li>
-                                <li class="flex gap-2"><i class="fa-solid fa-star text-vogue-gold"></i> (6) Concursos</li>
-                                <li class="flex gap-2"><i class="fa-solid fa-star text-vogue-gold"></i> Vestuario a elegir</li>
+                               <li class="flex gap-2">
+								  <i class="fa-solid fa-star text-vogue-gold"></i> 2 Strippers Profesionales
+								</li>
+								<li class="flex gap-2">
+								  <i class="fa-solid fa-star text-vogue-gold"></i> 1 hr 15 min de show continuo
+								</li>
+								<li class="flex gap-2">
+								  <i class="fa-solid fa-star text-vogue-gold"></i> Show de baile sensual
+								</li>
+								<li class="flex gap-2">
+								  <i class="fa-solid fa-star text-vogue-gold"></i> Show muy dinámico
+								</li>
+								<li class="flex gap-2">
+								  <i class="fa-solid fa-star text-vogue-gold"></i> Animación del evento
+								</li>
+								<li class="flex gap-2">
+								  <i class="fa-solid fa-star text-vogue-gold"></i> (6) Concurso y Juegos
+								</li>
+								<li class="flex gap-2">
+								  <i class="fa-solid fa-star text-vogue-gold"></i> Fotografías con el Stripper
+								</li>
+								<li class="flex gap-2">
+								  <i class="fa-solid fa-star text-vogue-gold"></i> Vestuario de fantasía
+								</li>
+
                             </ul>
                             <a href="https://wa.me/5211234567890?text=Info%20Par%20de%20Ases" class="w-full py-3 bg-white text-black text-center text-[10px] font-bold tracking-editorial uppercase hover:bg-vogue-gold transition-colors">COTIZAR VIP</a>
                         </div>
@@ -359,75 +378,198 @@
                     <!-- Card 3 -->
                     <div class="card-integrated rounded-lg flex flex-col group h-full">
                         <div class="h-64 relative overflow-hidden">
-                             <div class="price-ribbon">$5,000</div>
-                             <img src="https://images.unsplash.com/photo-1487222477894-8943e31ef7b2?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" class="card-bg w-full h-full object-cover opacity-60">
+                             <div class="price-ribbon">$4,500</div>
+                             <img src="img/ellos/paq3.png" class="card-bg w-full h-full object-cover object-top opacity-60">
                              <div class="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] to-transparent"></div>
-                             <h3 class="absolute bottom-4 left-5 text-2xl font-serif text-white">TRÍO SALVAJE</h3>
+                             <h3 class="absolute bottom-4 left-5 text-2xl font-serif text-white">PAQUETE 3</h3>
                         </div>
                         <div class="p-5 flex-grow flex flex-col bg-[#0a0a0a]">
-                            <span class="text-[10px] tracking-editorial text-vogue-gold mb-4 block uppercase border-b border-white/10 pb-2">Mega Edition</span>
+                            <span class="text-[10px] tracking-editorial text-vogue-gold mb-4 block uppercase border-b border-white/10 pb-2">Loa 3 Mosqueteros</span>
                             <ul class="text-xs font-light text-gray-300 space-y-3 mb-6 flex-grow">
-                                <li class="flex gap-2"><i class="fa-solid fa-check text-vogue-gold"></i> 3 Talentos de Élite</li>
-                                <li class="flex gap-2"><i class="fa-solid fa-check text-vogue-gold"></i> 2 horas completas</li>
-                                <li class="flex gap-2"><i class="fa-solid fa-check text-vogue-gold"></i> Performance grupal</li>
-                                <li class="flex gap-2"><i class="fa-solid fa-check text-vogue-gold"></i> Acceso VIP festejado</li>
+                             <li class="flex gap-2">
+							  <i class="fa-solid fa-check text-vogue-gold"></i> 3 Talentos de Élite
+							</li>
+							<li class="flex gap-2">
+							  <i class="fa-solid fa-check text-vogue-gold"></i> 1 hr 30 min de show continuo
+							</li>
+							<li class="flex gap-2">
+							  <i class="fa-solid fa-check text-vogue-gold"></i> Show de baile sensual
+							</li>
+							<li class="flex gap-2">
+							  <i class="fa-solid fa-check text-vogue-gold"></i> Show muy dinámico
+							</li>
+							<li class="flex gap-2">
+							  <i class="fa-solid fa-check text-vogue-gold"></i> Animación del evento
+							</li>
+							<li class="flex gap-2">
+							  <i class="fa-solid fa-check text-vogue-gold"></i> (8) Concurso y Juegos
+							</li>
+							<li class="flex gap-2">
+							  <i class="fa-solid fa-check text-vogue-gold"></i> Fotografías con el stripper
+							</li>
+							<li class="flex gap-2">
+							  <i class="fa-solid fa-check text-vogue-gold"></i> Vestuario de fantasía
+							</li>
+
                             </ul>
                             <a href="https://wa.me/5211234567890?text=Info%20Trio%20Salvaje" class="w-full py-3 border border-white/30 text-center text-[10px] font-bold tracking-editorial uppercase hover:bg-white hover:text-black transition-colors">COTIZAR</a>
                         </div>
                     </div>
+					
+					<!-- Card 4 -->
+                    <div class="card-integrated rounded-lg flex flex-col group h-full">
+                        <div class="h-64 relative overflow-hidden">
+                             <div class="price-ribbon">$3,500</div>
+                             <img src="img/ellos/paq4.png" class="card-bg w-full h-full object-cover object-top opacity-60">
+                             <div class="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] to-transparent"></div>
+                             <h3 class="absolute bottom-4 left-5 text-2xl font-serif text-white">PAQUETE RÍAS</h3>
+                        </div>
+                        <div class="p-5 flex-grow flex flex-col bg-[#0a0a0a]">
+                            <span class="text-[10px] tracking-editorial text-vogue-gold mb-4 block uppercase border-b border-white/10 pb-2">Animador Profesional</span>
+                            <ul class="text-xs font-light text-gray-300 space-y-3 mb-6 flex-grow">
+                            <li class="flex gap-2">
+								  <i class="fa-solid fa-star text-vogue-gold"></i> 1 Stripper (hombre o mujer)
+								</li>
+								<li class="flex gap-2">
+								  <i class="fa-solid fa-star text-vogue-gold"></i> 1 Animador animando el evento todo el tiempo
+								</li>
+								<li class="flex gap-2">
+								  <i class="fa-solid fa-star text-vogue-gold"></i> 1 hr 30 min de show
+								</li>
+								<li class="flex gap-2">
+								  <i class="fa-solid fa-star text-vogue-gold"></i> Show de animación 100% profesional
+								</li>
+								<li class="flex gap-2">
+								  <i class="fa-solid fa-star text-vogue-gold"></i> Show de baile sensual
+								</li>
+								<li class="flex gap-2">
+								  <i class="fa-solid fa-star text-vogue-gold"></i> Juegos, concursos y dinámicas
+								</li>
+								<li class="flex gap-2">
+								  <i class="fa-solid fa-star text-vogue-gold"></i> Fotografías con el stripper
+								</li>
+								<li class="flex gap-2">
+								  <i class="fa-solid fa-star text-vogue-gold"></i> Vestuario profesional
+								</li>
+								<li class="flex gap-2 text-[11px] text-gray-300">
+								  <i class="fa-solid fa-star text-vogue-gold mt-[2px]"></i> * Chica o chico extra $1,500
+								</li>
+
+                            </ul>
+                            <a href="https://wa.me/5211234567890?text=Info%20Trio%20Salvaje" class="w-full py-3 border border-white/30 text-center text-[10px] font-bold tracking-editorial uppercase hover:bg-white hover:text-black transition-colors">COTIZAR</a>
+                        </div>
+                    </div>
+					
                 </div>
 
                 <!-- ELLAS (Similar structure - Hidden) -->
                 <div id="details-ellas" class="hidden-view fade-enter grid grid-cols-1 md:grid-cols-3 gap-6">
                     <div class="card-integrated rounded-lg flex flex-col group h-full">
                          <div class="h-64 relative overflow-hidden">
-                             <div class="price-ribbon">$1,800</div>
-                             <img src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" class="card-bg w-full h-full object-cover opacity-60">
-                             <div class="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] to-transparent"></div>
-                             <h3 class="absolute bottom-4 left-5 text-2xl font-serif text-white">UNA PRINCESA</h3>
+                             <div class="price-ribbon">$2,000</div>
+                             <img src="img/ellas/paq1.png" class="card-bg w-full h-full object-cover object-top opacity-60">
+							 <div class="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] to-transparent"></div>
+                             <h3 class="absolute bottom-4 left-5 text-2xl font-serif text-white">PAQUETE 1</h3>
                         </div>
                         <div class="p-5 flex-grow flex flex-col bg-[#0a0a0a]">
-                            <span class="text-[10px] tracking-editorial text-vogue-gold mb-4 block uppercase border-b border-white/10 pb-2">Solo Edition</span>
+                            <span class="text-[10px] tracking-editorial text-vogue-gold mb-4 block uppercase border-b border-white/10 pb-2">Sencillo</span>
                             <ul class="text-xs font-light text-gray-300 space-y-3 mb-6 flex-grow">
-                                <li class="flex gap-2"><i class="fa-solid fa-check text-vogue-gold"></i> 1 Bailarina Exclusiva</li>
-                                <li class="flex gap-2"><i class="fa-solid fa-check text-vogue-gold"></i> 45 min show</li>
-                                <li class="flex gap-2"><i class="fa-solid fa-check text-vogue-gold"></i> Show fantasía</li>
-                                <li class="flex gap-2"><i class="fa-solid fa-check text-vogue-gold"></i> Juegos de integración</li>
+                                <li class="flex gap-2">
+									  <i class="fa-solid fa-check text-vogue-gold"></i> 1 Bailarina exclusiva
+									</li>
+									<li class="flex gap-2">
+									  <i class="fa-solid fa-check text-vogue-gold"></i> 45 min de show continuo
+									</li>
+									<li class="flex gap-2">
+									  <i class="fa-solid fa-check text-vogue-gold"></i> Show de baile sensual
+									</li>
+									<li class="flex gap-2">
+									  <i class="fa-solid fa-check text-vogue-gold"></i> Show muy dinámico
+									</li>
+									<li class="flex gap-2">
+									  <i class="fa-solid fa-check text-vogue-gold"></i> Animación del evento
+									</li>
+									<li class="flex gap-2">
+									  <i class="fa-solid fa-check text-vogue-gold"></i> (2) Concurso y Juegos
+									</li>
+									<li class="flex gap-2">
+									  <i class="fa-solid fa-check text-vogue-gold"></i> Fotografías con la bailarina
+									</li>
                             </ul>
                             <a href="https://wa.me/5211234567890?text=Info%20Una%20Princesa" class="w-full py-3 border border-white/30 text-center text-[10px] font-bold tracking-editorial uppercase hover:bg-white hover:text-black transition-colors">COTIZAR</a>
                         </div>
                     </div>
                      <div class="card-integrated rounded-lg flex flex-col group h-full border-white transform md:-translate-y-4 shadow-2xl">
                          <div class="h-72 relative overflow-hidden">
-                             <div class="price-ribbon price-ribbon-red">$4,000</div>
-                             <img src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" class="card-bg w-full h-full object-cover opacity-80">
+                             <div class="price-ribbon price-ribbon-red">$3,500</div>
+                             <img src="img/ellas/paq2.png" class="card-bg w-full h-full object-cover object-top opacity-80">
                              <div class="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] to-transparent"></div>
-                             <h3 class="absolute bottom-4 left-5 text-3xl font-serif text-white">DÚO ENSUEÑO</h3>
+                             <h3 class="absolute bottom-4 left-5 text-3xl font-serif text-white">PAQUETE DOS</h3>
                         </div>
                         <div class="p-6 flex-grow flex flex-col bg-[#0a0a0a]">
-                            <span class="text-[10px] tracking-editorial text-white mb-4 block uppercase border-b border-white/30 pb-2">Fantasy Edition</span>
+                            <span class="text-[10px] tracking-editorial text-white mb-4 block uppercase border-b border-white/30 pb-2">Doble o Nada</span>
                             <ul class="text-xs font-medium text-white space-y-3 mb-6 flex-grow">
-                                <li class="flex gap-2"><i class="fa-solid fa-star text-white"></i> 2 Modelos Pro</li>
-                                <li class="flex gap-2"><i class="fa-solid fa-star text-white"></i> Show Lésbico / Temático</li>
-                                <li class="flex gap-2"><i class="fa-solid fa-star text-white"></i> 1h 15m show</li>
-                                <li class="flex gap-2"><i class="fa-solid fa-star text-white"></i> Dinámicas divertidas</li>
+                                <li class="flex gap-2">
+								  <i class="fa-solid fa-star text-white"></i> 2 Modelos Pro
+								</li>
+								<li class="flex gap-2">
+								  <i class="fa-solid fa-star text-white"></i> 1 hora de show continuo
+								</li>
+								<li class="flex gap-2">
+								  <i class="fa-solid fa-star text-white"></i> Show de baile sensual
+								</li>
+								<li class="flex gap-2">
+								  <i class="fa-solid fa-star text-white"></i> Show muy dinámico
+								</li>
+								<li class="flex gap-2">
+								  <i class="fa-solid fa-star text-white"></i> Animación del evento
+								</li>
+								<li class="flex gap-2">
+								  <i class="fa-solid fa-star text-white"></i> (4) Concurso y Juegos
+								</li>
+								<li class="flex gap-2">
+								  <i class="fa-solid fa-star text-white"></i> Fotografías con las modelos
+								</li>
+
                             </ul>
                             <a href="https://wa.me/5211234567890?text=Info%20Duo%20Ensueño" class="w-full py-3 bg-white text-black text-center text-[10px] font-bold tracking-editorial uppercase hover:bg-vogue-gold transition-colors">COTIZAR VIP</a>
                         </div>
                     </div>
                      <div class="card-integrated rounded-lg flex flex-col group h-full">
                          <div class="h-64 relative overflow-hidden">
-                             <div class="price-ribbon">$6,000</div>
-                             <img src="https://images.unsplash.com/photo-1616002411355-49593fd89721?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" class="card-bg w-full h-full object-cover opacity-60">
-                             <div class="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] to-transparent"></div>
-                             <h3 class="absolute bottom-4 left-5 text-2xl font-serif text-white">TRES CORAZONES</h3>
+                             <div class="price-ribbon">$4,500</div>
+                             <img src="img/ellas/paq3.png" class="card-bg w-full h-full object-cover object-top opacity-60">
+							 <div class="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] to-transparent"></div>
+                             <h3 class="absolute bottom-4 left-5 text-2xl font-serif text-white">PAQUETE 3</h3>
                         </div>
                         <div class="p-5 flex-grow flex flex-col bg-[#0a0a0a]">
-                            <span class="text-[10px] tracking-editorial text-vogue-gold mb-4 block uppercase border-b border-white/10 pb-2">Premium Edition</span>
+                            <span class="text-[10px] tracking-editorial text-vogue-gold mb-4 block uppercase border-b border-white/10 pb-2">Las 3 Mosqueteras</span>
                             <ul class="text-xs font-light text-gray-300 space-y-3 mb-6 flex-grow">
-                                <li class="flex gap-2"><i class="fa-solid fa-check text-vogue-gold"></i> 3 Modelos Élite</li>
-                                <li class="flex gap-2"><i class="fa-solid fa-check text-vogue-gold"></i> 2 horas show</li>
-                                <li class="flex gap-2"><i class="fa-solid fa-check text-vogue-gold"></i> Performance grupal</li>
+                               <li class="flex gap-2">
+								  <i class="fa-solid fa-check text-vogue-gold"></i> 3 Modelos Élite
+								</li>
+								<li class="flex gap-2">
+								  <i class="fa-solid fa-check text-vogue-gold"></i> 1 hr 15 min de show continuo
+								</li>
+								<li class="flex gap-2">
+								  <i class="fa-solid fa-check text-vogue-gold"></i> Show de baile sensual
+								</li>
+								<li class="flex gap-2">
+								  <i class="fa-solid fa-check text-vogue-gold"></i> Show muy dinámico
+								</li>
+								<li class="flex gap-2">
+								  <i class="fa-solid fa-check text-vogue-gold"></i> Animación del evento
+								</li>
+								<li class="flex gap-2">
+								  <i class="fa-solid fa-check text-vogue-gold"></i> (6) Concurso y Juegos
+								</li>
+								<li class="flex gap-2">
+								  <i class="fa-solid fa-check text-vogue-gold"></i> Fotografías con las modelos
+								</li>
+								<li class="flex gap-2">
+								  <i class="fa-solid fa-check text-vogue-gold"></i> Vestuario de fantasía
+								</li>
+
                             </ul>
                             <a href="https://wa.me/5211234567890?text=Info%20Tres%20Corazones" class="w-full py-3 border border-white/30 text-center text-[10px] font-bold tracking-editorial uppercase hover:bg-white hover:text-black transition-colors">COTIZAR</a>
                         </div>
@@ -438,57 +580,173 @@
                  <div id="details-mixto" class="hidden-view fade-enter grid grid-cols-1 md:grid-cols-3 gap-6">
                     <div class="card-integrated rounded-lg flex flex-col group h-full">
                         <div class="h-64 relative overflow-hidden">
-                             <div class="price-ribbon">$2,500</div>
-                             <img src="https://images.unsplash.com/photo-1543584756-8f40a802e14f?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" class="card-bg w-full h-full object-cover opacity-60">
-                             <div class="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] to-transparent"></div>
-                             <h3 class="absolute bottom-4 left-5 text-2xl font-serif text-white">STRIPPER Y PAYASO</h3>
+                             <div class="price-ribbon">$3,500</div>
+                             <img src="img/mixto/paq1.png" class="card-bg w-full h-full object-cover object-top opacity-60">
+							 <div class="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] to-transparent"></div>
+                             <h3 class="absolute bottom-4 left-5 text-2xl font-serif text-white">DESPEDIDA MIXTA</h3>
                         </div>
                         <div class="p-5 flex-grow flex flex-col bg-[#0a0a0a]">
-                            <span class="text-[10px] tracking-editorial text-vogue-gold mb-4 block uppercase border-b border-white/10 pb-2">Mix Edition</span>
+                            <span class="text-[10px] tracking-editorial text-vogue-gold mb-4 block uppercase border-b border-white/10 pb-2">Él y ella</span>
                             <ul class="text-xs font-light text-gray-300 space-y-3 mb-6 flex-grow">
-                                <li class="flex gap-2"><i class="fa-solid fa-check text-vogue-gold"></i> 1 Stripper (H/M)</li>
-                                <li class="flex gap-2"><i class="fa-solid fa-check text-vogue-gold"></i> 1 Payaso Adultos</li>
-                                <li class="flex gap-2"><i class="fa-solid fa-check text-vogue-gold"></i> Comedia picante</li>
+                               <li class="flex gap-2">
+								  <i class="fa-solid fa-check text-vogue-gold"></i> 1 Stripper hombre + 1 Stripper mujer
+								</li>
+								<li class="flex gap-2">
+								  <i class="fa-solid fa-check text-vogue-gold"></i> 1 hora de show continuo
+								</li>
+								<li class="flex gap-2">
+								  <i class="fa-solid fa-check text-vogue-gold"></i> Show de baile sensual
+								</li>
+								<li class="flex gap-2">
+								  <i class="fa-solid fa-check text-vogue-gold"></i> Show muy dinámico
+								</li>
+								<li class="flex gap-2">
+								  <i class="fa-solid fa-check text-vogue-gold"></i> Animación del evento
+								</li>
+								<li class="flex gap-2">
+								  <i class="fa-solid fa-check text-vogue-gold"></i> (3) Concurso y Juegos
+								</li>
+								<li class="flex gap-2">
+								  <i class="fa-solid fa-check text-vogue-gold"></i> Fotografías con los strippers
+								</li>
+								<li class="flex gap-2">
+								  <i class="fa-solid fa-check text-vogue-gold"></i> Vestuario de fantasía
+								</li>
                             </ul>
                             <a href="https://wa.me/5211234567890?text=Info%20Stripper%20Y%20Payaso" class="w-full py-3 border border-white/30 text-center text-[10px] font-bold tracking-editorial uppercase hover:bg-white hover:text-black transition-colors">COTIZAR</a>
                         </div>
                     </div>
                      <div class="card-integrated rounded-lg flex flex-col group h-full">
                         <div class="h-64 relative overflow-hidden">
-                             <div class="price-ribbon">$2,000</div>
-                             <img src="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" class="card-bg w-full h-full object-cover opacity-60">
+                             <div class="price-ribbon">*</div>
+                               <img src="img/mixto/paq2.png" class="card-bg w-full h-full object-cover object-top opacity-60">
                              <div class="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] to-transparent"></div>
-                             <h3 class="absolute bottom-4 left-5 text-2xl font-serif text-white">SHOW CÓMICO</h3>
+                             <h3 class="absolute bottom-4 left-5 text-2xl font-serif text-white">PAYASO Y BOMBÓN</h3>
                         </div>
                         <div class="p-5 flex-grow flex flex-col bg-[#0a0a0a]">
-                            <span class="text-[10px] tracking-editorial text-vogue-gold mb-4 block uppercase border-b border-white/10 pb-2">Stand Up Edition</span>
+                           <!-- <span class="text-[10px] tracking-editorial text-vogue-gold mb-4 block uppercase border-b border-white/10 pb-2">Stand Up Edition</span> -->
+							<div class="text-[10px] tracking-editorial text-vogue-gold mb-2 border-b border-white/10 pb-1 flex justify-between gap-2 uppercase">
+								  <span>Payaso y 1 Stripper · 1 hr 45 min · (Hombre o Mujer)</span>
+								  <span class="font-semibold">$4,500</span>
+								</div>
+
+								<div class="text-[10px] tracking-editorial text-vogue-gold mb-2 border-b border-white/10 pb-1 flex justify-between gap-2 uppercase">
+								  <span>Payaso y 2 Strippers · 2 horas · (Hombres, Mujeres o Mixto)</span>
+								  <span class="font-semibold">$6,000</span>
+								</div>
                             <ul class="text-xs font-light text-gray-300 space-y-3 mb-6 flex-grow">
-                                <li class="flex gap-2"><i class="fa-solid fa-check text-vogue-gold"></i> Comediante Pro</li>
-                                <li class="flex gap-2"><i class="fa-solid fa-check text-vogue-gold"></i> 1 Hora risas</li>
-                                <li class="flex gap-2"><i class="fa-solid fa-check text-vogue-gold"></i> Sin censura (op)</li>
+                                								<li class="flex gap-2">
+								  <i class="fa-solid fa-check text-vogue-gold"></i> Rutina con improvisación y doble sentido
+								</li>
+								<li class="flex gap-2">
+								  <i class="fa-solid fa-check text-vogue-gold"></i> 100% profesional para adultos
+								</li>
+								<li class="flex gap-2">
+								  <i class="fa-solid fa-check text-vogue-gold"></i> Bastante diversión
+								</li>
+								<li class="flex gap-2">
+								  <i class="fa-solid fa-check text-vogue-gold"></i> Trato cordial y respetuoso
+								</li>
+								<li class="flex gap-2">
+								  <i class="fa-solid fa-check text-vogue-gold"></i> Animación del evento 100% profesional
+								</li>
+								<li class="flex gap-2">
+								  <i class="fa-solid fa-check text-vogue-gold"></i> Show con baile sensual
+								</li>
+								<li class="flex gap-2">
+								  <i class="fa-solid fa-check text-vogue-gold"></i> Juegos, concursos y dinámicas
+								</li>
+								<li class="flex gap-2">
+								  <i class="fa-solid fa-check text-vogue-gold"></i> Interacción con festejados e invitados
+								</li>
+								<li class="flex gap-2">
+								  <i class="fa-solid fa-check text-vogue-gold"></i> Caracterización con vestuario profesional
+								</li>
+								<li class="flex gap-2">
+								  <i class="fa-solid fa-check text-vogue-gold"></i> Música para ambientar
+								</li>
+
                             </ul>
                             <a href="https://wa.me/5211234567890?text=Info%20Show%20Comico" class="w-full py-3 border border-white/30 text-center text-[10px] font-bold tracking-editorial uppercase hover:bg-white hover:text-black transition-colors">COTIZAR</a>
                         </div>
                     </div>
                      <div class="card-integrated rounded-lg flex flex-col group h-full">
                         <div class="h-64 relative overflow-hidden">
-                             <div class="price-ribbon">Cotizar</div>
-                             <img src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" class="card-bg w-full h-full object-cover opacity-60">
-                             <div class="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] to-transparent"></div>
-                             <h3 class="absolute bottom-4 left-5 text-2xl font-serif text-white">FIESTABUS</h3>
+                             <div class="price-ribbon">*</div>
+                               <img src="img/mixto/paq3.png" class="card-bg w-full h-full object-cover object-top opacity-60">
+							   <div class="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] to-transparent"></div>
+                             <h3 class="absolute bottom-4 left-5 text-2xl font-serif text-white">PAQUETE FIESTA MÓVIL</h3>
                         </div>
                         <div class="p-5 flex-grow flex flex-col bg-[#0a0a0a]">
-                            <span class="text-[10px] tracking-editorial text-vogue-gold mb-4 block uppercase border-b border-white/10 pb-2">Mobile Edition</span>
+                           <!-- <span class="text-[10px] tracking-editorial text-vogue-gold mb-4 block uppercase border-b border-white/10 pb-2">Mobile Edition</span> -->
+							<!-- Título principal -->
+							<h2 class="text-xs md:text-sm font-extrabold text-red-400 uppercase tracking-[0.25em] mb-2">
+							  ¡Haz de tu fiesta algo diferente e inolvidable!
+							</h2>
+
+							<!-- Línea de paquete / personas / precios -->
+								<div class="text-[10px] tracking-editorial text-vogue-gold mb-2 uppercase border-b border-white/10 pb-2">
+								  <div class="flex justify-between gap-2">
+									<span>Paquete Fiesta Móvil · 30 personas</span>
+									<span class="font-semibold">$12,000</span>
+								  </div>
+								  <div class="flex justify-between gap-2">
+									<span>Paquete Fiesta Móvil · 45 personas</span>
+									<span class="font-semibold">$15,000</span>
+								  </div>
+								</div>
+
+							<!-- Línea descriptiva -->
+							<span class="text-[10px] tracking-editorial text-vogue-gold mb-1 block uppercase">
+							  Recorriendo las principales avenidas de la Ciudad de México
+							</span>
+
+							<!-- Línea del show opcional -->
+							<span class="text-[10px] tracking-editorial text-vogue-gold mb-4 block uppercase">
+							  Incluye show con 1 stripper (opcional)
+							</span>
+
                             <ul class="text-xs font-light text-gray-300 space-y-3 mb-6 flex-grow">
-                                <li class="flex gap-2"><i class="fa-solid fa-check text-vogue-gold"></i> Autobús Lujo</li>
-                                <li class="flex gap-2"><i class="fa-solid fa-check text-vogue-gold"></i> Recorrido CDMX</li>
-                                <li class="flex gap-2"><i class="fa-solid fa-check text-vogue-gold"></i> Show a bordo</li>
+                               
+									<li class="flex gap-2">
+									  <i class="fa-solid fa-check text-vogue-gold"></i> Servicio por 5 hrs
+									</li>
+									<li class="flex gap-2">
+									  <i class="fa-solid fa-check text-vogue-gold"></i> Capacidad para 30 y 45 pasajeros
+									</li>
+									<li class="flex gap-2">
+									  <i class="fa-solid fa-check text-vogue-gold"></i> Iluminación en piso y toldo
+									</li>
+									<li class="flex gap-2">
+									  <i class="fa-solid fa-check text-vogue-gold"></i> 10 refrescos de 3 litros
+									</li>
+									<li class="flex gap-2">
+									  <i class="fa-solid fa-check text-vogue-gold"></i> 50 vasos fiesta fluorescentes
+									</li>
+									<li class="flex gap-2">
+									  <i class="fa-solid fa-check text-vogue-gold"></i> 2 bolsas de hielo
+									</li>
+									<li class="flex gap-2">
+									  <i class="fa-solid fa-check text-vogue-gold"></i> 1 mesero
+									</li>
+									<li class="flex gap-2">
+									  <i class="fa-solid fa-check text-vogue-gold"></i> DJ que ambienta tu fiesta al gusto y estilo que tú quieras
+									</li>
+									<li class="flex gap-2">
+									  <i class="fa-solid fa-check text-vogue-gold"></i> Karaoke
+									</li>
+									<li class="flex gap-2">
+									  <i class="fa-solid fa-check text-vogue-gold"></i> Punto de partida a elegir
+									</li>
+
                             </ul>
+							<p class="mt-3 mb-3 text-[10px] tracking-editorial text-red-400 uppercase border-t border-red-500/40 pt-2">
+									  Nota: Las bebidas alcohólicas las proporcionará el cliente.
+									</p>
                             <a href="https://wa.me/5211234567890?text=Info%20Fiestabus" class="w-full py-3 border border-white/30 text-center text-[10px] font-bold tracking-editorial uppercase hover:bg-white hover:text-black transition-colors">COTIZAR</a>
                         </div>
                     </div>
                  </div>
-
             </div>
         </div>
     </section>
@@ -541,48 +799,33 @@
     <!-- CONTACT CTA PARALLAX -->
     <section id="contact" class="py-40 bg-fixed bg-center bg-cover relative flex items-center justify-center" style="background-image: url('https://images.unsplash.com/photo-1542596594-649edbc13630?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80');">
         <div class="absolute inset-0 bg-black/60"></div>
-        
         <div class="relative z-10 text-center px-6">
             <h2 class="text-5xl md:text-8xl font-serif text-white mb-6 leading-none tracking-tighter">NO ESPERES.</h2>
-            <p class="text-xl text-white/80 mb-10 font-light max-w-xl mx-auto">La experiencia definitiva está a un mensaje de distancia.</p>
-            <a href="https://wa.me/5211234567890" target="_blank" class="inline-block px-12 py-4 bg-vogue-red text-white text-xs font-bold tracking-editorial uppercase hover:bg-white hover:text-black transition-all shadow-xl">
-                Contactar Ahora
-            </a>
+            <a href="https://wa.me/5211234567890" target="_blank" class="inline-block px-12 py-4 bg-vogue-red text-white text-xs font-bold tracking-editorial uppercase hover:bg-white hover:text-black transition-all shadow-xl">Contactar Ahora</a>
         </div>
     </section>
 
     <!-- FOOTER -->
-    <footer class="bg-black text-white py-20 px-6 border-t border-white/10">
-        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
-            <div class="text-center md:text-left">
-                <h2 class="text-2xl font-serif tracking-widest mb-2">STRIPERSHYM</h2>
-                <p class="text-[10px] uppercase tracking-widest text-gray-500">Cd. de México — Est. 2024</p>
-            </div>
-            
-            <div class="flex gap-8 text-xl">
-                <a href="#" class="hover:text-vogue-gold transition-colors"><i class="fa-brands fa-facebook-f"></i></a>
-                <a href="#" class="hover:text-vogue-gold transition-colors"><i class="fa-brands fa-instagram"></i></a>
-                <a href="#" class="hover:text-vogue-gold transition-colors"><i class="fa-brands fa-tiktok"></i></a>
-            </div>
+    <footer class="bg-black text-white py-20 px-6 border-t border-white/10 text-center">
+        <h2 class="text-2xl font-serif tracking-widest mb-2">STRIPERSHYM</h2>
+        <p class="text-[10px] uppercase tracking-widest text-gray-500 mb-8">Cd. de México — Est. 2024</p>
+        <div class="flex gap-8 justify-center text-xl mb-8">
+            <a href="#" class="hover:text-vogue-gold"><i class="fa-brands fa-facebook-f"></i></a>
+            <a href="#" class="hover:text-vogue-gold"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#" class="hover:text-vogue-gold"><i class="fa-brands fa-tiktok"></i></a>
         </div>
-        <div class="text-center mt-12 text-[9px] uppercase text-gray-600 tracking-widest">
-            <p>Servicio exclusivo para mayores de edad (+18)</p>
-        </div>
+        <p class="text-[9px] uppercase text-gray-600 tracking-widest">Servicio exclusivo +18</p>
     </footer>
 
     <!-- FLOATING BUTTONS (Separated) -->
     
     <!-- Left Bottom: Phone -->
-    <a href="tel:+521234567890" class="fixed bottom-8 left-8 z-50 w-14 h-14 bg-white text-black rounded-full shadow-2xl flex items-center justify-center hover:scale-110 transition-transform group border border-gray-500">
-        <i class="fa-solid fa-phone text-xl group-hover:rotate-12 transition-transform"></i>
-    </a>
+    <a href="tel:+521234567890" class="fixed bottom-8 left-8 z-50 w-14 h-14 bg-white text-black rounded-full shadow-2xl flex items-center justify-center hover:scale-110 transition-transform group border border-gray-500"><i class="fa-solid fa-phone text-xl group-hover:rotate-12 transition-transform"></i></a>
 
     <!-- Right Bottom: Whatsapp & Scroll Up -->
     <div class="fixed bottom-8 right-8 z-50 flex flex-col gap-4 items-end">
         <!-- Scroll Up (Hidden initially) -->
-        <button id="scroll-up" class="w-10 h-10 bg-black/50 text-white rounded-full items-center justify-center hidden hover:bg-black transition-colors">
-            <i class="fa-solid fa-arrow-up text-xs"></i>
-        </button>
+        <button id="scroll-up" class="w-10 h-10 bg-black/50 text-white rounded-full items-center justify-center hidden hover:bg-black transition-colors"><i class="fa-solid fa-arrow-up text-xs"></i></button>
 
         <!-- Whatsapp -->
         <div class="relative">
@@ -597,31 +840,28 @@
     
     <!-- LIGHTBOX -->
     <div id="lightbox" class="fixed inset-0 z-[100] bg-black/95 hidden flex justify-center items-center opacity-0 transition-opacity duration-300 backdrop-blur-lg cursor-zoom-out">
-        <div class="absolute inset-0 bg-vogue-red mix-blend-multiply opacity-20 pointer-events-none"></div>
-        <button id="close-lightbox" class="absolute top-5 right-5 text-white text-6xl font-thin transition-colors hover:text-vogue-gold">&times;</button>
-        <div class="p-2 relative max-w-[90vw] max-h-[90vh]">
-             <img id="lightbox-img" src="" class="max-w-full max-h-[85vh] object-contain shadow-2xl">
-        </div>
+        <button id="close-lightbox" class="absolute top-5 right-5 text-white text-6xl font-thin cursor-pointer">&times;</button>
+        <!-- Flechas de Navegación -->
+        <button id="prev-lightbox" class="absolute left-4 top-1/2 -translate-y-1/2 text-white text-4xl font-thin p-4 hover:text-vogue-gold transition-colors z-[102]"><i class="fa-solid fa-chevron-left"></i></button>
+        <button id="next-lightbox" class="absolute right-4 top-1/2 -translate-y-1/2 text-white text-4xl font-thin p-4 hover:text-vogue-gold transition-colors z-[102]"><i class="fa-solid fa-chevron-right"></i></button>
+        
+        <img id="lightbox-img" src="" class="max-w-[90vw] max-h-[85vh] object-contain shadow-2xl transition-all duration-300">
     </div>
 
-    <!-- JAVASCRIPT -->
+    <!-- JS -->
     <script>
         // --- Package Tabs Logic ---
         function switchTab(tabName) {
             document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
             document.getElementById('tab-' + tabName).classList.add('active');
 
-            document.getElementById('details-ellos').classList.add('hidden-view');
-            document.getElementById('details-ellas').classList.add('hidden-view');
-            document.getElementById('details-mixto').classList.add('hidden-view');
-            
-            document.getElementById('details-ellos').classList.remove('fade-enter-active');
-            document.getElementById('details-ellas').classList.remove('fade-enter-active');
-            document.getElementById('details-mixto').classList.remove('fade-enter-active');
+            ['ellos', 'ellas', 'mixto'].forEach(t => {
+                 document.getElementById('details-' + t).classList.add('hidden-view');
+                 document.getElementById('details-' + t).classList.remove('fade-enter-active');
+            });
 
             const selectedView = document.getElementById('details-' + tabName);
             selectedView.classList.remove('hidden-view');
-            
             void selectedView.offsetWidth; 
             selectedView.classList.add('fade-enter-active');
         }
@@ -633,13 +873,12 @@
         const mobileLinks = document.querySelectorAll('.mobile-link');
 
         function toggleMenu() {
-            const isHidden = mobileMenu.classList.contains('mobile-menu-hidden');
-            if (isHidden) {
-                mobileMenu.classList.remove('mobile-menu-hidden');
-                mobileMenu.classList.add('mobile-menu-visible');
+            if (mobileMenu.classList.contains('translate-x-full')) {
+                mobileMenu.classList.remove('translate-x-full');
+                mobileMenu.classList.add('translate-x-0');
             } else {
-                mobileMenu.classList.remove('mobile-menu-visible');
-                mobileMenu.classList.add('mobile-menu-hidden');
+                mobileMenu.classList.remove('translate-x-0');
+                mobileMenu.classList.add('translate-x-full');
             }
         }
 
@@ -647,30 +886,185 @@
         closeMenuBtn.addEventListener('click', toggleMenu);
         mobileLinks.forEach(l => l.addEventListener('click', toggleMenu));
 
-        // --- Lightbox Logic ---
-        const galleryContainer = document.getElementById('gallery');
+        // --- Gallery Auto Scroll + Manual Fix ---
+        function setupGallery(containerId, items, direction, prevBtnId, nextBtnId) {
+            const container = document.getElementById(containerId);
+            const prevBtn = document.getElementById(prevBtnId);
+            const nextBtn = document.getElementById(nextBtnId);
+
+            // Populate Gallery (Triple content for loop)
+            const content = items.map((item, index) => createGalleryItem(item, index, containerId)).join('') + 
+                           items.map((item, index) => createGalleryItem(item, index, containerId)).join('') + 
+                           items.map((item, index) => createGalleryItem(item, index, containerId)).join('');
+            container.innerHTML = content;
+
+            let scrollPos = direction === 'left' ? 0 : container.scrollWidth / 2;
+            let isHovered = false;
+            let isManualScrolling = false;
+
+            // Auto scroll loop
+            function animate() {
+                // Solo auto-scrollear si NO está hover y NO se está moviendo manualmente
+                if (!isHovered && !isManualScrolling) {
+                    if (direction === 'left') {
+                        scrollPos += 1; 
+                        if (scrollPos >= container.scrollWidth / 3) scrollPos = 0;
+                    } else {
+                        scrollPos -= 1; 
+                         if (scrollPos <= 0) scrollPos = container.scrollWidth / 3;
+                    }
+                    container.scrollLeft = scrollPos;
+                } else {
+                    // Sync position to prevent jump when resuming
+                    scrollPos = container.scrollLeft;
+                }
+                requestAnimationFrame(animate);
+            }
+            animate();
+
+            // Interactions
+            container.addEventListener('mouseenter', () => isHovered = true);
+            container.addEventListener('mouseleave', () => isHovered = false);
+            container.addEventListener('touchstart', () => isHovered = true);
+            container.addEventListener('touchend', () => isHovered = false);
+
+            // Manual Button Logic
+            const scrollAmount = 300;
+
+            const handleManualScroll = (dir) => {
+                isManualScrolling = true;
+                if (dir === 'next') {
+                    container.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+                } else {
+                    container.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+                }
+                
+                // Resume auto-scroll after animation finishes (approx 500ms)
+                setTimeout(() => {
+                    isManualScrolling = false;
+                    // Update scrollPos to new location
+                    scrollPos = container.scrollLeft; 
+                }, 600);
+            };
+
+            nextBtn.addEventListener('click', () => handleManualScroll('next'));
+            prevBtn.addEventListener('click', () => handleManualScroll('prev'));
+        }
+
+        const galleryData = {
+            ellos: [
+                { img: 'img/ellos/h1.png', name: '', title: '' },
+				{ img: 'img/ellos/h2.png', name: '', title: '' },
+				{ img: 'img/ellos/h3.png', name: '', title: '' },
+				{ img: 'img/ellos/h4.png', name: '', title: '' },
+				{ img: 'img/ellos/h5.png', name: '', title: '' },
+				{ img: 'img/ellos/h6.png', name: '', title: '' },
+				{ img: 'img/ellos/h7.png', name: '', title: '' },
+				{ img: 'img/ellos/h8.png', name: '', title: '' },
+				{ img: 'img/ellos/h9.png', name: '', title: '' },
+				{ img: 'img/ellos/h10.png', name: '', title: '' },
+				{ img: 'img/ellos/h11.png', name: '', title: '' },
+				{ img: 'img/ellos/h12.png', name: '', title: '' },
+				{ img: 'img/ellos/h13.png', name: '', title: '' },
+				{ img: 'img/ellos/h14.png', name: '', title: '' },
+				{ img: 'img/ellos/h15.png', name: '', title: '' },
+				{ img: 'img/ellos/h16.png', name: '', title: '' },
+				{ img: 'img/ellos/h17.png', name: '', title: '' },
+				{ img: 'img/ellos/h18.png', name: '', title: '' },
+              //  { img: 'https://images.unsplash.com/photo-1534030347209-7147fd69a3f2?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80', name: 'Leo', title: 'DANCER' },
+     
+            ],
+            ellas: [
+                { img: 'img/ellas/m1.png', name: '', title: '' },
+				{ img: 'img/ellas/m2.png', name: '', title: '' },
+				{ img: 'img/ellas/m3.png', name: '', title: '' },
+				{ img: 'img/ellas/m4.png', name: '', title: '' },
+				{ img: 'img/ellas/m5.png', name: '', title: '' },
+				{ img: 'img/ellas/m6.png', name: '', title: '' },
+				{ img: 'img/ellas/m7.png', name: '', title: '' },
+				{ img: 'img/ellas/m8.png', name: '', title: '' },
+				{ img: 'img/ellas/m9.png', name: '', title: '' },
+				{ img: 'img/ellas/m10.png', name: '', title: '' },
+				{ img: 'img/ellas/m11.png', name: '', title: '' },
+				{ img: 'img/ellas/m12.png', name: '', title: '' },
+            ]
+        };
+
+        function createGalleryItem(item, index, category) {
+            // category helps identify which array it belongs to
+            const catKey = category === 'gallery-ellos' ? 'ellos' : 'ellas';
+            return `
+                <div class="min-w-[280px] h-[400px] relative group overflow-hidden lightbox-trigger cursor-pointer flex-shrink-0" data-index="${index}" data-category="${catKey}">
+                    <img src="${item.img}" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 pointer-events-none">
+                    <div class="absolute bottom-4 left-4 text-white pointer-events-none">
+                        <p class="text-xs tracking-widest text-vogue-gold mb-1">${item.name}</p>
+                        <p class="text-2xl font-serif leading-none">${item.title}</p>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Init Galleries with specific buttons
+        setupGallery('gallery-ellos', galleryData.ellos, 'left', 'prev-ellos', 'next-ellos');
+        setupGallery('gallery-ellas', galleryData.ellas, 'right', 'prev-ellas', 'next-ellas');
+
+
+        // --- Lightbox Logic with Navigation ---
         const lightbox = document.getElementById('lightbox');
         const lightboxImg = document.getElementById('lightbox-img');
         const closeLightbox = document.getElementById('close-lightbox');
+        const prevLbBtn = document.getElementById('prev-lightbox');
+        const nextLbBtn = document.getElementById('next-lightbox');
 
-        // Event delegation for lightbox
-        galleryContainer.addEventListener('click', (e) => {
-            const img = e.target.closest('.lightbox-trigger img');
-            if (img) {
-                lightboxImg.src = img.src;
+        let currentLightboxIndex = 0;
+        let currentLightboxImages = [];
+
+        document.addEventListener('click', (e) => {
+            const trigger = e.target.closest('.lightbox-trigger');
+            if (trigger) {
+                const category = trigger.dataset.category;
+                const index = parseInt(trigger.dataset.index);
+                
+                // Set Context
+                currentLightboxImages = galleryData[category];
+                currentLightboxIndex = index;
+                
+                updateLightboxImage();
+                
                 lightbox.classList.remove('hidden');
                 setTimeout(() => lightbox.classList.remove('opacity-0'), 10);
             }
         });
+
+        function updateLightboxImage() {
+            const item = currentLightboxImages[currentLightboxIndex];
+            // Fade out slightly before changing? Optional. For speed, direct change.
+            lightboxImg.src = item.img;
+        }
 
         function hideLightbox() {
             lightbox.classList.add('opacity-0');
             setTimeout(() => lightbox.classList.add('hidden'), 300);
         }
 
-        closeLightbox.addEventListener('click', hideLightbox);
-        lightbox.addEventListener('click', (e) => { if (e.target === lightbox) hideLightbox(); });
+        function nextImage() {
+            currentLightboxIndex = (currentLightboxIndex + 1) % currentLightboxImages.length;
+            updateLightboxImage();
+        }
 
+        function prevImage() {
+            currentLightboxIndex = (currentLightboxIndex - 1 + currentLightboxImages.length) % currentLightboxImages.length;
+            updateLightboxImage();
+        }
+
+        closeLightbox.addEventListener('click', hideLightbox);
+        nextLbBtn.addEventListener('click', (e) => { e.stopPropagation(); nextImage(); });
+        prevLbBtn.addEventListener('click', (e) => { e.stopPropagation(); prevImage(); });
+        
+        // Close on background click
+        lightbox.addEventListener('click', (e) => { 
+            if (e.target === lightbox) hideLightbox(); 
+        });
 
         // --- Scroll Up Logic ---
         const scrollUpBtn = document.getElementById('scroll-up');
@@ -683,9 +1077,7 @@
                 scrollUpBtn.classList.remove('flex');
             }
         });
-
         scrollUpBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
-
 
         // --- Bubble Timer ---
         const bubble = document.getElementById('wa-bubble');
