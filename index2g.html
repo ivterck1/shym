@@ -160,10 +160,25 @@
             50% { transform: translateY(-8px); }
         }
 
-        /* Ajuste tipografía móvil */
-        @media (max-width: 768px) {
-            .text-mega { font-size: 2.5rem !important; }
-        }
+     
+		
+@media (max-width: 768px) {
+
+  /* Párrafos grandes (como la descripción de STRIPPERS HYM) */
+  .text-lg  { font-size: 0.98rem !important; }   /* antes ~18px */
+  .text-xl  { font-size: 1.10rem !important; }
+  .text-2xl { font-size: 1.30rem !important; }
+
+  /* Títulos grandes en móvil */
+  .text-3xl { font-size: 1.6rem !important; }
+  .text-4xl { font-size: 1.9rem !important; }
+  .text-5xl { font-size: 2.2rem !important; }
+
+  /* Un poco menos espacio entre líneas para que no se hagan testamentos largos */
+  .leading-loose { line-height: 1.6 !important; }
+}	
+		
+		
     </style>
 </head>
 <body class="antialiased selection:bg-black selection:text-white">
@@ -704,24 +719,7 @@
             
             <!-- Left: Methods & Bank -->
             <div class="space-y-12">
-                <div>
-                     <h3 class="text-sm font-bold uppercase tracking-editorial mb-6 border-b-2 border-black inline-block pb-2">Métodos de Pago</h3>
-                     <div class="flex gap-10 text-4xl text-gray-400">
-                        <!-- Se añade texto pequeño debajo de iconos -->
-                        <div class="flex flex-col items-center gap-2 group cursor-default">
-                           <i class="fa-solid fa-money-bill-wave hover:text-green-600 transition-colors"></i>
-                           <span class="text-xs font-sans font-bold tracking-widest text-gray-400">EFECTIVO</span>
-                        </div>
-                        <div class="flex flex-col items-center gap-2 group cursor-default">
-                           <i class="fa-regular fa-credit-card hover:text-black transition-colors"></i>
-                           <span class="text-xs font-sans font-bold tracking-widest text-gray-400">TARJETAS</span>
-                        </div>
-                        <div class="flex flex-col items-center gap-2 group cursor-default">
-                           <i class="fa-solid fa-building-columns hover:text-blue-700 transition-colors"></i>
-                           <span class="text-xs font-sans font-bold tracking-widest text-gray-400">TRANSFERENCIA</span>
-                        </div>
-                     </div>
-                </div>
+              
 
                 <div class="p-8 bg-gray-50 border border-gray-200 shadow-sharp-sm text-center">
                     <p class="font-serif text-xl italic mb-4 text-vogue-red uppercase font-extrabold tracking-editorial">Aparta tu fecha ahora mismo</p>
@@ -769,8 +767,8 @@
     <!-- CTA FINAL (Bright & Bold) -->
     <section id="contact" class="relative py-40 flex items-center justify-center overflow-hidden">
         <!-- Background Image with White Overlay -->
-        <div class="absolute inset-0 bg-[url('img/cta.png')] bg-cover bg-center opacity-80"></div>
-        <div class="absolute inset-0 bg-white/40 backdrop-blur-[2px]"></div>
+        <div class="absolute inset-0 bg-[url('img/cta.png')] bg-cover bg-center opacity-90"></div>
+        <div class="absolute inset-0 bg-white/10 backdrop-blur-[2px]"></div>
 
         <div class="relative z-10 text-center px-6 max-w-4xl border-y-2 border-black py-16 bg-white/80 shadow-2xl">
             <p class="text-xs tracking-[0.3em] font-bold text-vogue-red mb-4 uppercase animate-pulse">Reserva tu fecha hoy</p>
