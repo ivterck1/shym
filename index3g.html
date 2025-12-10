@@ -145,6 +145,19 @@
             0%, 100% { transform: translateY(0); }
             50% { transform: translateY(-8px); }
         }
+		
+		/* Ajuste de tipografía para CELULAR */
+@media (max-width: 768px) {
+
+  /* Las súper chiquitas suben uno o dos puntos */
+  .text-\[9px\]  { font-size: 0.70rem !important; }  /* ~11px */
+  .text-\[10px\] { font-size: 0.75rem !important; }  /* ~12px */
+  .text-\[11px\] { font-size: 0.80rem !important; }  /* ~13px */
+  .text-xs       { font-size: 0.85rem !important; }  /* ~13.6px */
+
+  /* Opcional: un poco menos separación entre letras para que no se abra tanto */
+  .tracking-editorial { letter-spacing: 0.18em !important; }
+}
     </style>
 </head>
 <body class="antialiased selection:bg-vogue-red selection:text-white">
@@ -300,7 +313,7 @@ Llevamos el entretenimiento hasta las puertas de tu casa, salones de fiestas, an
 							id="tab-mixto"
 							class="tab-btn text-[9px] sm:text-[10px] md:text-sm lg:text-lg font-serif uppercase tracking-[0.18em] cursor-pointer leading-tight"
 						  >
-							Despedidas Mixtas y Otras
+							Mixtas y Otras
 						  </button>
 						</div>
 
