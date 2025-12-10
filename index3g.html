@@ -78,7 +78,7 @@
         .tab-btn::after {
             content: '';
             position: absolute;
-            bottom: 0; left: 0; width: 0%; height: 1px;
+            bottom: -1px; left: 0; width: 0%; height: 3px;
             background-color: #C5A059;
             transition: width 0.5s cubic-bezier(0.19, 1, 0.22, 1);
         }
@@ -277,13 +277,37 @@ Llevamos el entretenimiento hasta las puertas de tu casa, salones de fiestas, an
                 <h2 class="text-4xl md:text-7xl font-serif text-white mb-8">PAQUETES</h2>
                 <!-- TABS -->
                 <div class="inline-flex gap-8 md:gap-16 border-b border-white/20 pb-0">
-                   <!--    <button onclick="switchTab('ellos')" id="tab-ellos" class="tab-btn active text-lg font-serif uppercase tracking-widest cursor-pointer">DESPEDIDA DE SOLTERA</button>
-                    <button onclick="switchTab('ellas')" id="tab-ellas" class="tab-btn text-lg font-serif uppercase tracking-widest cursor-pointer">DESPEDIDA DE SOLTERO</button>
-                    <button onclick="switchTab('mixto')" id="tab-mixto" class="tab-btn text-lg font-serif uppercase tracking-widest cursor-pointer">DESPEDIDAS MIXTAS Y OTRAS</button>
- -->               
-	<button onclick="switchTab('ellos')" id="tab-ellos" class="tab-btn active text-lg font-serif uppercase tracking-widest cursor-pointer">ELLOS</button>
+                  
+				  <div class="inline-flex gap-4 md:gap-16 border-b border-white/20 pb-0 text-center">
+							<button
+							onclick="switchTab('ellos')"
+							id="tab-ellos"
+							class="tab-btn active text-[9px] sm:text-[10px] md:text-sm lg:text-lg font-serif uppercase tracking-[0.18em] cursor-pointer leading-tight"
+						  >
+							Despedida de Soltera
+						  </button>
+
+						  <button
+							onclick="switchTab('ellas')"
+							id="tab-ellas"
+							class="tab-btn text-[9px] sm:text-[10px] md:text-sm lg:text-lg font-serif uppercase tracking-[0.18em] cursor-pointer leading-tight"
+						  >
+							Despedida de Soltero
+						  </button>
+
+						  <button
+							onclick="switchTab('mixto')"
+							id="tab-mixto"
+							class="tab-btn text-[9px] sm:text-[10px] md:text-sm lg:text-lg font-serif uppercase tracking-[0.18em] cursor-pointer leading-tight"
+						  >
+							Despedidas Mixtas y Otras
+						  </button>
+						</div>
+
+				  
+				 <!-- <button onclick="switchTab('ellos')" id="tab-ellos" class="tab-btn active text-lg font-serif uppercase tracking-widest cursor-pointer">ELLOS</button>
                     <button onclick="switchTab('ellas')" id="tab-ellas" class="tab-btn text-lg font-serif uppercase tracking-widest cursor-pointer">ELLAS</button>
-                    <button onclick="switchTab('mixto')" id="tab-mixto" class="tab-btn text-lg font-serif uppercase tracking-widest cursor-pointer">MIXTAS Y OTRAS</button>
+                    <button onclick="switchTab('mixto')" id="tab-mixto" class="tab-btn text-lg font-serif uppercase tracking-widest cursor-pointer">MIXTAS Y OTRAS</button> -->
  
 	</div>
             </div>
@@ -752,70 +776,222 @@ Llevamos el entretenimiento hasta las puertas de tu casa, salones de fiestas, an
     </section>
 
     <!-- VIDEOS -->
-    <section id="videos" class="py-24 bg-white text-black">
-        <div class="max-w-7xl mx-auto px-6">
-            <h2 class="text-4xl md:text-5xl font-serif mb-12 text-center tracking-tighter">EXPERIENCIA EN VIVO</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div class="aspect-video bg-gray-200 relative group cursor-pointer overflow-hidden border border-black">
-                    <img src="https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80" class="w-full h-full object-cover filter grayscale group-hover:grayscale-0 transition-all duration-700">
-                    <div class="absolute inset-0 flex items-center justify-center">
-                        <div class="w-20 h-20 rounded-full border border-white text-white flex items-center justify-center group-hover:bg-vogue-bright group-hover:border-vogue-bright transition-colors">
-                            <i class="fa-solid fa-play text-2xl ml-1"></i>
-                        </div>
-                    </div>
-                </div>
-                 <div class="aspect-video bg-gray-200 relative group cursor-pointer overflow-hidden border border-black">
-                    <img src="https://images.unsplash.com/photo-1540039155733-5bb30b53aa14?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80" class="w-full h-full object-cover filter grayscale group-hover:grayscale-0 transition-all duration-700">
-                    <div class="absolute inset-0 flex items-center justify-center">
-                        <div class="w-20 h-20 rounded-full border border-white text-white flex items-center justify-center group-hover:bg-vogue-bright group-hover:border-vogue-bright transition-colors">
-                            <i class="fa-solid fa-play text-2xl ml-1"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+<!-- VIDEOS -->
+<section id="videos" class="py-24 bg-white text-black">
+  <div class="max-w-7xl mx-auto px-6">
+    <h2 class="text-4xl md:text-5xl font-serif mb-12 text-center tracking-tighter">
+      EXPERIENCIA EN VIVO
+    </h2>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+      <!-- Video 1 -->
+      <div class="aspect-video bg-gray-200 relative group overflow-hidden border border-black">
+        <video
+          id="video1"
+          class="w-full h-full object-cover filter grayscale group-hover:grayscale-0 transition-all duration-700"
+          preload="none"
+          poster="https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80">
+          <source src="video/video1.mp4" type="video/mp4" />
+          Tu navegador no soporta video HTML5.
+        </video>
+
+        <!-- Botón play -->
+        <button
+          type="button"
+          data-video="video1"
+          class="play-overlay absolute inset-0 flex items-center justify-center">
+          <div
+            class="w-20 h-20 rounded-full border border-white text-white flex items-center justify-center bg-black/30 group-hover:bg-vogue-bright group-hover:border-vogue-bright transition-colors">
+            <i class="fa-solid fa-play text-2xl ml-1"></i>
+          </div>
+        </button>
+      </div>
+
+      <!-- Video 2 -->
+      <div class="aspect-video bg-gray-200 relative group overflow-hidden border border-black">
+        <video
+          id="video2"
+          class="w-full h-full object-cover filter grayscale group-hover:grayscale-0 transition-all duration-700"
+          preload="none"
+          poster="https://images.unsplash.com/photo-1540039155733-5bb30b53aa14?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80">
+          <source src="video/video2.mp4" type="video/mp4" />
+          Tu navegador no soporta video HTML5.
+        </video>
+
+        <!-- Botón play -->
+        <button
+          type="button"
+          data-video="video2"
+          class="play-overlay absolute inset-0 flex items-center justify-center">
+          <div
+            class="w-20 h-20 rounded-full border border-white text-white flex items-center justify-center bg-black/30 group-hover:bg-vogue-bright group-hover:border-vogue-bright transition-colors">
+            <i class="fa-solid fa-play text-2xl ml-1"></i>
+          </div>
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
 
     <!-- PAYMENTS -->
-    <section class="py-20 bg-[#0f0f0f] text-white border-t border-white/5">
-         <div class="max-w-4xl mx-auto px-6 text-center">
-            <div class="flex justify-center gap-12 flex-wrap font-serif text-xl">
-                 <div class="flex flex-col items-center gap-2 group cursor-default">
-                    <i class="fa-solid fa-money-bill-wave text-3xl group-hover:text-green-600 transition-colors"></i>
-                    <span class="text-xs font-sans font-bold tracking-widest text-gray-400">EFECTIVO</span>
-                </div>
-                <div class="flex flex-col items-center gap-2 group cursor-default">
-                    <i class="fa-regular fa-credit-card text-3xl group-hover:text-vogue-gold transition-colors"></i>
-                    <span class="text-xs font-sans font-bold tracking-widest text-gray-400">TARJETAS</span>
-                </div>
-                <div class="flex flex-col items-center gap-2 group cursor-default">
-                    <i class="fa-solid fa-building-columns text-3xl group-hover:text-blue-600 transition-colors"></i>
-                    <span class="text-xs font-sans font-bold tracking-widest text-gray-400">TRANSFERENCIA</span>
-                </div>
-            </div>
-        </div>
-    </section>
+ <!-- PAYMENTS + NOTAS + PROMOS -->
+	<!-- PAYMENTS + NOTAS + PROMOS -->
+<section class="py-16 bg-[#0f0f0f] text-white border-t border-white/5 text-[11px] md:text-[12px]">
+  <div class="max-w-5xl mx-auto px-6 space-y-14">
+
+    <!-- Formas de pago -->
+    <div class="flex justify-center gap-12 flex-wrap font-serif text-xl">
+      <div class="flex flex-col items-center gap-2 group cursor-default">
+        <i class="fa-solid fa-money-bill-wave text-3xl group-hover:text-green-600 transition-colors"></i>
+        <span class="text-xs font-sans font-bold tracking-widest text-gray-400">EFECTIVO</span>
+      </div>
+      <div class="flex flex-col items-center gap-2 group cursor-default">
+        <i class="fa-regular fa-credit-card text-3xl group-hover:text-vogue-gold transition-colors"></i>
+        <span class="text-xs font-sans font-bold tracking-widest text-gray-400">TARJETAS</span>
+      </div>
+      <div class="flex flex-col items-center gap-2 group cursor-default">
+        <i class="fa-solid fa-building-columns text-3xl group-hover:text-blue-600 transition-colors"></i>
+        <span class="text-xs font-sans font-bold tracking-widest text-gray-400">TRANSFERENCIA</span>
+      </div>
+    </div>
+
+    <!-- Nota importante -->
+    <div class="text-center border-y border-white/10 py-6">
+      <p class="text-[11px] tracking-editorial font-extrabold text-lime-400 uppercase mb-2">
+        Nota importante
+      </p>
+      <div class="space-y-1 tracking-editorial text-gray-300">
+        <p>* Los costos van acorde a la calidad del servicio y de los talentos que manejamos.</p>
+        <p>* Los costos aplican solo en CDMX y Zona Metropolitana.</p>
+        <p>* Aparta tu evento con tan solo $500.</p>
+        <p>* Te damos contrato para tu seguridad.</p>
+        <p>* Hacemos presupuesto para toda la República.</p>
+        <p class="text-lime-400 mt-2 underline underline-offset-4">
+          www.strippershym-mexico.com.mx
+        </p>
+      </div>
+    </div>
+
+    <!-- Aparta tu fecha -->
+    <div class="bg-[#005BBB] py-6 px-6 text-center rounded-sm border border-white/10 max-w-3xl mx-auto">
+      <p class="tracking-editorial font-extrabold text-yellow-300 uppercase mb-3">
+        Aparta tu fecha ahora mismo
+      </p>
+      <p class="text-sm font-bold mb-2">BBVA Bancomer</p>
+      <p class="tracking-editorial">
+        4152-3139-0107-4323
+      </p>
+      <p class="tracking-editorial">
+        Transferencia electrónica o practicaja
+      </p>
+      <p class="tracking-editorial mt-2">
+        www.strippershym-mexico.com.mx
+      </p>
+    </div>
+
+    <!-- Promociones -->
+    <div class="text-center space-y-3">
+      <p class="text-[12px] tracking-editorial font-extrabold text-red-300 uppercase">
+        Promociones
+      </p>
+      <div class="space-y-1 tracking-editorial text-red-200">
+        <p>* -15% de descuento si agendas tu evento un mes antes.</p>
+        <p>
+          * Si tu evento es de
+          <span class="text-yellow-300">Lunes a Jueves</span> te regalamos
+          <span class="text-yellow-300">20 min. + de show.</span>
+        </p>
+        <p>* Servicio exprés $1,000 (tres canciones).</p>
+      </div>
+
+      <p class="mt-4 leading-relaxed text-gray-300">
+        Stripers, Striper México, Agencia de Stripers CDMX, Striper, Agencia de Stripers en México
+      </p>
+      <p class="text-[10px] tracking-editorial text-gray-400 underline underline-offset-4">
+        www.strippershym-mexico.com.mx
+      </p>
+    </div>
+
+  </div>
+</section>
+
 
     <!-- CONTACT CTA PARALLAX -->
-    <section id="contact" class="py-40 bg-fixed bg-center bg-cover relative flex items-center justify-center" style="background-image: url('https://images.unsplash.com/photo-1542596594-649edbc13630?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80');">
+   <!-- <section id="contact" class="py-40 bg-fixed bg-center bg-cover relative flex items-center justify-center" style="background-image: url('https://images.unsplash.com/photo-1542596594-649edbc13630?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80');">
         <div class="absolute inset-0 bg-black/60"></div>
         <div class="relative z-10 text-center px-6">
             <h2 class="text-5xl md:text-8xl font-serif text-white mb-6 leading-none tracking-tighter">NO ESPERES.</h2>
             <a href="https://wa.me/5211234567890" target="_blank" class="inline-block px-12 py-4 bg-vogue-red text-white text-xs font-bold tracking-editorial uppercase hover:bg-white hover:text-black transition-all shadow-xl">Contactar Ahora</a>
         </div>
-    </section>
+    </section>-->
+	<!-- CTA FINAL -->
+<section
+  id="contact"
+  class="relative flex items-center justify-center py-32 md:py-48 bg-fixed bg-cover bg-center"
+  style="background-image: url('img/cta.png');"
+>
+  <!-- Capa oscura -->
+  <div class="absolute inset-0 bg-black/60 md:bg-black/55"></div>
+
+  <!-- Contenido -->
+  <div class="relative z-10 text-center px-6">
+    <p class="text-[11px] md:text-xs tracking-editorial text-vogue-gold mb-3 uppercase">
+      Reserva tu fecha hoy
+    </p>
+
+    <h2 class="text-4xl md:text-7xl font-serif text-white mb-6 leading-none tracking-tighter">
+      NO ESPERES.
+    </h2>
+
+    <a
+      href="https://wa.me/5211234567890"
+      target="_blank"
+      class="inline-block px-12 py-4 bg-vogue-red text-white text-xs font-bold tracking-editorial uppercase hover:bg-white hover:text-black transition-all shadow-xl"
+    >
+      Contactar Ahora
+    </a>
+  </div>
+</section>
+
 
     <!-- FOOTER -->
-    <footer class="bg-black text-white py-20 px-6 border-t border-white/10 text-center">
-        <h2 class="text-2xl font-serif tracking-widest mb-2">STRIPERSHYM</h2>
-        <p class="text-[10px] uppercase tracking-widest text-gray-500 mb-8">Cd. de México — Est. 2024</p>
-        <div class="flex gap-8 justify-center text-xl mb-8">
-            <a href="#" class="hover:text-vogue-gold"><i class="fa-brands fa-facebook-f"></i></a>
-            <a href="#" class="hover:text-vogue-gold"><i class="fa-brands fa-instagram"></i></a>
-            <a href="#" class="hover:text-vogue-gold"><i class="fa-brands fa-tiktok"></i></a>
-        </div>
-        <p class="text-[9px] uppercase text-gray-600 tracking-widest">Servicio exclusivo +18</p>
-    </footer>
+<!-- FOOTER -->
+<footer class="bg-black text-white py-20 px-6 border-t border-white/10 text-center">
+  <!-- Marca -->
+
+
+  <!-- Texto institucional -->
+  <div class="max-w-xl mx-auto mb-8 space-y-3 text-left md:text-center">
+    <p class="text-[11px] md:text-xs font-semibold tracking-editorial text-red-400">
+      Strippers HyM México
+    </p>
+    <p class="text-[11px] md:text-xs tracking-editorial text-red-400">
+      Los mejores Stripers y Bailarinas Profesionales en México.
+    </p>
+
+    <ul class="mt-2 space-y-1 text-[11px] md:text-xs tracking-editorial text-red-300">
+      <li>• 100% Profesionales</li>
+      <li>• Show sensual y erótico</li>
+      <li>• Entretenimiento visual</li>
+      <li>• Show fino y de categoría</li>
+      <li class="font-bold text-red-400">• NO SEXO</li>
+    </ul>
+  </div>
+
+  <!-- Redes -->
+  <div class="flex gap-8 justify-center text-xl mb-8">
+    <a href="#" class="hover:text-vogue-gold"><i class="fa-brands fa-facebook-f"></i></a>
+    <a href="#" class="hover:text-vogue-gold"><i class="fa-brands fa-instagram"></i></a>
+    <a href="#" class="hover:text-vogue-gold"><i class="fa-brands fa-tiktok"></i></a>
+  </div>
+
+  <!-- Nota legal -->
+  <p class="text-[9px] uppercase text-gray-600 tracking-widest">
+    Servicio exclusivo +18 · Shows profesionales, no sexo
+  </p>
+</footer>
+
 
     <!-- FLOATING BUTTONS (Separated) -->
     
@@ -1089,5 +1265,41 @@ Llevamos el entretenimiento hasta las puertas de tu casa, salones de fiestas, an
         setTimeout(() => bubble.classList.add('opacity-0'), 6000);
 
     </script>
+	
+	<script>
+  // Play / pause de los videos al dar clic en el botón
+  document.querySelectorAll('.play-overlay').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const videoId = btn.getAttribute('data-video');
+      const video = document.getElementById(videoId);
+
+      // Pausar otros videos y mostrar sus botones
+      document.querySelectorAll('video').forEach((v) => {
+        if (v !== video) {
+          v.pause();
+          const overlay = document.querySelector(
+            `.play-overlay[data-video="${v.id}"]`
+          );
+          if (overlay) overlay.classList.remove('hidden');
+          v.removeAttribute('controls');
+        }
+      });
+
+      // Reproducir el video clickeado
+      video.play();
+      video.setAttribute('controls', 'controls');
+      btn.classList.add('hidden');
+
+      // Si el usuario pausa el video, mostrar de nuevo el botón de play
+      video.addEventListener('pause', () => {
+        if (video.currentTime === 0 || video.currentTime === video.duration) {
+          btn.classList.remove('hidden');
+          video.removeAttribute('controls');
+        }
+      });
+    });
+  });
+</script>
+
 </body>
 </html>
