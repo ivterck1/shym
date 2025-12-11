@@ -72,8 +72,7 @@
         .hide-scroll-bar::-webkit-scrollbar { display: none; }
         .hide-scroll-bar { -ms-overflow-style: none; scrollbar-width: none; }
 
-        .logo-filter { filter: brightness(0) invert(1); }
-
+      
         /* --- Acordeón Gallery Styles (Dinámico) --- */
         .accordion-container {
             display: flex;
@@ -246,15 +245,19 @@
         <!-- Background Video -->
         <div class="absolute inset-0 z-0">
             <div class="absolute inset-0 bg-black/40 z-10"></div> <!-- Dimmer -->
-            <video autoplay muted loop playsinline class="absolute inset-0 w-full h-full object-cover opacity-80 scale-105">
-                 <source src="video/one.mp4" type="video/mp4" class="hidden md:block">
-                 <source src="video/one_movil.mp4" type="video/mp4" class="md:hidden">
+             <video autoplay muted loop playsinline class="absolute inset-0 w-full h-full object-cover md:hidden">
+                 <source src="video/one_movil.mp4" type="video/mp4">
+            </video>
+            <!-- Desktop Video -->
+            <video autoplay muted loop playsinline class="absolute inset-0 w-full h-full object-cover hidden md:block">
+                <source src="video/one.mp4" type="video/mp4">
             </video>
         </div>
 
         <!-- Huge Typography Overlay -->
         <div class="absolute inset-0 z-20 flex items-center justify-center pointer-events-none mix-blend-overlay opacity-30">
-             <h1 class="text-[18vw] font-serif font-bold text-white leading-none tracking-tighter select-none">HYM</h1>
+             <!-- AJUSTE 1: Tamaño de fuente más responsivo para evitar cortes -->
+             <h1 class="text-[20vw] md:text-[18vw] font-serif font-bold text-white leading-none tracking-tighter select-none">HYM</h1>
         </div>
 
         <!-- Content -->
@@ -262,13 +265,14 @@
             <div class="max-w-2xl">
                 <div class="flex items-center gap-4 mb-4">
                     <span class="h-[1px] w-12 bg-lux-gold"></span>
-                    <span class="text-lux-gold text-xs font-bold tracking-[0.3em] uppercase">The Exclusive Experience</span>
+                    <span class="text-lux-gold text-[10px] md:text-xs font-bold tracking-[0.3em] uppercase">The Exclusive Experience</span>
                 </div>
-                <h2 class="text-5xl md:text-8xl font-serif text-white leading-[0.9] mb-6">
+                <!-- AJUSTE 1: Títulos responsivos -->
+                <h2 class="text-4xl sm:text-5xl md:text-8xl font-serif text-white leading-[0.9] mb-6">
                     STRIPPERS<span class="italic text-lux-red font-light">HYM</span>
                 </h2>
                 
-                <p class="text-gray-200 text-sm md:text-lg font-light leading-relaxed max-w-lg border-l-2 border-lux-gold pl-6 py-2 bg-black/30 backdrop-blur-sm">
+                <p class="text-gray-200 text-xs md:text-lg font-light leading-relaxed max-w-lg border-l-2 border-lux-gold pl-6 py-2 bg-black/30 backdrop-blur-sm">
                     Si no hay competencia no hay calidad. <br>
                     <span class="italic text-lux-gold">Una experiencia reservada para pocos.</span>
                 </p>
@@ -285,14 +289,15 @@
         </div>
     </section>
 
-    <!-- INTRO TEXT (Restored Full Text) -->
+    <!-- INTRO TEXT -->
     <section class="py-24 bg-lux-charcoal text-white relative border-b border-white/5">
         <div class="max-w-6xl mx-auto px-6 flex flex-col md:flex-row gap-16 items-start">
             <div class="w-full md:w-1/3">
                 <span class="text-lux-red text-xs font-bold tracking-editorial block mb-4 flex items-center gap-2">
                     <span class="w-8 h-[2px] bg-lux-red"></span> AGENCIA HYM
                 </span>
-                <h2 class="text-4xl md:text-5xl font-serif leading-tight mb-6 text-white">
+                <!-- AJUSTE 1: Títulos responsivos -->
+                <h2 class="text-3xl md:text-5xl font-serif leading-tight mb-6 text-white">
                     EL ARTE DE LA <br><span class="italic text-lux-gold">SEDUCCIÓN.</span>
                 </h2>
             </div>
@@ -319,7 +324,8 @@
             <div class="flex items-end justify-between px-6 mb-8 max-w-7xl mx-auto">
                 <div>
                     <span class="text-lux-gold text-[10px] font-bold tracking-[0.4em] uppercase block mb-2">Talento</span>
-                    <h2 class="text-4xl font-serif text-white italic">ELLOS</h2>
+                    <!-- AJUSTE 1: Títulos responsivos -->
+                    <h2 class="text-3xl md:text-4xl font-serif text-white italic">ELLOS</h2>
                 </div>
                 <div class="text-white/50 text-xs uppercase tracking-widest"><i class="fa-solid fa-arrows-left-right mr-2"></i> Desliza</div>
             </div>
@@ -333,7 +339,8 @@
             <div class="flex items-end justify-between px-6 mb-8 mt-20 max-w-7xl mx-auto flex-row-reverse text-right">
                 <div>
                     <span class="text-lux-gold text-[10px] font-bold tracking-[0.4em] uppercase block mb-2">Talento</span>
-                    <h2 class="text-4xl font-serif text-white italic">ELLAS</h2>
+                    <!-- AJUSTE 1: Títulos responsivos -->
+                    <h2 class="text-3xl md:text-4xl font-serif text-white italic">ELLAS</h2>
                 </div>
                 <div class="text-white/50 text-xs uppercase tracking-widest">Desliza <i class="fa-solid fa-arrows-left-right ml-2"></i></div>
             </div>
@@ -346,12 +353,36 @@
         </div>
     </section>
 
+    <!-- LIGHTBOX (AJUSTE 2: Fullscreen Gallery) -->
+    <div id="lightbox" class="fixed inset-0 z-[100] bg-black hidden flex justify-center items-center opacity-0 transition-opacity duration-300">
+        <!-- Close Button -->
+        <button onclick="closeLightbox()" class="absolute top-6 right-6 text-white text-4xl hover:text-lux-gold z-50 p-2">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+
+        <!-- Navigation Buttons (Desktop) -->
+        <button onclick="prevImage()" class="absolute left-4 top-1/2 -translate-y-1/2 text-white hover:text-lux-gold text-5xl font-thin p-4 z-50 hidden md:block"><i class="fa-solid fa-arrow-left-long"></i></button>
+        <button onclick="nextImage()" class="absolute right-4 top-1/2 -translate-y-1/2 text-white hover:text-lux-gold text-5xl font-thin p-4 z-50 hidden md:block"><i class="fa-solid fa-arrow-right-long"></i></button>
+
+        <!-- Main Image Container -->
+        <div class="relative w-full h-full flex items-center justify-center">
+            <img id="lightbox-img" src="" class="max-w-full max-h-full object-contain pointer-events-auto shadow-2xl">
+            
+            <!-- Caption -->
+            <div class="absolute bottom-10 left-0 w-full text-center pointer-events-none">
+                <p id="lightbox-caption" class="text-xl font-serif italic text-white drop-shadow-lg"></p>
+                <p class="text-lux-gold text-[10px] tracking-[0.3em] uppercase mt-2">Desliza para ver más</p>
+            </div>
+        </div>
+    </div>
+
     <!-- PACKAGES SECTION (Click to Reveal + Full Content) -->
     <section id="packages" class="py-32 bg-[#050505] text-white relative border-t border-white/5">
         <div class="max-w-7xl mx-auto px-6 relative z-10">
             <div class="text-center mb-16">
                  <span class="text-lux-gold text-xs font-bold tracking-[0.4em] uppercase mb-4 block">Nuestra Colección</span>
-                 <h2 class="text-5xl md:text-7xl font-serif text-white mb-10">PAQUETES</h2>
+                 <!-- AJUSTE 1: Títulos responsivos -->
+                 <h2 class="text-4xl md:text-7xl font-serif text-white mb-10">PAQUETES</h2>
                  
                  <!-- Tabs -->
                  <div class="flex justify-center flex-wrap gap-8 border-b border-white/10 pb-0">
@@ -795,37 +826,38 @@
 
         // --- Package Tabs & Cards ---
         function switchTab(tabName) {
-            // Update Buttons
             document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active', 'text-lux-gold', 'border-b-2', 'border-lux-gold'));
             const activeBtn = document.getElementById('tab-' + tabName);
             activeBtn.classList.add('active', 'text-lux-gold', 'border-b-2', 'border-lux-gold');
             activeBtn.classList.remove('text-gray-600');
 
-            // Hide all
             ['ellos', 'ellas', 'mixto'].forEach(t => {
                 document.getElementById('details-' + t).classList.add('hidden-view');
                 document.getElementById('details-' + t).classList.remove('fade-enter-active');
             });
-            // Show active
             const selectedView = document.getElementById('details-' + tabName);
             selectedView.classList.remove('hidden-view');
-            void selectedView.offsetWidth; // Force reflow
+            void selectedView.offsetWidth; 
             selectedView.classList.add('fade-enter-active');
         }
 
         function toggleCard(card) {
-            // Close others
             document.querySelectorAll('.card-reveal').forEach(c => {
                 if(c !== card) c.classList.remove('active');
             });
-            // Toggle current
             card.classList.toggle('active');
         }
 
-        // --- Dynamic Accordion Gallery ---
-        // Generates items based on count (18 for Ellos, 12 for Ellas)
+        // --- Gallery & Lightbox Logic (AJUSTE 2) ---
         const galleryEllos = document.getElementById('accordion-ellos');
         const galleryEllas = document.getElementById('accordion-ellas');
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+        const lightboxCaption = document.getElementById('lightbox-caption');
+        
+        let currentLightboxIndex = 0;
+        let currentLightboxCategory = 'ellos'; // 'ellos' or 'ellas'
+        const totalImages = { ellos: 18, ellas: 12 };
 
         function createAccordionItem(index, type) {
             const folder = type === 'ellos' ? 'h' : 'm';
@@ -834,6 +866,10 @@
             
             const div = document.createElement('div');
             div.className = 'accordion-item group relative';
+            
+            // Add Click Event to Open Lightbox
+            div.onclick = () => openLightbox(index, type);
+
             div.innerHTML = `
                 <img src="img/${catFolder}/${folder}${index}.png" class="absolute inset-0 w-full h-full object-cover object-top pointer-events-none" loading="lazy" onerror="this.src='https://via.placeholder.com/300x500/111/333?text=${name}+${index}'">
                 
@@ -841,7 +877,7 @@
                     <span class="text-xl font-serif text-white/50 uppercase tracking-widest vertical-text" style="writing-mode: vertical-rl; text-orientation: mixed;">${name} ${index < 10 ? '0'+index : index}</span>
                 </div>
 
-                <div class="content absolute bottom-0 left-0 w-full p-6">
+                <div class="content absolute bottom-0 left-0 w-full p-6 pointer-events-none">
                     <h3 class="text-3xl font-serif text-white italic mb-1">${name}</h3>
                     <p class="text-lux-gold text-[10px] tracking-widest uppercase font-bold mb-3">Model 00${index}</p>
                     <button class="px-4 py-2 border border-white text-white text-[9px] uppercase hover:bg-white hover:text-black transition-colors w-full">Ver Perfil</button>
@@ -850,14 +886,61 @@
             return div;
         }
 
-        // Populate Ellos (1-18)
-        for(let i=1; i<=18; i++) {
-            galleryEllos.appendChild(createAccordionItem(i, 'ellos'));
+        // Populate Galleries
+        for(let i=1; i<=18; i++) galleryEllos.appendChild(createAccordionItem(i, 'ellos'));
+        for(let i=1; i<=12; i++) galleryEllas.appendChild(createAccordionItem(i, 'ellas'));
+
+        // Lightbox Functions
+        function openLightbox(index, category) {
+            currentLightboxIndex = index;
+            currentLightboxCategory = category;
+            updateLightbox();
+            lightbox.classList.remove('hidden');
+            setTimeout(() => lightbox.classList.remove('opacity-0'), 10);
+            document.body.style.overflow = 'hidden'; // Prevent scrolling
         }
-        // Populate Ellas (1-12)
-        for(let i=1; i<=12; i++) {
-            galleryEllas.appendChild(createAccordionItem(i, 'ellas'));
+
+        function closeLightbox() {
+            lightbox.classList.add('opacity-0');
+            setTimeout(() => {
+                lightbox.classList.add('hidden');
+                document.body.style.overflow = ''; 
+            }, 300);
         }
+
+        function updateLightbox() {
+            const folder = currentLightboxCategory === 'ellos' ? 'h' : 'm';
+            const catFolder = currentLightboxCategory === 'ellos' ? 'ellos' : 'ellas';
+            const name = currentLightboxCategory === 'ellos' ? 'Elite' : 'Goddess';
+            
+            lightboxImg.src = `img/${catFolder}/${folder}${currentLightboxIndex}.png`;
+            lightboxCaption.textContent = `${name} ${currentLightboxIndex < 10 ? '0'+currentLightboxIndex : currentLightboxIndex}`;
+        }
+
+        function nextImage() {
+            currentLightboxIndex++;
+            if (currentLightboxIndex > totalImages[currentLightboxCategory]) currentLightboxIndex = 1;
+            updateLightbox();
+        }
+
+        function prevImage() {
+            currentLightboxIndex--;
+            if (currentLightboxIndex < 1) currentLightboxIndex = totalImages[currentLightboxCategory];
+            updateLightbox();
+        }
+
+        // Swipe Detection for Mobile
+        let touchStartX = 0;
+        lightbox.addEventListener('touchstart', e => {
+            touchStartX = e.changedTouches[0].screenX;
+        }, {passive: true});
+
+        lightbox.addEventListener('touchend', e => {
+            const touchEndX = e.changedTouches[0].screenX;
+            if (touchEndX < touchStartX - 50) nextImage(); // Swipe Left -> Next
+            if (touchEndX > touchStartX + 50) prevImage(); // Swipe Right -> Prev
+        }, {passive: true});
+
 
         // --- Video Switcher ---
         function playCinema() {
@@ -877,7 +960,6 @@
             const titleEl = document.getElementById('video-title');
             const playBtn = document.getElementById('cinema-play-btn');
 
-            // Update UI
             document.querySelectorAll('.vid-btn').forEach(b => {
                 b.classList.remove('active', 'text-white', 'border-lux-gold');
                 b.classList.add('text-gray-500', 'border-transparent');
@@ -885,13 +967,11 @@
             btn.classList.add('active', 'text-white', 'border-lux-gold');
             btn.classList.remove('text-gray-500', 'border-transparent');
 
-            // Change Source
             video.pause();
             source.src = src;
             video.load();
             titleEl.textContent = title;
             
-            // Reset Player State
             video.removeAttribute('controls');
             video.style.opacity = '0.6';
             playBtn.style.display = 'flex';
