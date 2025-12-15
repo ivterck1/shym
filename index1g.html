@@ -1,10 +1,25 @@
 <!DOCTYPE html>
-<html lang="es" class="scroll-smooth">
+<html lang="es-MX" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>STRIPERSHYM | The Black Edition</title>
-    
+    <title>Agencia de Stripers | Strippers y bailarinas para despedidas en CDMX | STRIPPERSHYM </title>
+    <meta name="description" content="Agencia profesional de strippers y bailarinas para despedidas, cumpleaños y eventos en CDMX y zona metropolitana. Reserva por WhatsApp." />
+	<link rel="canonical" href="https://strippershym-mexico.com.mx/" />
+	<meta name="robots" content="index,follow,max-image-preview:large" />
+	<meta name="theme-color" content="#000000" />
+	<meta property="og:title" content="STRIPPERSHYM | Strippers y bailarinas exclusivos" />
+	<meta property="og:description" content="Agencia profesional de strippers y bailarinas en CDMX y zona metropolitana. Reserva por WhatsApp." />
+	<meta property="og:type" content="website" />
+	<meta property="og:url" content="https://strippershym-mexico.com.mx/" />
+	<meta property="og:image" content="https://strippershym-mexico.com.mx/img/og-cover.jpg" />
+	<meta name="twitter:card" content="summary_large_image" />
+	<link rel="icon" href="img/favicon.png" type="image/png" />
+	
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+	<link rel="manifest" href="/site.webmanifest">
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -204,7 +219,11 @@
         .fade-enter-active { opacity: 1; transform: translateY(0); transition: opacity 0.5s, transform 0.5s; }
     </style>
 </head>
+<main id="main">
 <body class="antialiased selection:bg-lux-gold selection:text-black font-sans">
+<a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[999] focus:bg-black focus:text-white focus:px-4 focus:py-2 focus:border focus:border-lux-gold">
+  Saltar al contenido
+</a>
 
     <!-- HEADER -->
     <header class="fixed w-full top-0 z-50 transition-all duration-500 bg-gradient-to-b from-black/95 to-transparent pt-4 pb-4" id="main-header">
@@ -213,14 +232,14 @@
                 <img src="img/logo.png" alt="Logo" class="h-10 w-auto object-contain logo-filter hover:opacity-80 transition-opacity">
             </div>
 
-            <nav class="hidden lg:flex items-center gap-10">
+            <nav class="hidden lg:flex items-center gap-10" aria-label="Navegación principal">
                 <a href="#hero" class="text-[10px] font-bold tracking-editorial uppercase text-white hover:text-lux-gold transition-colors">Portada</a>
                 <a href="#gallery" class="text-[10px] font-bold tracking-editorial uppercase text-white hover:text-lux-gold transition-colors">Talento</a>
                 <a href="#packages" class="text-[10px] font-bold tracking-editorial uppercase text-white hover:text-lux-gold transition-colors">Colección</a>
                 <a href="#contact" class="px-6 py-2 border border-lux-gold/50 text-lux-gold text-[9px] font-bold tracking-editorial hover:bg-lux-gold hover:text-black transition-all uppercase shadow-glow-gold">Reservar</a>
             </nav>
 
-            <button id="menu-btn" class="lg:hidden text-white text-2xl z-[70] focus:outline-none hover:text-lux-gold transition-colors">
+            <button id="menu-btn" aria-label="Abrir menú" aria-expanded="false" aria-controls="mobile-menu" class="lg:hidden text-white text-2xl z-[70] focus:outline-none hover:text-lux-gold transition-colors">
                 <i class="fa-solid fa-bars-staggered"></i>
             </button>
         </div>
@@ -242,23 +261,32 @@
 
     <!-- HERO SECTION (Magazine Cover Style) -->
     <section id="hero" class="relative h-screen w-full bg-black overflow-hidden flex flex-col justify-end pb-12 md:pb-20">
-        <!-- Background Video -->
+        <h1 class="sr-only">
+		  Strippers y bailarinas profesionales para despedidas y eventos en CDMX | STRIPPERSHYM
+		</h1>
+		<!-- Background Video -->
         <div class="absolute inset-0 z-0">
             <div class="absolute inset-0 bg-black/40 z-10"></div> <!-- Dimmer -->
-             <video autoplay muted loop playsinline class="absolute inset-0 w-full h-full object-cover md:hidden">
+             <video autoplay muted loop playsinline preload="metadata" poster="img/hero-poster-mobile.jpg" class="absolute inset-0 w-full h-full object-cover md:hidden">
+			
                  <source src="video/one_movil.mp4" type="video/mp4">
             </video>
             <!-- Desktop Video -->
-            <video autoplay muted loop playsinline class="absolute inset-0 w-full h-full object-cover hidden md:block">
+            <video autoplay muted loop playsinline preload="metadata" poster="img/hero-poster.jpg" class="absolute inset-0 w-full h-full object-cover hidden md:block">
+			
                 <source src="video/one.mp4" type="video/mp4">
             </video>
         </div>
 
         <!-- Huge Typography Overlay -->
-        <div class="absolute inset-0 z-20 flex items-center justify-center pointer-events-none mix-blend-overlay opacity-30">
+      <!--   <div class="absolute inset-0 z-20 flex items-center justify-center pointer-events-none mix-blend-overlay opacity-30">  -->
              <!-- AJUSTE 1: Tamaño de fuente más responsivo para evitar cortes -->
-             <h1 class="text-[20vw] md:text-[18vw] font-serif font-bold text-white leading-none tracking-tighter select-none">HYM</h1>
-        </div>
+       <!--       <h1 class="text-[20vw] md:text-[18vw] font-serif font-bold text-white leading-none tracking-tighter select-none">HYM</h1>  -->
+      <!--   </div>   -->
+		
+		<div class="absolute inset-0 z-20 flex items-center justify-center pointer-events-none mix-blend-overlay opacity-30" aria-hidden="true">
+		  <div class="text-[20vw] md:text-[18vw] font-serif font-bold text-white leading-none tracking-tighter select-none">HYM</div>
+		</div>
 
         <!-- Content -->
         <div class="relative z-30 px-6 max-w-7xl mx-auto w-full flex flex-col md:flex-row items-end justify-between gap-8">
@@ -314,6 +342,22 @@
                 </p>
             </div>
         </div>
+		
+				<div class="mt-10 grid grid-cols-1 md:grid-cols-2 gap-6 text-sm">
+		  <div class="border border-white/10 bg-black/20 p-6">
+			<h3 class="text-white font-bold tracking-widest uppercase text-[10px] mb-3">Zonas de servicio</h3>
+			<p class="text-gray-400 leading-relaxed">
+			  CDMX, Zona Metropolitana, Estado de México, Toluca, Pachuca y Puebla (otras ciudades con presupuesto).
+			</p>
+		  </div>
+		  <div class="border border-white/10 bg-black/20 p-6">
+			<h3 class="text-white font-bold tracking-widest uppercase text-[10px] mb-3">Eventos</h3>
+			<p class="text-gray-400 leading-relaxed">
+			  Despedidas de soltera, soltero y mixtas · Cumpleaños · Eventos privados · Pasarelas · Fiesta móvil.
+			</p>
+		  </div>
+</div>
+
     </section>
 
     <!-- GALLERY SECTION (Dynamic Accordion) -->
@@ -788,6 +832,8 @@
              </p>
         </div>
     </footer>
+	
+	</main>
 
     <!-- FLOATING BUTTONS -->
     <a href="tel:+521234567890" class="fixed bottom-8 left-8 z-50 w-14 h-14 bg-black text-lux-gold border border-lux-gold rounded-full shadow-glow-gold flex items-center justify-center hover:bg-lux-gold hover:text-black transition-all group">
@@ -819,7 +865,9 @@
         const mobileMenu = document.getElementById('mobile-menu');
 
         function toggleMenu() {
-            mobileMenu.classList.toggle('menu-open');
+           // mobileMenu.classList.toggle('menu-open');
+			const isOpen = mobileMenu.classList.toggle('menu-open');
+            menuBtn.setAttribute('aria-expanded', String(isOpen));
         }
         menuBtn.addEventListener('click', toggleMenu);
         closeMenuBtn.addEventListener('click', toggleMenu);
