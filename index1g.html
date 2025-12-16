@@ -71,6 +71,14 @@
             }
         }
     </script>
+	
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXX"></script>
+		<script>
+		  window.dataLayer = window.dataLayer || [];
+		  function gtag(){dataLayer.push(arguments);}
+		  gtag('js', new Date());
+		  gtag('config', 'G-XXXXXXX');
+		</script>
 
     <style>
         body {
@@ -219,7 +227,7 @@
         .fade-enter-active { opacity: 1; transform: translateY(0); transition: opacity 0.5s, transform 0.5s; }
     </style>
 </head>
-<main id="main">
+
 <body class="antialiased selection:bg-lux-gold selection:text-black font-sans">
 <a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[999] focus:bg-black focus:text-white focus:px-4 focus:py-2 focus:border focus:border-lux-gold">
   Saltar al contenido
@@ -258,7 +266,8 @@
             <a href="#contact" class="text-xl font-bold text-lux-gold uppercase tracking-widest mt-4 border-b border-lux-gold pb-1" onclick="toggleMenu()">Reservar</a>
         </nav>
     </div>
-
+    
+	<main id="main">
     <!-- HERO SECTION (Magazine Cover Style) -->
     <section id="hero" class="relative h-screen w-full bg-black overflow-hidden flex flex-col justify-end pb-12 md:pb-20">
         <h1 class="sr-only">
@@ -370,6 +379,9 @@
                     <span class="text-lux-gold text-[10px] font-bold tracking-[0.4em] uppercase block mb-2">Talento</span>
                     <!-- AJUSTE 1: Títulos responsivos -->
                     <h2 class="text-3xl md:text-4xl font-serif text-white italic">ELLOS</h2>
+					<p class="text-gray-500 text-sm max-w-xl mt-2">
+					  Strippers profesionales para despedidas de soltera, eventos, antros, bares, fiestas, cumpleaños. Toca un perfil para ver detalles.
+					</p>
                 </div>
                 <div class="text-white/50 text-xs uppercase tracking-widest"><i class="fa-solid fa-arrows-left-right mr-2"></i> Desliza</div>
             </div>
@@ -395,6 +407,7 @@
             </div>
             
         </div>
+		
     </section>
 
     <!-- LIGHTBOX (AJUSTE 2: Fullscreen Gallery) -->
@@ -707,39 +720,145 @@
                  </div>
 
             </div>
-        </div>
+			
+			<div class="mt-16 border-t border-white/10 pt-12">
+			  <h3 class="text-2xl md:text-3xl font-serif italic text-white mb-4">¿Qué incluye la contratación?</h3>
+
+			  <p class="text-gray-400 leading-relaxed max-w-3xl">
+				Los paquetes incluyen talento profesional, dinámica y animación del evento, vestuario temático (según paquete) y opción de fotos.
+				La reserva se aparta con anticipo y se confirma fecha, zona y tipo de evento. Servicio exclusivo para mayores de edad (+18).
+			  </p>
+
+			  <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-8">
+				<div class="border border-white/10 p-6 bg-black/20">
+				  <p class="text-[10px] uppercase tracking-widest text-gray-500 mb-2">Reserva</p>
+				  <p class="text-gray-300 text-sm">Anticipo para apartar fecha. Confirmación por WhatsApp.</p>
+				</div>
+
+				<div class="border border-white/10 p-6 bg-black/20">
+				  <p class="text-[10px] uppercase tracking-widest text-gray-500 mb-2">Zonas</p>
+				  <p class="text-gray-300 text-sm">CDMX y zona metropolitana. Otras ciudades con presupuesto.</p>
+				</div>
+
+				<div class="border border-white/10 p-6 bg-black/20">
+				  <p class="text-[10px] uppercase tracking-widest text-gray-500 mb-2">Reglas</p>
+				  <p class="text-gray-300 text-sm">Entretenimiento adulto. No incluye actividades fuera de lo pactado.</p>
+				</div>
+			  </div>
+			</div>
+
     </section>
 
     <!-- NEW VIDEOS SECTION (Cinema Scope - Switcher) -->
-    <section class="py-32 bg-[#000] overflow-hidden border-t border-white/5">
-        <div class="max-w-7xl mx-auto px-6">
-            <h2 class="text-center text-3xl font-serif text-white mb-16 italic tracking-widest">EXPERIENCIA <span class="text-lux-red">EN VIVO</span></h2>
-            
-            <div class="relative w-full max-w-5xl mx-auto aspect-video border-y-2 border-lux-gold bg-black shadow-glow-gold group transition-all duration-500">
-                <!-- Video Elements -->
-                <video id="cinema-video" class="w-full h-full object-cover opacity-60 group-hover:opacity-100 transition-opacity duration-700" poster="https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80">
-                    <source id="video-source" src="video/video1.mp4" type="video/mp4">
-                </video>
-                
-                <!-- Play Button -->
-                <button onclick="playCinema()" id="cinema-play-btn" class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-20 h-20 md:w-24 md:h-24 bg-lux-red/90 rounded-full flex items-center justify-center text-white text-3xl shadow-glow-red hover:scale-110 transition-transform z-20">
-                    <i class="fa-solid fa-play ml-2"></i>
-                </button>
+  <!-- VIDEOS SECTION (Playlist 20) -->
+		<section id="videos" class="py-32 bg-[#000] overflow-hidden border-t border-white/5">
+		  <div class="max-w-7xl mx-auto px-6">
+			<h2 class="text-center text-3xl font-serif text-white mb-16 italic tracking-widest">
+			  EXPERIENCIA <span class="text-lux-red">EN VIVO</span>
+			</h2>
 
-                <!-- Overlay Info -->
-                <div class="absolute bottom-6 left-6 md:bottom-10 md:left-10 z-20 pointer-events-none">
-                    <p class="text-lux-gold text-[10px] tracking-[0.3em] uppercase font-bold mb-1">Ahora Reproduciendo</p>
-                    <h3 id="video-title" class="text-2xl md:text-4xl font-serif text-white italic">Show Privado</h3>
-                </div>
-            </div>
-            
-            <!-- Controls -->
-            <div class="flex justify-center gap-8 mt-10">
-                <button onclick="changeVideo('video/video1.mp4', 'Show Privado', this)" class="vid-btn active text-xs uppercase tracking-widest text-white border-b-2 border-lux-gold pb-1 transition-all">Show Privado</button>
-                <button onclick="changeVideo('video/video2.mp4', 'Ambiente Fiesta', this)" class="vid-btn text-xs uppercase tracking-widest text-gray-500 hover:text-white border-b-2 border-transparent hover:border-white pb-1 transition-all">Ambiente Fiesta</button>
-            </div>
-        </div>
-    </section>
+			<!-- Player -->
+			<div class="relative w-full max-w-5xl mx-auto aspect-video border-y-2 border-lux-gold bg-black shadow-glow-gold group transition-all duration-500">
+			  <video
+				id="cinema-video"
+				class="w-full h-full object-cover opacity-60 group-hover:opacity-100 transition-opacity duration-700"
+				preload="none"
+				playsinline
+				poster="img/videos/poster-default.jpg"
+			  >
+				<source id="video-source" src="" type="video/mp4">
+			  </video>
+
+			  <!-- Play Button -->
+			  <button
+				onclick="playCinema()"
+				id="cinema-play-btn"
+				class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-20 h-20 md:w-24 md:h-24 bg-lux-red/90 rounded-full flex items-center justify-center text-white text-3xl shadow-glow-red hover:scale-110 transition-transform z-20"
+				aria-label="Reproducir video"
+			  >
+				<i class="fa-solid fa-play ml-2"></i>
+			  </button>
+
+			  <!-- Overlay Info -->
+			  <div class="absolute bottom-6 left-6 md:bottom-10 md:left-10 z-20 pointer-events-none">
+				<p class="text-lux-gold text-[10px] tracking-[0.3em] uppercase font-bold mb-1">Ahora Reproduciendo</p>
+				<h3 id="video-title" class="text-2xl md:text-4xl font-serif text-white italic">Selecciona un video</h3>
+			  </div>
+			</div>
+
+			<!-- Playlist -->
+		<!-- Categorías Netflix -->
+				<div class="max-w-5xl mx-auto mt-10 space-y-10">
+
+				  <!-- VIP -->
+				  <div>
+					<div class="flex items-center justify-between mb-3">
+					  <p class="text-white/80 text-xs uppercase tracking-widest">VIP</p>
+					  <p class="text-white/40 text-[10px] uppercase tracking-widest">Desliza • o usa flechas</p>
+					</div>
+
+					<div class="relative">
+					  <!-- Flecha Izq (solo escritorio) -->
+					  <button
+						type="button"
+						data-scroll="playlist-vip"
+						data-dir="-1"
+						class="hidden lg:flex absolute left-[-18px] top-1/2 -translate-y-1/2 z-20 w-10 h-10 items-center justify-center
+							   bg-black/70 border border-white/15 hover:border-lux-gold text-white/80 hover:text-lux-gold transition"
+						aria-label="Anterior VIP"
+					  >
+						<i class="fa-solid fa-chevron-left"></i>
+					  </button>
+
+					  <!-- Carrusel -->
+					  <div id="playlist-vip" class="flex gap-3 overflow-x-auto pb-3 snap-x snap-mandatory hide-scroll-bar"></div>
+
+					  <!-- Flecha Der (solo escritorio) -->
+					  <button
+						type="button"
+						data-scroll="playlist-vip"
+						data-dir="1"
+						class="hidden lg:flex absolute right-[-18px] top-1/2 -translate-y-1/2 z-20 w-10 h-10 items-center justify-center
+							   bg-black/70 border border-white/15 hover:border-lux-gold text-white/80 hover:text-lux-gold transition"
+						aria-label="Siguiente VIP"
+					  >
+						<i class="fa-solid fa-chevron-right"></i>
+					  </button>
+					</div>
+				  </div>
+
+				  <!-- FIESTA -->
+				  <div>
+					<div class="flex items-center justify-between mb-3">
+					  <p class="text-white/80 text-xs uppercase tracking-widest">FIESTA</p>
+					  <p class="text-white/40 text-[10px] uppercase tracking-widest">Desliza • o usa flechas</p>
+					</div>
+
+					<div class="relative">
+					  <button type="button" data-scroll="playlist-fiesta" data-dir="-1"
+						class="hidden lg:flex absolute left-[-18px] top-1/2 -translate-y-1/2 z-20 w-10 h-10 items-center justify-center
+							   bg-black/70 border border-white/15 hover:border-lux-gold text-white/80 hover:text-lux-gold transition"
+						aria-label="Anterior Fiesta"
+					  >
+						<i class="fa-solid fa-chevron-left"></i>
+					  </button>
+
+					  <div id="playlist-fiesta" class="flex gap-3 overflow-x-auto pb-3 snap-x snap-mandatory hide-scroll-bar"></div>
+
+					  <button type="button" data-scroll="playlist-fiesta" data-dir="1"
+						class="hidden lg:flex absolute right-[-18px] top-1/2 -translate-y-1/2 z-20 w-10 h-10 items-center justify-center
+							   bg-black/70 border border-white/15 hover:border-lux-gold text-white/80 hover:text-lux-gold transition"
+						aria-label="Siguiente Fiesta"
+					  >
+						<i class="fa-solid fa-chevron-right"></i>
+					  </button>
+					</div>
+				  </div>
+
+				</div>
+
+		</section>
+
 
     <!-- INFO SECTION (Gold Grid) -->
     <section class="py-24 bg-[#0a0a0a] text-white">
@@ -804,7 +923,7 @@
             <p class="mt-6 text-white/80 text-xs tracking-widest uppercase">Respuesta inmediata</p>
         </div>
     </section>
-
+</main>
     <!-- FOOTER -->
     <footer class="bg-black text-white py-16 px-6 border-t border-gray-900">
         <div class="max-w-4xl mx-auto flex flex-col items-center gap-8 text-center">
@@ -828,12 +947,12 @@
             </div>
 
              <p class="text-[9px] text-gray-800 uppercase tracking-[0.3em] mt-8">
-                &copy; 2023 Strippers Hym · Exclusivo +18
+                &copy; 2026 Strippers Hym · Exclusivo +18
              </p>
         </div>
     </footer>
 	
-	</main>
+	
 
     <!-- FLOATING BUTTONS -->
     <a href="tel:+521234567890" class="fixed bottom-8 left-8 z-50 w-14 h-14 bg-black text-lux-gold border border-lux-gold rounded-full shadow-glow-gold flex items-center justify-center hover:bg-lux-gold hover:text-black transition-all group">
@@ -915,6 +1034,8 @@
             const div = document.createElement('div');
             div.className = 'accordion-item group relative';
             
+			const alt = `${type === 'ellos' ? 'Stripper' : 'Bailarina'} profesional ${name} ${index} en CDMX`;
+
             // Add Click Event to Open Lightbox
             div.onclick = () => openLightbox(index, type);
 
@@ -955,6 +1076,14 @@
                 document.body.style.overflow = ''; 
             }, 300);
         }
+		
+		// ✅ Cerrar lightbox con ESC
+		document.addEventListener('keydown', (e) => {
+		  if (e.key === 'Escape' && !lightbox.classList.contains('hidden')) {
+			closeLightbox();
+		  }
+		});
+		
 
         function updateLightbox() {
             const folder = currentLightboxCategory === 'ellos' ? 'h' : 'm';
@@ -991,39 +1120,161 @@
 
 
         // --- Video Switcher ---
-        function playCinema() {
-            const video = document.getElementById('cinema-video');
-            const btn = document.getElementById('cinema-play-btn');
-            if(video.paused) {
-                video.play();
-                video.setAttribute('controls', 'controls');
-                video.style.opacity = '1';
-                btn.style.display = 'none';
-            }
-        }
+        // --- Video Playlist (20) ---
+		const videoPlaylist = [
+		  { title: "Show Privado",          cat:"VIP",  src: "video/video1.mp4",  poster: "video/v1.jpg"  },
+		  { title: "Ambiente Fiesta",       cat:"VIP",  src: "video/video2.mp4",  poster: "video/v2.jpg"  },
+		  { title: "Entrada Impactante",    cat:"VIP",  src: "video/video3.mp4",  poster: "video/v3.jpg"  },
+		  { title: "Momento VIP",           cat:"VIP",  src: "video/video4.mp4",  poster: "video/v4.jpg"  },
+		  { title: "Juego / Dinámica",      cat:"VIP",  src: "video/video5.mp4",  poster: "video/v5.jpg"  },
+		  { title: "Show Sorpresa",         cat:"VIP",  src: "video/video6.mp4",  poster: "video/v6.jpg"  },
+		  { title: "Reacción del Público",  cat:"VIP",  src: "video/video7.mp4",  poster: "video/v7.jpg"  },
+		  { title: "Vibra Club",            cat:"VIP",  src: "video/video8.mp4",  poster: "video/v8.jpg"  },
+		  { title: "Final Épico",           cat:"VIP",  src: "video/video9.mp4",  poster: "video/v9.jpg"  },
+		  { title: "Backstage",             cat:"VIP",  src: "video/video10.mp4", poster: "video/v10.jpg" },
 
-        function changeVideo(src, title, btn) {
-            const video = document.getElementById('cinema-video');
-            const source = document.getElementById('video-source');
-            const titleEl = document.getElementById('video-title');
-            const playBtn = document.getElementById('cinema-play-btn');
+		  { title: "Show Privado 2",      cat:"FIESTA", src: "video/video11.mp4", poster: "video/v11.jpg" },
+		  { title: "Fiesta 2",            cat:"FIESTA", src: "video/video12.mp4", poster: "video/v12.jpg" },
+		  { title: "VIP 2",               cat:"FIESTA", src: "video/video13.mp4", poster: "video/v13.jpg" },
+		  { title: "Entrada 2",           cat:"FIESTA", src: "video/video14.mp4", poster: "video/v14.jpg" },
+		  { title: "Dinámica 2",          cat:"FIESTA", src: "video/video15.mp4", poster: "video/v15.jpg" },
+		  { title: "Sorpresa 2",          cat:"FIESTA", src: "video/video16.mp4", poster: "video/v16.jpg" },
+		  { title: "Reacción 2",          cat:"FIESTA", src: "video/video17.mp4", poster: "video/v17.jpg" },
+		  { title: "Club 2",              cat:"FIESTA", src: "video/video18.mp4", poster: "video/v18.jpg" },
+		  { title: "Final 2",             cat:"FIESTA", src: "video/video19.mp4", poster: "video/v19.jpg" },
+		  { title: "Extra",               cat:"FIESTA", src: "video/video20.mp4", poster: "video/v20.jpg" }
+		];
 
-            document.querySelectorAll('.vid-btn').forEach(b => {
-                b.classList.remove('active', 'text-white', 'border-lux-gold');
-                b.classList.add('text-gray-500', 'border-transparent');
-            });
-            btn.classList.add('active', 'text-white', 'border-lux-gold');
-            btn.classList.remove('text-gray-500', 'border-transparent');
+		
+		const videoEl = document.getElementById("cinema-video");
+		const sourceEl = document.getElementById("video-source");
+		const titleEl = document.getElementById("video-title");
+		const playBtn = document.getElementById("cinema-play-btn");
 
-            video.pause();
-            source.src = src;
-            video.load();
-            titleEl.textContent = title;
-            
-            video.removeAttribute('controls');
-            video.style.opacity = '0.6';
-            playBtn.style.display = 'flex';
-        }
+		let activeIndex = 0;
+
+		const vipEl    = document.getElementById("playlist-vip");
+		const fiestaEl = document.getElementById("playlist-fiesta");
+
+		function cardTemplate(v, idx) {
+		  return `
+			<button
+			  type="button"
+			  class="vid-item snap-start shrink-0 w-[72vw] sm:w-[44vw] lg:w-[260px]
+					 group border border-white/10 bg-black/30 hover:border-lux-gold transition-all text-left p-2"
+			  data-index="${idx}"
+			  aria-label="Reproducir: ${v.title}"
+			>
+			  <div class="relative aspect-video overflow-hidden border border-white/10">
+				<img
+				  src="${v.poster}"
+				  alt="Video: ${v.title}"
+				  loading="lazy"
+				  onerror="this.src='video/poster-default.jpg'"
+				  class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity"
+				/>
+				<div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent"></div>
+			  </div>
+			  <div class="mt-2">
+				<p class="text-[10px] uppercase tracking-widest text-white/70 group-hover:text-lux-gold transition-colors line-clamp-2">
+				  ${v.title}
+				</p>
+			  </div>
+			</button>
+		  `;
+		}
+
+		function renderRow(cat, el) {
+		  el.innerHTML = videoPlaylist
+			.map((v, idx) => ({ v, idx }))
+			.filter(x => x.v.cat === cat)
+			.map(x => cardTemplate(x.v, x.idx))
+			.join("");
+		}
+
+		function renderAllPlaylists() {
+		  renderRow("VIP", vipEl);
+		  renderRow("FIESTA", fiestaEl);
+		  setActiveUI(0);
+		}
+
+
+
+		function setActiveUI(i) {
+			  activeIndex = i;
+			  document.querySelectorAll(".vid-item").forEach((btn) => {
+				const idx = Number(btn.dataset.index);
+				const isActive = idx === i;
+				btn.classList.toggle("border-lux-gold", isActive);
+				btn.classList.toggle("shadow-glow-gold", isActive);
+			  });
+			}
+			
+			document.addEventListener("click", (e) => {
+			  const btn = e.target.closest(".vid-item[data-index]");
+			  if (!btn) return;
+			  loadVideo(Number(btn.dataset.index), true);
+			});
+			
+			function scrollCarousel(el, dir) {
+				  el.scrollBy({ left: dir * (el.clientWidth * 0.9), behavior: "smooth" });
+				}
+
+				document.querySelectorAll("button[data-scroll]").forEach((b) => {
+				  const el = document.getElementById(b.dataset.scroll);
+				  const dir = Number(b.dataset.dir);
+				  b.addEventListener("click", () => scrollCarousel(el, dir));
+				});
+
+
+		function loadVideo(i, autoplay = false) {
+		  const v = videoPlaylist[i];
+		  setActiveUI(i);
+
+		  // Reset player UI
+		  playBtn.style.display = "flex";
+		  videoEl.pause();
+		  videoEl.currentTime = 0;
+		  videoEl.removeAttribute("controls");
+		  videoEl.style.opacity = "0.6";
+
+		  // Load selected
+		  titleEl.textContent = v.title;
+		  videoEl.setAttribute("poster", v.poster || "/img/video/poster-default.jpg");
+		  sourceEl.src = v.src;
+		  videoEl.load();
+
+		  if (autoplay) playCinema();
+		  track("video_select", { index: i, title: v.title, category: v.cat });
+
+		}
+
+		function playCinema() {
+		  track("video_play", { title: titleEl.textContent });
+		  if (!sourceEl.src) return; // por si alguien da play sin seleccionar
+		  if (videoEl.paused) {
+			videoEl.play();
+			videoEl.setAttribute("controls", "controls");
+			videoEl.style.opacity = "1";
+			playBtn.style.display = "none";
+		  }
+		}
+
+		
+
+		// UX: pausa con ESC
+		document.addEventListener("keydown", (e) => {
+		  if (e.key === "Escape" && !videoEl.paused) {
+			videoEl.pause();
+			playBtn.style.display = "flex";
+			videoEl.style.opacity = "0.6";
+		  }
+		});
+
+		// Init
+		renderAllPlaylists();
+		loadVideo(0, false);
+
 
         // --- Scroll Up & Bubble ---
         const scrollUpBtn = document.getElementById('scroll-up');
@@ -1045,7 +1296,64 @@
         }, 10000);
         setTimeout(() => bubble.classList.remove('opacity-0'), 2000);
         setTimeout(() => bubble.classList.add('opacity-0'), 6000);
+		
+		
+		function track(name, params = {}) {
+			  if (typeof gtag === "function") gtag("event", name, params);
+			}
+
+			// WhatsApp clicks
+			document.querySelectorAll('a[href^="https://wa.me/"]').forEach(a => {
+			  a.addEventListener("click", () => {
+				track("whatsapp_click", {
+				  link_text: (a.textContent || "").trim().slice(0, 40),
+				  href: a.getAttribute("href")
+				});
+			  });
+			});
+
+			// Tel clicks
+			document.querySelectorAll('a[href^="tel:"]').forEach(a => {
+			  a.addEventListener("click", () => {
+				track("call_click", { href: a.getAttribute("href") });
+			  });
+			});
+
+			// Reservar (botones/links con texto “Reservar” o “Contactar Ahora”)
+			document.querySelectorAll("a,button").forEach(el => {
+			  const t = (el.textContent || "").toLowerCase();
+			  if (t.includes("reservar") || t.includes("contactar ahora")) {
+				el.addEventListener("click", () => track("cta_click", { label: t.slice(0, 40) }));
+			  }
+			});
 
     </script>
+	
+	<script type="application/ld+json">
+		{
+		  "@context": "https://schema.org",
+		  "@type": "EntertainmentBusiness",
+		  "name": "STRIPPERSHYM",
+		  "url": "https://strippershym-mexico.com.mx/",
+		  "logo": "https://strippershym-mexico.com.mx/img/logo.png",
+		  "image": "https://strippershym-mexico.com.mx/img/og-cover.jpg",
+		  "description": "Agencia profesional de strippers y bailarinas para despedidas, cumpleaños y eventos en CDMX y zona metropolitana. Servicio exclusivo +18.",
+		  "telephone": "+52 55 2073 7605",
+		  "areaServed": [
+			{ "@type": "City", "name": "Ciudad de México" },
+			{ "@type": "AdministrativeArea", "name": "Estado de México" },
+			{ "@type": "City", "name": "Toluca" },
+			{ "@type": "City", "name": "Pachuca" },
+			{ "@type": "City", "name": "Puebla" }
+		  ],
+		  "priceRange": "$$" //,
+		//  "sameAs": [
+	//		"https://facebook.com/TU_PAGINA",
+		//	"https://instagram.com/TU_PAGINA",
+			//"https://tiktok.com/@TU_PAGINA"
+		  ]
+		}
+</script>
+
 </body>
 </html>
