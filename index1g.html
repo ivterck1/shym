@@ -177,14 +177,37 @@
         /* --- Utility & Hero --- */
         .mix-blend-text { mix-blend-mode: overlay; }
         
-        /* Mobile Menu */
-        #mobile-menu {
-            transition: opacity 0.4s ease, visibility 0.4s ease;
-            opacity: 0;
-            visibility: hidden;
-            backdrop-filter: blur(10px);
-        }
-        #mobile-menu.menu-open { opacity: 1; visibility: visible; }
+        /* Mobile Menu: Netflix slide-in */
+			#mobile-menu{
+			  opacity: 0;
+			  visibility: hidden;
+			  transform: translateX(100%);
+			  transition: transform .45s cubic-bezier(.16,1,.3,1), opacity .35s ease, visibility .35s ease;
+			  backdrop-filter: blur(14px);
+			}
+			#mobile-menu.menu-open{
+			  opacity: 1;
+			  visibility: visible;
+			  transform: translateX(0);
+			}
+
+			/* Links con underline animado */
+			.menu-link{
+			  position: relative;
+			  display: inline-block;
+			}
+			.menu-link::after{
+			  content:"";
+			  position:absolute;
+			  left:0;
+			  bottom:-10px;
+			  width:0%;
+			  height:2px;
+			  background:#D4AF37;
+			  transition: width .35s ease;
+			  opacity:.9;
+			}
+			.menu-link:hover::after{ width:100%; }
 
         /* Floating Bubble */
         .bubble-anim { animation: floatBubble 4s ease-in-out infinite; }
@@ -225,6 +248,177 @@
         .hidden-view { display: none !important; }
         .fade-enter { opacity: 0; transform: translateY(10px); }
         .fade-enter-active { opacity: 1; transform: translateY(0); transition: opacity 0.5s, transform 0.5s; }
+		
+		/* FAQ / Privacy details */
+			details summary::-webkit-details-marker { display: none; }
+			details[open] .faq-icon { transform: rotate(45deg); }
+			.faq-icon { transition: transform .25s ease; }
+		
+					/* Botón Reservar: brillo premium */
+			.reserve-glow{
+			  position:relative;
+			  overflow:hidden;
+			}
+			.reserve-glow::before{
+			  content:"";
+			  position:absolute;
+			  inset:-2px;
+			  background: radial-gradient(circle at 30% 20%, rgba(212,175,55,.55), transparent 55%),
+						  radial-gradient(circle at 80% 60%, rgba(179,0,0,.35), transparent 60%);
+			  opacity:.35;
+			  filter: blur(10px);
+			  transition: opacity .3s ease;
+			  pointer-events:none;
+			}
+			.reserve-glow::after{
+			  content:"";
+			  position:absolute;
+			  top:-20%;
+			  left:-60%;
+			  width:60%;
+			  height:140%;
+			  background: linear-gradient(120deg, transparent 0%, rgba(255,255,255,.25) 45%, transparent 80%);
+			  transform: translateX(0) skewX(-18deg);
+			  transition: transform .8s ease;
+			  pointer-events:none;
+			}
+			.reserve-glow:hover::before{ opacity:.7; }
+			.reserve-glow:hover::after{ transform: translateX(260%) skewX(-18deg); }
+
+			@keyframes subtlePulse {
+			  0%,100% { box-shadow: 0 0 0 rgba(212,175,55,.0), 0 0 20px rgba(179,0,0,.0); }
+			  50%     { box-shadow: 0 0 18px rgba(212,175,55,.22), 0 0 26px rgba(179,0,0,.18); }
+			}
+			.reserve-pulse{ animation: subtlePulse 2.8s ease-in-out infinite; }
+			
+			.menu-link-premium{
+				  font-family: 'Montserrat', sans-serif;
+				  font-weight: 700;
+				  letter-spacing: .28em;
+				  text-transform: uppercase;
+				  font-size: 18px;
+				  line-height: 1.1;
+				  color: rgba(255,255,255,.90);
+				}
+				.menu-link-premium:hover{ color:#D4AF37; }
+				
+			
+/* === Mobile menu panel: entramado visible + premium === */
+.menu-panel{
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  background: rgba(0,0,0,.92);
+}
+
+/* Entramado visible (grid) 
+.menu-panel::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  z-index:0;
+
+  background-image:
+    linear-gradient(rgba(255,255,255,0.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.07) 1px, transparent 1px),
+    radial-gradient(circle at 20% 15%, rgba(212,175,55,0.10), transparent 45%),
+    radial-gradient(circle at 85% 85%, rgba(179,0,0,0.08), transparent 55%);
+  background-size: 22px 22px;
+  opacity: .22;
+*/
+
+.menu-panel::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  z-index:0;
+
+  /* GRID MÁS CLARO */
+  background-image:
+    linear-gradient(rgba(255,255,255,0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.08) 1px, transparent 1px),
+    radial-gradient(circle at 20% 15%, rgba(212,175,55,0.16), transparent 45%),
+    radial-gradient(circle at 85% 85%, rgba(179,0,0,0.10), transparent 55%);
+
+  background-size: 26px 26px;
+  opacity: .22;           /* 👈 más visible */
+   filter: blur(0.2px);
+}
+
+
+  /* CLAVE: overlay en negro “desaparece”; screen/normal sí se ve */
+  mix-blend-mode: screen;
+}
+
+/* Vignette suave (no lo mates, que no tape el grid) */
+.menu-panel::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  z-index:1;
+  background: radial-gradient(ellipse at center, transparent 0%, rgba(0,0,0,.55) 70%, rgba(0,0,0,.90) 100%);
+}
+
+.menu-panel > *{ position: relative; z-index:2; }
+.scanline{ z-index:3; }
+					
+					
+
+
+
+
+/* Scanner line */
+.scanline{
+  position: absolute;
+  left: -10%;
+  top: -25%;
+  width: 120%;
+  height: 70px;
+  z-index: 2;
+  pointer-events: none;
+
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(212,175,55,0.00) 35%,
+    rgba(212,175,55,0.22) 50%,
+    rgba(212,175,55,0.00) 65%,
+    transparent 100%
+  );
+
+  filter: blur(0.2px);
+  opacity: .55;
+  transform: skewX(-10deg);
+  animation: scanDown 3.8s ease-in-out infinite;
+  mix-blend-mode: screen;
+}
+
+/* Movimiento vertical */
+@keyframes scanDown{
+  0%   { transform: translateY(0) skewX(-10deg); opacity: 0; }
+  10%  { opacity: .55; }
+  50%  { opacity: .35; }
+  90%  { opacity: .55; }
+  100% { transform: translateY(165vh) skewX(-10deg); opacity: 0; }
+}
+
+/* Respeta usuarios que prefieren menos movimiento */
+@media (prefers-reduced-motion: reduce){
+  .scanline{ animation: none; display:none; }
+}
+
+
+/* Asegura que la scanline quede encima de todo */
+.scanline{
+  z-index: 3;
+}
+
+
+
+
     </style>
 </head>
 
@@ -244,8 +438,14 @@
                 <a href="#hero" class="text-[10px] font-bold tracking-editorial uppercase text-white hover:text-lux-gold transition-colors">Portada</a>
                 <a href="#gallery" class="text-[10px] font-bold tracking-editorial uppercase text-white hover:text-lux-gold transition-colors">Talento</a>
                 <a href="#packages" class="text-[10px] font-bold tracking-editorial uppercase text-white hover:text-lux-gold transition-colors">Colección</a>
-                <a href="#contact" class="px-6 py-2 border border-lux-gold/50 text-lux-gold text-[9px] font-bold tracking-editorial hover:bg-lux-gold hover:text-black transition-all uppercase shadow-glow-gold">Reservar</a>
-            </nav>
+              <!--  <a href="#contact" class="px-6 py-2 border border-lux-gold/50 text-lux-gold text-[9px] font-bold tracking-editorial hover:bg-lux-gold hover:text-black transition-all uppercase shadow-glow-gold">Reservar</a> -->
+				<a href="#contact"
+					   class="reserve-glow reserve-pulse px-6 py-2 border border-lux-gold/50 text-lux-gold text-[9px] font-bold tracking-editorial
+							  hover:bg-lux-gold hover:text-black transition-all uppercase shadow-glow-gold">
+					  Reservar
+					</a>
+
+		  </nav>
 
             <button id="menu-btn" aria-label="Abrir menú" aria-expanded="false" aria-controls="mobile-menu" class="lg:hidden text-white text-2xl z-[70] focus:outline-none hover:text-lux-gold transition-colors">
                 <i class="fa-solid fa-bars-staggered"></i>
@@ -254,18 +454,45 @@
     </header>
 
      <!-- MOBILE MENU -->
-     <div id="mobile-menu" class="fixed inset-0 z-[60] bg-black flex flex-col justify-center items-center">
-        <button id="close-menu-btn" class="absolute top-8 right-8 text-white text-4xl font-thin p-4 z-[70] hover:text-lux-gold">
-            <i class="fa-solid fa-xmark"></i>
-        </button>
-        <img src="img/logo.png" alt="Logo Mobile" class="h-14 mb-10 logo-filter opacity-80">
-        <nav class="flex flex-col gap-8 text-center">
-            <a href="#hero" class="text-3xl font-serif text-white uppercase italic hover:text-lux-gold transition-colors" onclick="toggleMenu()">Portada</a>
-            <a href="#gallery" class="text-3xl font-serif text-white uppercase italic hover:text-lux-gold transition-colors" onclick="toggleMenu()">Talento</a>
-            <a href="#packages" class="text-3xl font-serif text-white uppercase italic hover:text-lux-gold transition-colors" onclick="toggleMenu()">Paquetes</a>
-            <a href="#contact" class="text-xl font-bold text-lux-gold uppercase tracking-widest mt-4 border-b border-lux-gold pb-1" onclick="toggleMenu()">Reservar</a>
-        </nav>
+<!-- MOBILE MENU -->
+<div id="mobile-menu" class="fixed inset-0 z-[60] bg-black/80">
+  <!-- Panel -->
+  <div class="menu-panel relative h-full w-full max-w-[520px] ml-auto border-l border-white/10 bg-black/90 px-10 py-12">
+ 
+    <!-- SCANLINE (va aquí, primero) -->
+    <div class="scanline" aria-hidden="true"></div>
+
+    <!-- Close -->
+    <button id="close-menu-btn"
+      class="absolute top-6 right-6 text-white text-4xl font-thin p-4 hover:text-lux-gold">
+      <i class="fa-solid fa-xmark"></i>
+    </button>
+
+    <!-- Logo -->
+    <img src="img/logo.png" alt="Logo Mobile" class="h-14 mb-12 opacity-80">
+
+    <!-- Nav -->
+    <nav class="flex flex-col gap-7 text-left">
+      <a href="#hero"  class="menu-link text-3xl font-sans font-semibold uppercase tracking-[0.22em] text-white/90 hover:text-lux-gold transition-colors" onclick="toggleMenu()">Portada</a>
+      <a href="#gallery"  class="menu-link text-3xl font-sans font-semibold uppercase tracking-[0.22em] text-white/90 hover:text-lux-gold transition-colors" onclick="toggleMenu()">Talento</a>
+      <a href="#packages"  class="menu-link text-3xl font-sans font-semibold uppercase tracking-[0.22em] text-white/90 hover:text-lux-gold transition-colors" onclick="toggleMenu()">Paquetes</a>
+      <a href="#videos"  class="menu-link text-3xl font-sans font-semibold uppercase tracking-[0.22em] text-white/90 hover:text-lux-gold transition-colors" onclick="toggleMenu()">Clips</a>
+  
+</nav>
+
+    <!-- CTA -->
+    <div class="mt-12">
+          <a href="#contact" onclick="toggleMenu()"
+   class="reserve-glow reserve-pulse shadow-glow-gold block w-full text-center py-4 bg-lux-gold text-black font-bold tracking-[0.25em] uppercase hover:brightness-110 transition">
+  Reservar ahora
+</a>
+      <p class="mt-4 text-[10px] text-white/50 tracking-widest uppercase">+18 · CDMX y Zona Metropolitana · Respuesta inmediata</p>
     </div>
+
+  </div>
+</div>
+
+
     
 	<main id="main">
     <!-- HERO SECTION (Magazine Cover Style) -->
@@ -902,12 +1129,81 @@
             </div>
         </div>
     </section>
+	
+	<!-- FAQ -->
+		<section id="faq" class="py-28 bg-black text-white border-t border-white/5">
+		  <div class="max-w-6xl mx-auto px-6">
+			<div class="flex items-end justify-between gap-6 mb-10">
+			  <div>
+				<span class="text-lux-gold text-xs font-bold tracking-[0.4em] uppercase block mb-3">FAQ</span>
+				<h2 class="text-3xl md:text-5xl font-serif italic text-white">Preguntas frecuentes</h2>
+				<p class="text-gray-500 text-sm mt-3 max-w-2xl">
+				  Respuestas claras, sin humo. Toca una pregunta para ver detalles.
+				</p>
+			  </div>
+			  <p class="text-white/40 text-[10px] uppercase tracking-widest hidden md:block">Toca para abrir</p>
+			</div>
+
+			<div class="space-y-3">
+			  <details class="group border border-white/10 bg-black/20 p-5">
+				<summary class="cursor-pointer list-none flex items-center justify-between gap-4">
+				  <span class="text-sm md:text-base font-semibold">¿Cómo reservo?</span>
+				  <i class="fa-solid fa-plus faq-icon text-lux-gold"></i>
+				</summary>
+				<div class="mt-3 text-gray-400 text-sm leading-relaxed">
+				  Escríbenos por WhatsApp con tu fecha, zona y tipo de evento. Se aparta con anticipo y se confirma por mensaje.
+				</div>
+			  </details>
+
+			  <details class="group border border-white/10 bg-black/20 p-5">
+				<summary class="cursor-pointer list-none flex items-center justify-between gap-4">
+				  <span class="text-sm md:text-base font-semibold">¿En qué zonas dan servicio?</span>
+				  <i class="fa-solid fa-plus faq-icon text-lux-gold"></i>
+				</summary>
+				<div class="mt-3 text-gray-400 text-sm leading-relaxed">
+				  CDMX y zona metropolitana. Otras ciudades se cotizan con presupuesto y logística.
+				</div>
+			  </details>
+
+			  <details class="group border border-white/10 bg-black/20 p-5">
+				<summary class="cursor-pointer list-none flex items-center justify-between gap-4">
+				  <span class="text-sm md:text-base font-semibold">¿Qué incluye el servicio?</span>
+				  <i class="fa-solid fa-plus faq-icon text-lux-gold"></i>
+				</summary>
+				<div class="mt-3 text-gray-400 text-sm leading-relaxed">
+				  Talento profesional, show/animación según paquete, vestuario temático (si aplica) y opción de fotos.
+				</div>
+			  </details>
+
+			  <details class="group border border-white/10 bg-black/20 p-5">
+				<summary class="cursor-pointer list-none flex items-center justify-between gap-4">
+				  <span class="text-sm md:text-base font-semibold">¿Es para mayores de edad?</span>
+				  <i class="fa-solid fa-plus faq-icon text-lux-gold"></i>
+				</summary>
+				<div class="mt-3 text-gray-400 text-sm leading-relaxed">
+				  Sí. Entretenimiento adulto +18. (Y lo decimos sin poesía: NO es servicio sexual).
+				</div>
+			  </details>
+
+			  <details class="group border border-white/10 bg-black/20 p-5">
+				<summary class="cursor-pointer list-none flex items-center justify-between gap-4">
+				  <span class="text-sm md:text-base font-semibold">¿Cómo funcionan cambios o cancelaciones?</span>
+				  <i class="fa-solid fa-plus faq-icon text-lux-gold"></i>
+				</summary>
+				<div class="mt-3 text-gray-400 text-sm leading-relaxed">
+				  Depende de la anticipación y disponibilidad. Lo ideal: avisar lo antes posible para reprogramar.
+				</div>
+			  </details>
+			</div>
+		  </div>
+		</section>
+
 
     <!-- CTA SECTION (Marquee) -->
-    <section id="contact" class="py-32 bg-lux-red overflow-hidden relative flex flex-col items-center justify-center">
+  <!--  <section id="contact" class="py-32 bg-lux-red overflow-hidden relative flex flex-col items-center justify-center">
         <div class="absolute inset-0 bg-[url('img/cta.png')] bg-cover bg-center mix-blend-multiply opacity-50"></div>
         
-        <!-- Marquee Background -->
+        Marquee Background 
         <div class="absolute inset-0 flex items-center opacity-10 pointer-events-none select-none">
             <div class="whitespace-nowrap animate-marquee text-[20vh] font-bold font-serif italic text-black leading-none">
                 BOOK NOW  RESERVA AHORA  NO ESPERES  BOOK NOW  RESERVA AHORA  NO ESPERES
@@ -922,9 +1218,118 @@
             </a>
             <p class="mt-6 text-white/80 text-xs tracking-widest uppercase">Respuesta inmediata</p>
         </div>
-    </section>
+    </section> -->
+	<!-- CTA SECTION (Premium) -->
+		<section id="contact" class="relative py-28 md:py-32 bg-black overflow-hidden border-t border-white/5">
+		  <!-- Background image -->
+		  <div class="absolute inset-0 bg-[url('img/cta.png')] bg-cover bg-center"></div>
+
+		  <!-- Premium overlays (vignette + gradientes) -->
+		  <div class="absolute inset-0 bg-gradient-to-b from-black/70 via-black/30 to-black/85"></div>
+		  <div class="absolute inset-0 bg-gradient-to-r from-black/80 via-transparent to-black/70"></div>
+		  <div class="absolute inset-0 bg-lux-red/75 mix-blend-multiply"></div>
+
+		  <!-- Soft glow -->
+		  <div class="absolute -inset-24 bg-gradient-to-r from-lux-gold/25 via-lux-red/20 to-lux-gold/25 blur-3xl opacity-40"></div>
+
+		  <!-- Marquee (más sutil) -->
+		  <div class="absolute inset-0 flex items-center opacity-[0.08] pointer-events-none select-none">
+			<div class="whitespace-nowrap animate-marquee text-[18vh] font-bold font-serif italic text-white leading-none">
+			  BOOK NOW  RESERVA AHORA  NO ESPERES  BOOK NOW  RESERVA AHORA  NO ESPERES
+			</div>
+		  </div>
+
+		  <div class="relative z-10 max-w-6xl mx-auto px-6 text-center">
+			<p class="text-[10px] md:text-xs tracking-[0.45em] font-bold text-white/90 mb-6 uppercase">
+			  Tu fecha, tu evento, tu noche.
+			</p>
+
+			<h2 class="text-5xl md:text-8xl font-serif text-white mb-8 drop-shadow-2xl">
+			  NO ESPERES<span class="text-lux-gold">.</span>
+			</h2>
+
+			<p class="text-white/80 text-sm md:text-base max-w-2xl mx-auto mb-10 leading-relaxed">
+			  Cotiza en 1 minuto. Confirmamos disponibilidad y te damos opciones según tu zona y evento.
+			</p>
+
+			<div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+			  <a href="https://wa.me/5211234567890" target="_blank"
+				 class="inline-flex items-center justify-center px-12 py-5 bg-black text-white text-xs font-bold tracking-[0.25em] uppercase
+						border border-lux-gold/60 hover:border-lux-gold hover:bg-lux-gold hover:text-black transition-all shadow-glow-gold">
+				<i class="fa-brands fa-whatsapp mr-3 text-lg"></i>
+				Contactar ahora
+			  </a>
+
+			  <a href="#packages"
+				 class="inline-flex items-center justify-center px-12 py-5 bg-white/10 text-white text-xs font-bold tracking-[0.25em] uppercase
+						border border-white/15 hover:border-white/40 hover:bg-white/20 transition-all">
+				Ver paquetes
+				<i class="fa-solid fa-arrow-right ml-3"></i>
+			  </a>
+			</div>
+
+			<!-- Trust chips -->
+			<div class="mt-10 flex flex-wrap gap-2 justify-center text-[10px] uppercase tracking-widest text-white/60">
+			  <span class="px-3 py-2 border border-white/10 bg-black/30">+18</span>
+			  <span class="px-3 py-2 border border-white/10 bg-black/30">CDMX y Zona Metropolitana</span>
+			  <span class="px-3 py-2 border border-white/10 bg-black/30">Respuesta inmediata</span>
+			</div>
+		  </div>
+		</section>
+
+	
+	
 </main>
-    <!-- FOOTER -->
+<!-- AVISO DE PRIVACIDAD -->
+		<section id="privacy" class="py-28 bg-[#0a0a0a] text-white border-t border-white/5">
+		  <div class="max-w-6xl mx-auto px-6">
+			<span class="text-lux-gold text-xs font-bold tracking-[0.4em] uppercase block mb-3">Legal</span>
+			<h2 class="text-3xl md:text-5xl font-serif italic mb-6">Aviso de Privacidad</h2>
+
+			<p class="text-gray-400 text-sm leading-relaxed max-w-3xl">
+			  Este es un texto base para la landing. El responsable del tratamiento de datos es <strong class="text-white">STRIPPERSHYM</strong>.
+			  Usamos tu información únicamente para atender tu solicitud, cotizar y coordinar el servicio.
+			  Recomendación sana: revisarlo con tu cliente (o su abogado) para dejarlo perfecto.
+			</p>
+
+			<div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-10">
+			  <div class="border border-white/10 bg-black/20 p-6">
+				<h3 class="text-white font-bold tracking-widest uppercase text-[10px] mb-2">Datos que recabamos</h3>
+				<p class="text-gray-400 text-sm">
+				  Nombre (si lo proporcionas), teléfono, ciudad/zona del evento, fecha y mensajes relacionados a tu solicitud.
+				</p>
+			  </div>
+
+			  <div class="border border-white/10 bg-black/20 p-6">
+				<h3 class="text-white font-bold tracking-widest uppercase text-[10px] mb-2">Finalidad</h3>
+				<p class="text-gray-400 text-sm">
+				  Contactarte, cotizar, confirmar disponibilidad, coordinar logística y dar seguimiento a tu atención.
+				</p>
+			  </div>
+
+			  <div class="border border-white/10 bg-black/20 p-6">
+				<h3 class="text-white font-bold tracking-widest uppercase text-[10px] mb-2">Canales y terceros</h3>
+				<p class="text-gray-400 text-sm">
+				  Podemos comunicarnos por WhatsApp o teléfono. Tus mensajes se procesan bajo las políticas de esas plataformas.
+				</p>
+			  </div>
+
+			  <div class="border border-white/10 bg-black/20 p-6">
+				<h3 class="text-white font-bold tracking-widest uppercase text-[10px] mb-2">Derechos ARCO</h3>
+				<p class="text-gray-400 text-sm">
+				  Puedes solicitar acceso, rectificación, cancelación u oposición. Contáctanos por WhatsApp o el medio indicado por el responsable.
+				</p>
+			  </div>
+			</div>
+
+			<p class="text-gray-700 text-xs mt-10 uppercase tracking-widest">
+			  Última actualización: 2026 • Texto base informativo
+			</p>
+		  </div>
+		</section>
+		  
+
+  <!-- FOOTER -->
     <footer class="bg-black text-white py-16 px-6 border-t border-gray-900">
         <div class="max-w-4xl mx-auto flex flex-col items-center gap-8 text-center">
              <img src="img/logo.png" alt="Logo" class="h-10 w-auto logo-filter opacity-60">
@@ -939,6 +1344,15 @@
                 <span>• Show Sensual</span>
                 <span class="text-lux-red font-bold">• NO SEXO</span>
              </div>
+			 
+			 <nav class="w-full max-w-4xl mx-auto border-y border-white/10 py-6 flex flex-col md:flex-row items-center justify-center gap-6 text-[10px] uppercase tracking-[0.35em]">
+				  <a href="#packages" class="text-gray-600 hover:text-lux-gold transition-colors">Paquetes</a>
+				  <a href="#videos" class="text-gray-600 hover:text-lux-gold transition-colors">Videos</a>
+				  <a href="#faq" class="text-gray-600 hover:text-lux-gold transition-colors">FAQ</a>
+				  <a href="#contact" class="text-gray-600 hover:text-lux-gold transition-colors">Contacto</a>
+				  <a href="#privacy" class="text-gray-600 hover:text-lux-gold transition-colors">Privacidad</a>
+				</nav>
+
 
              <div class="flex gap-8 text-2xl pt-4">
                 <a href="#" class="text-gray-600 hover:text-lux-gold transition-colors"><i class="fa-brands fa-facebook-f"></i></a>
