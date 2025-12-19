@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Preguntas frecuentes | StripersHyM</title>
+
+  <!-- Fonts + Icons (igual que tu landing) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Prata&family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- Tailwind (si tu landing lo usa así) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Si tú tienes tailwind.config en tu index para lux-gold/lux-red,
+       COPIA el mismo <script>tailwind.config = {...}</script> aquí también,
+       porque si no, no existirán text-lux-gold, etc. -->
+</head>
+
+<body class="bg-black text-white">
+
+  <header class="max-w-6xl mx-auto px-6 py-8 flex items-center justify-between border-b border-white/5">
+    <a href="index1g.html" class="text-white font-semibold tracking-widest uppercase">StripersHyM</a>
+    <a href="index1g.html" class="text-xs uppercase tracking-[0.25em] text-gray-300 hover:text-white transition">
+      Volver a inicio
+    </a>
+  </header>
+
+  <!-- Tu FAQ (tal cual) -->
+  <main>
+    <!-- FAQ -->
+    <section id="faq" class="py-28 bg-black text-white">
+      <div class="max-w-6xl mx-auto px-6">
+        <div class="flex items-end justify-between gap-6 mb-10">
+          <div>
+            <span class="text-lux-gold text-xs font-bold tracking-[0.4em] uppercase block mb-3">FAQ</span>
+            <h2 class="text-3xl md:text-5xl font-serif italic text-white">Preguntas frecuentes</h2>
+            <p class="text-gray-500 text-sm mt-3 max-w-2xl">
+              Respuestas claras, sin humo. Toca una pregunta para ver detalles.
+            </p>
+          </div>
+          <p class="text-white/40 text-[10px] uppercase tracking-widest hidden md:block">Toca para abrir</p>
+        </div>
+
+        <div class="space-y-3">
+          <details class="group border border-white/10 bg-black/20 p-5">
+            <summary class="cursor-pointer list-none flex items-center justify-between gap-4">
+              <span class="text-sm md:text-base font-semibold">¿Cómo reservo?</span>
+              <i class="fa-solid fa-plus faq-icon text-lux-gold"></i>
+            </summary>
+            <div class="mt-3 text-gray-400 text-sm leading-relaxed">
+              Escríbenos por WhatsApp con tu fecha, zona y tipo de evento. Se aparta con anticipo y se confirma por mensaje.
+            </div>
+          </details>
+
+          <details class="group border border-white/10 bg-black/20 p-5">
+            <summary class="cursor-pointer list-none flex items-center justify-between gap-4">
+              <span class="text-sm md:text-base font-semibold">¿En qué zonas dan servicio?</span>
+              <i class="fa-solid fa-plus faq-icon text-lux-gold"></i>
+            </summary>
+            <div class="mt-3 text-gray-400 text-sm leading-relaxed">
+              CDMX y zona metropolitana. Otras ciudades se cotizan con presupuesto y logística.
+            </div>
+          </details>
+
+          <details class="group border border-white/10 bg-black/20 p-5">
+            <summary class="cursor-pointer list-none flex items-center justify-between gap-4">
+              <span class="text-sm md:text-base font-semibold">¿Qué incluye el servicio?</span>
+              <i class="fa-solid fa-plus faq-icon text-lux-gold"></i>
+            </summary>
+            <div class="mt-3 text-gray-400 text-sm leading-relaxed">
+              Talento profesional, show/animación según paquete, vestuario temático (si aplica) y opción de fotos.
+            </div>
+          </details>
+
+          <details class="group border border-white/10 bg-black/20 p-5">
+            <summary class="cursor-pointer list-none flex items-center justify-between gap-4">
+              <span class="text-sm md:text-base font-semibold">¿Es para mayores de edad?</span>
+              <i class="fa-solid fa-plus faq-icon text-lux-gold"></i>
+            </summary>
+            <div class="mt-3 text-gray-400 text-sm leading-relaxed">
+              Sí. Entretenimiento adulto +18. (Y lo decimos sin poesía: NO es servicio sexual).
+            </div>
+          </details>
+
+          <details class="group border border-white/10 bg-black/20 p-5">
+            <summary class="cursor-pointer list-none flex items-center justify-between gap-4">
+              <span class="text-sm md:text-base font-semibold">¿Cómo funcionan cambios o cancelaciones?</span>
+              <i class="fa-solid fa-plus faq-icon text-lux-gold"></i>
+            </summary>
+            <div class="mt-3 text-gray-400 text-sm leading-relaxed">
+              Depende de la anticipación y disponibilidad. Lo ideal: avisar lo antes posible para reprogramar.
+            </div>
+          </details>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="border-t border-white/5 py-10 text-center text-xs text-gray-500">
+    © <span id="y"></span> StripersHyM
+  </footer>
+
+  <script>
+    document.getElementById('y').textContent = new Date().getFullYear();
+  </script>
+
+</body>
+</html>

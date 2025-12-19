@@ -79,6 +79,63 @@
 		  gtag('js', new Date());
 		  gtag('config', 'G-XXXXXXX');
 		</script>
+		
+					<script type="application/ld+json">
+			{
+			  "@context": "https://schema.org",
+			  "@graph": [
+				{
+				  "@type": "WebSite",
+				  "@id": "https://strippershym-mexico.com.mx/#website",
+				  "url": "https://strippershym-mexico.com.mx/",
+				  "name": "STRIPPERSHYM",
+				  "inLanguage": "es-MX",
+				  "potentialAction": {
+					"@type": "SearchAction",
+					"target": "https://strippershym-mexico.com.mx/?q={search_term_string}",
+					"query-input": "required name=search_term_string"
+				  }
+				},
+				{
+				  "@type": "WebPage",
+				  "@id": "https://strippershym-mexico.com.mx/#webpage",
+				  "url": "https://strippershym-mexico.com.mx/",
+				  "name": "Agencia de entretenimiento para eventos | STRIPPERSHYM",
+				  "isPartOf": { "@id": "https://strippershym-mexico.com.mx/#website" },
+				  "inLanguage": "es-MX"
+				},
+				{
+				  "@type": "EntertainmentBusiness",
+				  "@id": "https://strippershym-mexico.com.mx/#business",
+				  "name": "STRIPPERSHYM",
+				  "url": "https://strippershym-mexico.com.mx/",
+				  "image": "https://strippershym-mexico.com.mx/img/og-cover.jpg",
+				  "telephone": "+525520737605",
+				  "priceRange": "$$",
+				  "areaServed": [
+					{ "@type": "AdministrativeArea", "name": "Ciudad de México" },
+					{ "@type": "AdministrativeArea", "name": "Estado de México" },
+					{ "@type": "AdministrativeArea", "name": "Toluca" },
+					{ "@type": "AdministrativeArea", "name": "Pachuca" },
+					{ "@type": "AdministrativeArea", "name": "Puebla" }
+				  ],
+				  "contactPoint": [{
+					"@type": "ContactPoint",
+					"contactType": "customer service",
+					"telephone": "+525520737605",
+					"availableLanguage": ["es-MX"]
+				  }],
+				  
+				  "makesOffer": [{
+					"@type": "Offer",
+					"name": "Servicios de entretenimiento para eventos",
+					"availability": "https://schema.org/InStock",
+					"url": "https://strippershym-mexico.com.mx/#packages"
+				  }]
+				}
+			  ]
+			}
+			</script>
 
     <style>
         body {
@@ -285,6 +342,7 @@
 			.reserve-glow:hover::before{ opacity:.7; }
 			.reserve-glow:hover::after{ transform: translateX(260%) skewX(-18deg); }
 
+	  
 			@keyframes subtlePulse {
 			  0%,100% { box-shadow: 0 0 0 rgba(212,175,55,.0), 0 0 20px rgba(179,0,0,.0); }
 			  50%     { box-shadow: 0 0 18px rgba(212,175,55,.22), 0 0 26px rgba(179,0,0,.18); }
@@ -420,6 +478,9 @@
 
 
     </style>
+	
+	
+	
 </head>
 
 <body class="antialiased selection:bg-lux-gold selection:text-black font-sans">
@@ -558,7 +619,7 @@
         <div class="max-w-6xl mx-auto px-6 flex flex-col md:flex-row gap-16 items-start">
             <div class="w-full md:w-1/3">
                 <span class="text-lux-red text-xs font-bold tracking-editorial block mb-4 flex items-center gap-2">
-                    <span class="w-8 h-[2px] bg-lux-red"></span> AGENCIA HYM
+                    <span class="w-8 h-[2px] bg-lux-red"></span> AGENCIA DE STRIPPERS HYM
                 </span>
                 <!-- AJUSTE 1: Títulos responsivos -->
                 <h2 class="text-3xl md:text-5xl font-serif leading-tight mb-6 text-white">
@@ -583,7 +644,7 @@
 		  <div class="border border-white/10 bg-black/20 p-6">
 			<h3 class="text-white font-bold tracking-widest uppercase text-[10px] mb-3">Zonas de servicio</h3>
 			<p class="text-gray-400 leading-relaxed">
-			  CDMX, Zona Metropolitana, Estado de México, Toluca, Pachuca y Puebla (otras ciudades con presupuesto).
+			  Ciudad de México, Estado de México, Toluca, Pachuca y Puebla (otras ciudades previa cotización).
 			</p>
 		  </div>
 		  <div class="border border-white/10 bg-black/20 p-6">
@@ -607,7 +668,7 @@
                     <!-- AJUSTE 1: Títulos responsivos -->
                     <h2 class="text-3xl md:text-4xl font-serif text-white italic">ELLOS</h2>
 					<p class="text-gray-500 text-sm max-w-xl mt-2">
-					  Strippers profesionales para despedidas de soltera, eventos, antros, bares, fiestas, cumpleaños. Toca un perfil para ver detalles.
+					  Strippers profesionales para despedidas de soltera, eventos, antros, bares, fiestas, cumpleaños, reuniones de chicas. Toca un perfil para ver detalles.
 					</p>
                 </div>
                 <div class="text-white/50 text-xs uppercase tracking-widest"><i class="fa-solid fa-arrows-left-right mr-2"></i> Desliza</div>
@@ -652,7 +713,8 @@
         <div class="relative w-full h-full flex items-center justify-center">
             <img id="lightbox-img" src="" class="max-w-full max-h-full object-contain pointer-events-auto shadow-2xl">
             
-            <!-- Caption -->
+            
+		 <!-- Caption -->
             <div class="absolute bottom-10 left-0 w-full text-center pointer-events-none">
                 <p id="lightbox-caption" class="text-xl font-serif italic text-white drop-shadow-lg"></p>
                 <p class="text-lux-gold text-[10px] tracking-[0.3em] uppercase mt-2">Desliza para ver más</p>
@@ -689,7 +751,7 @@
                         <div class="absolute top-4 left-4 z-30"><button class="toggle-btn w-10 h-10 rounded-full border border-white/30 bg-black/60 text-white flex items-center justify-center text-xl hover:bg-white hover:text-black">+</button></div>
                         
                         <div class="absolute bottom-6 left-6 z-10 pointer-events-none">
-                            <span class="text-lux-gold text-[10px] uppercase tracking-[0.2em] font-bold">Básico</span>
+                            <span class="text-lux-gold text-[10px] uppercase tracking-[0.2em] font-bold">Sencillo</span>
                             <h3 class="text-3xl font-serif text-white italic">Paquete 1</h3>
                         </div>
 
@@ -706,7 +768,7 @@
                                 <li class="flex gap-2"><i class="fa-solid fa-check text-lux-gold"></i> Fotos con Stripper</li>
                                 <li class="flex gap-2"><i class="fa-solid fa-check text-lux-gold"></i> Vestuario fantasía</li>
                             </ul>
-                            <a href="https://wa.me/5211234567890?text=Info%20Un%20Guerrero" class="w-full py-4 bg-white text-black text-center text-xs font-bold uppercase tracking-widest hover:bg-lux-gold transition-colors">Cotizar</a>
+                            <a href="https://wa.me/525520737605?text=Info%20Un%20Guerrero" class="w-full py-4 bg-white text-black text-center text-xs font-bold uppercase tracking-widest hover:bg-lux-gold transition-colors">Reservar</a>
                         </div>
                     </div>
 
@@ -717,7 +779,7 @@
                         <div class="absolute top-4 left-4 z-30"><button class="toggle-btn w-10 h-10 rounded-full border border-lux-gold bg-black/60 text-lux-gold flex items-center justify-center text-xl hover:bg-lux-gold hover:text-black">+</button></div>
                         
                         <div class="absolute bottom-6 left-6 z-10 pointer-events-none">
-                            <span class="text-lux-gold text-[10px] uppercase tracking-[0.2em] font-bold">VIP</span>
+                            <span class="text-lux-gold text-[10px] uppercase tracking-[0.2em] font-bold">Doble o Nada</span>
                             <h3 class="text-3xl font-serif text-white italic">Paquete 2</h3>
                         </div>
 
@@ -726,15 +788,15 @@
                             <div class="w-10 h-[2px] bg-lux-red mb-6"></div>
                             <ul class="text-xs text-gray-300 space-y-3 mb-8 font-medium">
                                 <li class="flex gap-2"><i class="fa-solid fa-star text-lux-red"></i> 2 Strippers Profesionales</li>
-                                <li class="flex gap-2"><i class="fa-solid fa-star text-lux-red"></i> 1 hr 15 min show</li>
+                                <li class="flex gap-2"><i class="fa-solid fa-star text-lux-red"></i> 1 hr 15 min show continuo</li>
                                 <li class="flex gap-2"><i class="fa-solid fa-star text-lux-red"></i> Show baile sensual</li>
                                 <li class="flex gap-2"><i class="fa-solid fa-star text-lux-red"></i> Show muy dinámico</li>
-                                <li class="flex gap-2"><i class="fa-solid fa-star text-lux-red"></i> Animación evento</li>
+                                <li class="flex gap-2"><i class="fa-solid fa-star text-lux-red"></i> Animación del evento</li>
                                 <li class="flex gap-2"><i class="fa-solid fa-star text-lux-red"></i> (6) Concurso y Juegos</li>
-                                <li class="flex gap-2"><i class="fa-solid fa-star text-lux-red"></i> Fotos con Stripper</li>
-                                <li class="flex gap-2"><i class="fa-solid fa-star text-lux-red"></i> Vestuario fantasía</li>
+                                <li class="flex gap-2"><i class="fa-solid fa-star text-lux-red"></i> Fotos con el Stripper</li>
+                                <li class="flex gap-2"><i class="fa-solid fa-star text-lux-red"></i> Vestuario de fantasía</li>
                             </ul>
-                            <a href="https://wa.me/5211234567890?text=Info%20Par%20de%20Ases" class="w-full py-4 bg-lux-gold text-black text-center text-xs font-bold uppercase tracking-widest hover:bg-white transition-colors">Cotizar VIP</a>
+                            <a href="https://wa.me/525520737605?text=Info%20Par%20de%20Ases" class="w-full py-4 bg-lux-gold text-black text-center text-xs font-bold uppercase tracking-widest hover:bg-white transition-colors">Reservar</a>
                         </div>
                     </div>
 
@@ -745,7 +807,7 @@
                         <div class="absolute top-4 left-4 z-30"><button class="toggle-btn w-10 h-10 rounded-full border border-white/30 bg-black/60 text-white flex items-center justify-center text-xl hover:bg-white hover:text-black">+</button></div>
                         
                         <div class="absolute bottom-6 left-6 z-10 pointer-events-none">
-                            <span class="text-lux-gold text-[10px] uppercase tracking-[0.2em] font-bold">Premium</span>
+                            <span class="text-lux-gold text-[10px] uppercase tracking-[0.2em] font-bold">Los 3 Mosqueteros</span>
                             <h3 class="text-3xl font-serif text-white italic">Paquete 3</h3>
                         </div>
 
@@ -753,15 +815,16 @@
                             <h4 class="text-2xl font-serif italic text-white mb-2">3 Mosqueteros</h4>
                             <div class="w-10 h-[2px] bg-lux-gold mb-6"></div>
                             <ul class="text-xs text-gray-300 space-y-3 mb-8 font-medium">
-                                <li class="flex gap-2"><i class="fa-solid fa-check text-lux-gold"></i> 3 Talentos de Élite</li>
-                                <li class="flex gap-2"><i class="fa-solid fa-check text-lux-gold"></i> 1 hr 30 min show</li>
+                                <li class="flex gap-2"><i class="fa-solid fa-check text-lux-gold"></i> 3 Strippers Profesionales</li>
+                                <li class="flex gap-2"><i class="fa-solid fa-check text-lux-gold"></i> 1 hr 30 min de show continuo</li>
                                 <li class="flex gap-2"><i class="fa-solid fa-check text-lux-gold"></i> Show baile sensual</li>
                                 <li class="flex gap-2"><i class="fa-solid fa-check text-lux-gold"></i> Show muy dinámico</li>
-                                <li class="flex gap-2"><i class="fa-solid fa-check text-lux-gold"></i> Animación evento</li>
+                                <li class="flex gap-2"><i class="fa-solid fa-check text-lux-gold"></i> Animación del evento</li>
                                 <li class="flex gap-2"><i class="fa-solid fa-check text-lux-gold"></i> (8) Concurso y Juegos</li>
-                                <li class="flex gap-2"><i class="fa-solid fa-check text-lux-gold"></i> Fotos con Stripper</li>
-                            </ul>
-                            <a href="https://wa.me/5211234567890?text=Info%20Trio%20Salvaje" class="w-full py-4 bg-white text-black text-center text-xs font-bold uppercase tracking-widest hover:bg-lux-gold transition-colors">Cotizar</a>
+                                <li class="flex gap-2"><i class="fa-solid fa-check text-lux-gold"></i> Fotos con el Stripper</li>
+                                <li class="flex gap-2"><i class="fa-solid fa-check text-lux-gold"></i> Vestuario de Fantasía</li>
+							</ul>
+                            <a href="https://wa.me/525520737605?text=Info%20Trio%20Salvaje" class="w-full py-4 bg-white text-black text-center text-xs font-bold uppercase tracking-widest hover:bg-lux-gold transition-colors">Reservar</a>
                         </div>
                     </div>
 
@@ -772,22 +835,25 @@
                         <div class="absolute top-4 left-4 z-30"><button class="toggle-btn w-10 h-10 rounded-full border border-white/30 bg-black/60 text-white flex items-center justify-center text-xl hover:bg-white hover:text-black">+</button></div>
                         
                         <div class="absolute bottom-6 left-6 z-10 pointer-events-none">
-                            <span class="text-lux-gold text-[10px] uppercase tracking-[0.2em] font-bold">Fun</span>
+                            <span class="text-lux-gold text-[10px] uppercase tracking-[0.2em] font-bold">Animador Profesional</span>
                             <h3 class="text-3xl font-serif text-white italic">Paquete Rías</h3>
                         </div>
 
                         <div class="info-panel">
-                            <h4 class="text-2xl font-serif italic text-white mb-2">Animador Pro</h4>
+                            <h4 class="text-2xl font-serif italic text-white mb-2">Animador Profesional</h4>
                             <div class="w-10 h-[2px] bg-lux-gold mb-6"></div>
                             <ul class="text-xs text-gray-300 space-y-3 mb-8 font-medium">
-                                <li class="flex gap-2"><i class="fa-solid fa-check text-lux-gold"></i> 1 Stripper (H/M)</li>
-                                <li class="flex gap-2"><i class="fa-solid fa-check text-lux-gold"></i> 1 Animador Pro</li>
+                                <li class="flex gap-2"><i class="fa-solid fa-check text-lux-gold"></i> 1 Stripper (Hombre o Mujer)</li>
+                                <li class="flex gap-2"><i class="fa-solid fa-check text-lux-gold"></i> 1 Animador (animando el evento en todo momento)</li>
                                 <li class="flex gap-2"><i class="fa-solid fa-check text-lux-gold"></i> 1 hr 30 min show</li>
-                                <li class="flex gap-2"><i class="fa-solid fa-check text-lux-gold"></i> Show Animación 100%</li>
-                                <li class="flex gap-2"><i class="fa-solid fa-check text-lux-gold"></i> Show baile sensual</li>
-                                <li class="flex gap-2"><i class="fa-solid fa-check text-lux-gold"></i> Juegos y dinámicas</li>
-                            </ul>
-                            <a href="https://wa.me/5211234567890?text=Info%20Trio%20Salvaje" class="w-full py-4 bg-white text-black text-center text-xs font-bold uppercase tracking-widest hover:bg-lux-gold transition-colors">Cotizar</a>
+                                <li class="flex gap-2"><i class="fa-solid fa-check text-lux-gold"></i> Show de Animación 100% profesionales</li>
+                                <li class="flex gap-2"><i class="fa-solid fa-check text-lux-gold"></i> Show de baile sensual</li>
+                                <li class="flex gap-2"><i class="fa-solid fa-check text-lux-gold"></i> Juegos, concursos y dinámicas</li>
+                                <li class="flex gap-2"><i class="fa-solid fa-check text-lux-gold"></i> Fotografías con el striper</li>
+							    <li class="flex gap-2"><i class="fa-solid fa-check text-lux-gold"></i> Vestuario profesional</li>
+							    <li class="flex gap-2"><i class="fa-solid fa-star text-lux-gold"></i> CHICA O CHICO EXTRA $1500</li>
+							</ul>
+                            <a href="https://wa.me/525520737605?text=Info%20Trio%20Salvaje" class="w-full py-4 bg-white text-black text-center text-xs font-bold uppercase tracking-widest hover:bg-lux-gold transition-colors">Reservar</a>
                         </div>
                     </div>
                 </div>
@@ -800,20 +866,22 @@
                         <div class="price-ribbon">$2,000</div>
                         <div class="absolute top-4 left-4 z-30"><button class="toggle-btn w-10 h-10 rounded-full border border-white/30 bg-black/60 text-white flex items-center justify-center text-xl hover:bg-white hover:text-black">+</button></div>
                         <div class="absolute bottom-6 left-6 z-10 pointer-events-none">
-                            <span class="text-lux-gold text-[10px] uppercase tracking-[0.2em] font-bold">Básico</span>
+                            <span class="text-lux-gold text-[10px] uppercase tracking-[0.2em] font-bold">Sencillo</span>
                             <h3 class="text-3xl font-serif text-white italic">Paquete 1</h3>
                         </div>
                         <div class="info-panel">
                             <h4 class="text-2xl font-serif italic text-white mb-2">Sencillo</h4>
                             <div class="w-10 h-[2px] bg-lux-gold mb-6"></div>
                             <ul class="text-xs text-gray-300 space-y-3 mb-8 font-medium">
-                                <li class="flex gap-2"><i class="fa-solid fa-check text-lux-gold"></i> 1 Bailarina Exclusiva</li>
-                                <li class="flex gap-2"><i class="fa-solid fa-check text-lux-gold"></i> 45 min show</li>
-                                <li class="flex gap-2"><i class="fa-solid fa-check text-lux-gold"></i> Baile Sensual</li>
-                                <li class="flex gap-2"><i class="fa-solid fa-check text-lux-gold"></i> (2) Concurso y Juegos</li>
-                                <li class="flex gap-2"><i class="fa-solid fa-check text-lux-gold"></i> Fotografías</li>
+                                <li class="flex gap-2"><i class="fa-solid fa-check text-lux-gold"></i> 1 Stripper Mujer Profesional</li>
+                                <li class="flex gap-2"><i class="fa-solid fa-check text-lux-gold"></i> 45 min de show continuo</li>
+                                <li class="flex gap-2"><i class="fa-solid fa-check text-lux-gold"></i> Show de baile sensual</li>
+                                <li class="flex gap-2"><i class="fa-solid fa-check text-lux-gold"></i> Show muy dinámico</li>
+								<li class="flex gap-2"><i class="fa-solid fa-check text-lux-gold"></i> Animación del evento</li>
+								<li class="flex gap-2"><i class="fa-solid fa-check text-lux-gold"></i> (2)Concurso y Juegos</li>
+                                <li class="flex gap-2"><i class="fa-solid fa-check text-lux-gold"></i> Fotografías con la Stripper</li>
                             </ul>
-                            <a href="https://wa.me/5211234567890?text=Info%20Una%20Princesa" class="w-full py-4 bg-white text-black text-center text-xs font-bold uppercase tracking-widest hover:bg-lux-gold transition-colors">Cotizar</a>
+                            <a href="https://wa.me/525520737605?text=Info%20Una%20Princesa" class="w-full py-4 bg-white text-black text-center text-xs font-bold uppercase tracking-widest hover:bg-lux-gold transition-colors">Reservar</a>
                         </div>
                     </div>
 
@@ -823,20 +891,22 @@
                         <div class="price-ribbon price-ribbon-red">$3,500</div>
                         <div class="absolute top-4 left-4 z-30"><button class="toggle-btn w-10 h-10 rounded-full border border-lux-gold bg-black/60 text-lux-gold flex items-center justify-center text-xl hover:bg-lux-gold hover:text-black">+</button></div>
                         <div class="absolute bottom-6 left-6 z-10 pointer-events-none">
-                            <span class="text-lux-gold text-[10px] uppercase tracking-[0.2em] font-bold">VIP</span>
+                            <span class="text-lux-gold text-[10px] uppercase tracking-[0.2em] font-bold">Doble o Nada</span>
                             <h3 class="text-3xl font-serif text-white italic">Paquete 2</h3>
                         </div>
                         <div class="info-panel border-t-2 border-lux-gold">
                             <h4 class="text-2xl font-serif italic text-lux-gold mb-2">Doble o Nada</h4>
                             <div class="w-10 h-[2px] bg-lux-red mb-6"></div>
                             <ul class="text-xs text-gray-300 space-y-3 mb-8 font-medium">
-                                <li class="flex gap-2"><i class="fa-solid fa-star text-lux-red"></i> 2 Modelos Pro</li>
-                                <li class="flex gap-2"><i class="fa-solid fa-star text-lux-red"></i> 1 hora show</li>
-                                <li class="flex gap-2"><i class="fa-solid fa-star text-lux-red"></i> Baile Sensual</li>
-                                <li class="flex gap-2"><i class="fa-solid fa-star text-lux-red"></i> (4) Concursos</li>
-                                <li class="flex gap-2"><i class="fa-solid fa-star text-lux-red"></i> Fotografías</li>
+                                <li class="flex gap-2"><i class="fa-solid fa-star text-lux-red"></i> 2 Strippers Mujeres Profesionales</li>
+                                <li class="flex gap-2"><i class="fa-solid fa-star text-lux-red"></i> 1 hora de show continuo</li>
+                                <li class="flex gap-2"><i class="fa-solid fa-star text-lux-red"></i> Show de Baile Sensual</li>
+                                <li class="flex gap-2"><i class="fa-solid fa-star text-lux-red"></i> Show muy dinámico</li>
+                                <li class="flex gap-2"><i class="fa-solid fa-star text-lux-red"></i> Animación del Evento</li>
+                                <li class="flex gap-2"><i class="fa-solid fa-star text-lux-red"></i> (4)Concursos y Juegos</li>
+                                <li class="flex gap-2"><i class="fa-solid fa-star text-lux-red"></i> Fotografías con las Strippers</li>
                             </ul>
-                            <a href="https://wa.me/5211234567890?text=Info%20Duo%20Ensueño" class="w-full py-4 bg-lux-gold text-black text-center text-xs font-bold uppercase tracking-widest hover:bg-white transition-colors">Cotizar VIP</a>
+                            <a href="https://wa.me/525520737605?text=Info%20Duo%20Ensueño" class="w-full py-4 bg-lux-gold text-black text-center text-xs font-bold uppercase tracking-widest hover:bg-white transition-colors">Reservar</a>
                         </div>
                     </div>
 
@@ -846,20 +916,23 @@
                         <div class="price-ribbon">$4,500</div>
                         <div class="absolute top-4 left-4 z-30"><button class="toggle-btn w-10 h-10 rounded-full border border-white/30 bg-black/60 text-white flex items-center justify-center text-xl hover:bg-white hover:text-black">+</button></div>
                         <div class="absolute bottom-6 left-6 z-10 pointer-events-none">
-                            <span class="text-lux-gold text-[10px] uppercase tracking-[0.2em] font-bold">Premium</span>
+                            <span class="text-lux-gold text-[10px] uppercase tracking-[0.2em] font-bold">Las 3 Mosqueteras</span>
                             <h3 class="text-3xl font-serif text-white italic">Paquete 3</h3>
                         </div>
                         <div class="info-panel">
-                            <h4 class="text-2xl font-serif italic text-white mb-2">3 Mosqueteras</h4>
+                            <h4 class="text-2xl font-serif italic text-white mb-2">Las 3 Mosqueteras</h4>
                             <div class="w-10 h-[2px] bg-lux-gold mb-6"></div>
                             <ul class="text-xs text-gray-300 space-y-3 mb-8 font-medium">
-                                <li class="flex gap-2"><i class="fa-solid fa-check text-lux-gold"></i> 3 Modelos Élite</li>
-                                <li class="flex gap-2"><i class="fa-solid fa-check text-lux-gold"></i> 1 hr 15 min show</li>
-                                <li class="flex gap-2"><i class="fa-solid fa-check text-lux-gold"></i> Baile Sensual</li>
-                                <li class="flex gap-2"><i class="fa-solid fa-check text-lux-gold"></i> (6) Concursos</li>
-                                <li class="flex gap-2"><i class="fa-solid fa-check text-lux-gold"></i> Fotografías</li>
+                                <li class="flex gap-2"><i class="fa-solid fa-check text-lux-gold"></i> 3 Strippers Mujeres Profesionales</li>
+                                <li class="flex gap-2"><i class="fa-solid fa-check text-lux-gold"></i> 1 hr 15 min de show continuo</li>
+                                <li class="flex gap-2"><i class="fa-solid fa-check text-lux-gold"></i> Show de Baile Sensual</li>
+                                <li class="flex gap-2"><i class="fa-solid fa-check text-lux-gold"></i> Show muy dinámico</li>
+								<li class="flex gap-2"><i class="fa-solid fa-check text-lux-gold"></i> Animación del Evento</li>
+								<li class="flex gap-2"><i class="fa-solid fa-check text-lux-gold"></i> (6) Concursos y Juegos</li>
+                                <li class="flex gap-2"><i class="fa-solid fa-check text-lux-gold"></i> Fotografías con las strippers</li>
+								<li class="flex gap-2"><i class="fa-solid fa-check text-lux-gold"></i> Vestuario de fantasía</li>
                             </ul>
-                            <a href="https://wa.me/5211234567890?text=Info%20Tres%20Corazones" class="w-full py-4 bg-white text-black text-center text-xs font-bold uppercase tracking-widest hover:bg-lux-gold transition-colors">Cotizar</a>
+                            <a href="https://wa.me/525520737605?text=Info%20Tres%20Corazones" class="w-full py-4 bg-white text-black text-center text-xs font-bold uppercase tracking-widest hover:bg-lux-gold transition-colors">Reservar</a>
                         </div>
                     </div>
                 </div>
@@ -872,20 +945,23 @@
                         <div class="price-ribbon">$3,500</div>
                         <div class="absolute top-4 left-4 z-30"><button class="toggle-btn w-10 h-10 rounded-full border border-white/30 bg-black/60 text-white flex items-center justify-center text-xl hover:bg-white hover:text-black">+</button></div>
                         <div class="absolute bottom-6 left-6 z-10 pointer-events-none">
-                            <span class="text-lux-gold text-[10px] uppercase tracking-[0.2em] font-bold">Mixto</span>
-                            <h3 class="text-3xl font-serif text-white italic">Despedida</h3>
+                            <span class="text-lux-gold text-[10px] uppercase tracking-[0.2em] font-bold">Despedida Mixta</span>
+                            <h3 class="text-3xl font-serif text-white italic">Paquete 1</h3>
                         </div>
                         <div class="info-panel">
-                            <h4 class="text-2xl font-serif italic text-white mb-2">Él y Ella</h4>
+                            <h4 class="text-2xl font-serif italic text-white mb-2">Despedida Mixta</h4>
                             <div class="w-10 h-[2px] bg-lux-gold mb-6"></div>
                             <ul class="text-xs text-gray-300 space-y-3 mb-8 font-medium">
-                                <li class="flex gap-2"><i class="fa-solid fa-check text-lux-gold"></i> 1 Stripper (H) + 1 Stripper (M)</li>
-                                <li class="flex gap-2"><i class="fa-solid fa-check text-lux-gold"></i> 1 hora show</li>
-                                <li class="flex gap-2"><i class="fa-solid fa-check text-lux-gold"></i> Baile Sensual</li>
-                                <li class="flex gap-2"><i class="fa-solid fa-check text-lux-gold"></i> (3) Concursos</li>
+                                <li class="flex gap-2"><i class="fa-solid fa-check text-lux-gold"></i> 2 Strippers Profesionales 1 Hombre y 1 Mujer</li>
+                                <li class="flex gap-2"><i class="fa-solid fa-check text-lux-gold"></i> 1 hora de show continuo</li>
+                                <li class="flex gap-2"><i class="fa-solid fa-check text-lux-gold"></i> Show de Baile Sensual</li>
+                                <li class="flex gap-2"><i class="fa-solid fa-check text-lux-gold"></i> Show muy dinámico</li>
+                                <li class="flex gap-2"><i class="fa-solid fa-check text-lux-gold"></i> Animación del evento</li>
+                                <li class="flex gap-2"><i class="fa-solid fa-check text-lux-gold"></i> (3) Concursos y Juegos</li>
+                                <li class="flex gap-2"><i class="fa-solid fa-check text-lux-gold"></i> Fotografías con los Strippers</li>
                                 <li class="flex gap-2"><i class="fa-solid fa-check text-lux-gold"></i> Vestuario fantasía</li>
                             </ul>
-                            <a href="https://wa.me/5211234567890?text=Info%20Stripper%20Y%20Payaso" class="w-full py-4 bg-white text-black text-center text-xs font-bold uppercase tracking-widest hover:bg-lux-gold transition-colors">Cotizar</a>
+                            <a href="https://wa.me/525520737605?text=Info%20Stripper%20Y%20Payaso" class="w-full py-4 bg-white text-black text-center text-xs font-bold uppercase tracking-widest hover:bg-lux-gold transition-colors">Reservar</a>
                         </div>
                     </div>
 
@@ -899,52 +975,115 @@
                             <h3 class="text-3xl font-serif text-white italic">Payaso y Bombón</h3>
                         </div>
                         <div class="info-panel">
-                            <h4 class="text-2xl font-serif italic text-white mb-2">Show Cómico</h4>
+                            <h4 class="text-2xl font-serif italic text-white mb-2">Payaso y Bombón</h4>
                             <div class="w-10 h-[2px] bg-lux-gold mb-6"></div>
-                            <div class="mb-4 text-xs font-bold uppercase text-gray-400 border-b border-gray-700 pb-2">
-                                <p class="flex justify-between">Payaso + 1 Stripper <span class="text-lux-gold">$4,500</span></p>
-                                <p class="flex justify-between mt-1 text-lux-red">Payaso + 2 Strippers <span>$6,000</span></p>
-                            </div>
+											 <div class="mb-4 border-b border-gray-700 pb-3 space-y-3">
+					  <!-- Opción 1 -->
+					  <div class="flex items-start justify-between">
+						<div>
+						  <p class="text-xs font-bold uppercase text-gray-300">Payaso y 1 Stripper</p>
+						  <p class="text-[10px] uppercase tracking-widest text-gray-500 mt-1">
+							(1 Hora 45 min) · (Hombre o Mujer)
+						  </p>
+						</div>
+						<span class="text-lux-gold text-xs font-bold">$4,500</span>
+					  </div>
+
+					  <!-- Opción 2 -->
+					  <div class="flex items-start justify-between">
+						<div>
+						  <p class="text-xs font-bold uppercase text-lux-red">Payaso + 2 Strippers</p>
+						  <p class="text-[10px] uppercase tracking-widest text-gray-500 mt-1">
+							(2 horas) · (Hombres, Mujeres o Mixto)
+						  </p>
+						</div>
+						<span class="text-lux-red text-xs font-bold">$6,000</span>
+					  </div>
+					</div>
+ 
+						  
+						  
                             <ul class="text-xs text-gray-300 space-y-3 mb-8 font-medium">
-                                <li class="flex gap-2"><i class="fa-solid fa-check text-lux-gold"></i> Rutina improvisación</li>
-                                <li class="flex gap-2"><i class="fa-solid fa-check text-lux-gold"></i> Doble sentido / Adultos</li>
-                                <li class="flex gap-2"><i class="fa-solid fa-check text-lux-gold"></i> Animación 100% Pro</li>
-                                <li class="flex gap-2"><i class="fa-solid fa-check text-lux-gold"></i> Juegos y Dinámicas</li>
+                                <li class="flex gap-2"><i class="fa-solid fa-check text-lux-gold"></i> Rutina con improvisación y doble sentido 100% profesional para adultos</li>
+                                <li class="flex gap-2"><i class="fa-solid fa-check text-lux-gold"></i> Bastante Diversión</li>
+                                <li class="flex gap-2"><i class="fa-solid fa-check text-lux-gold"></i> Trato cordial y respetuoso</li>
+                                <li class="flex gap-2"><i class="fa-solid fa-check text-lux-gold"></i> Animación del evento 100% profesional</li>
+								<li class="flex gap-2"><i class="fa-solid fa-check text-lux-gold"></i> Show con baile sensual</li>
+								<li class="flex gap-2"><i class="fa-solid fa-check text-lux-gold"></i> Juegos, concursos y dinámicas</li>
+								<li class="flex gap-2"><i class="fa-solid fa-check text-lux-gold"></i> Interacción con l@s festejad@s e invitad@s</li>
+								<li class="flex gap-2"><i class="fa-solid fa-check text-lux-gold"></i> Caracterización con vestuario profesional</li>
+								<li class="flex gap-2"><i class="fa-solid fa-check text-lux-gold"></i> Música para ambientar</li>
                             </ul>
-                            <a href="https://wa.me/5211234567890?text=Info%20Show%20Comico" class="w-full py-4 bg-white text-black text-center text-xs font-bold uppercase tracking-widest hover:bg-lux-gold transition-colors">Cotizar</a>
+                            <a href="https://wa.me/525520737605?text=Info%20Show%20Comico" class="w-full py-4 bg-white text-black text-center text-xs font-bold uppercase tracking-widest hover:bg-lux-gold transition-colors">Reservar</a>
                         </div>
                     </div>
 
                      <!-- Card 3 -->
-                     <div class="card-reveal group h-[550px] cursor-pointer border-lux-red shadow-glow-red" onclick="toggleCard(this)">
-                        <img src="img/mixto/paq3.png" class="w-full h-full object-cover object-top filter brightness-75 group-hover:brightness-100 transition-all duration-700">
-                        <div class="price-ribbon bg-lux-red">$12,000</div>
-                        <div class="absolute top-4 left-4 z-30"><button class="toggle-btn w-10 h-10 rounded-full border border-lux-red bg-black/60 text-lux-red flex items-center justify-center text-xl hover:bg-lux-red hover:text-white">+</button></div>
-                        <div class="absolute bottom-6 left-6 z-10 pointer-events-none">
-                            <span class="text-lux-red text-[10px] uppercase tracking-[0.2em] font-bold">Exclusive</span>
-                            <h3 class="text-3xl font-serif text-white italic">Fiesta Móvil</h3>
-                        </div>
-                        <div class="info-panel border-t-2 border-lux-red">
-                            <h4 class="text-2xl font-serif italic text-lux-red mb-2">Bus Party</h4>
-                            <div class="w-10 h-[2px] bg-white mb-6"></div>
-                            
-                            <div class="mb-4 text-xs font-bold uppercase text-gray-400 border-b border-gray-700 pb-2">
-                                <p class="flex justify-between">30 Personas <span class="text-lux-red">$12,000</span></p>
-                                <p class="flex justify-between mt-1">45 Personas <span>$15,000</span></p>
-                            </div>
+					 <!-- Card 3 (Fiesta Móvil / Bus Party) -->
+					<div class="card-reveal group h-[550px] cursor-pointer border-lux-red shadow-glow-red" onclick="toggleCard(this)">
+					  <img src="img/mixto/paq3.png"
+						   class="w-full h-full object-cover object-top filter brightness-75 group-hover:brightness-100 transition-all duration-700"
+						   alt="Fiesta Móvil - Bus Party">
 
-                            <ul class="text-xs text-gray-300 space-y-2 mb-6 font-medium">
-                                <li class="flex gap-2"><i class="fa-solid fa-bus text-lux-red"></i> 5 hrs servicio</li>
-                                <li class="flex gap-2"><i class="fa-solid fa-music text-lux-red"></i> Iluminación y DJ</li>
-                                <li class="flex gap-2"><i class="fa-solid fa-glass-cheers text-lux-red"></i> 10 refrescos + 50 vasos</li>
-                                <li class="flex gap-2"><i class="fa-solid fa-user-tie text-lux-red"></i> Mesero incluido</li>
-                                <li class="flex gap-2"><i class="fa-solid fa-location-dot text-lux-red"></i> Punto partida a elegir</li>
-                            </ul>
-                            <p class="text-[9px] text-gray-500 mb-4">* Bebidas alcohólicas por cuenta del cliente.</p>
-                            <a href="https://wa.me/5211234567890?text=Info%20Fiestabus" class="w-full py-4 bg-lux-red text-white text-center text-xs font-bold uppercase tracking-widest hover:bg-white hover:text-lux-red transition-colors">Cotizar Bus</a>
-                        </div>
-                    </div>
-                 </div>
+					  <div class="price-ribbon bg-lux-red text-white">$12,000</div>
+
+					  <div class="absolute top-4 left-4 z-30">
+						<button class="toggle-btn w-10 h-10 rounded-full border border-lux-red bg-black/60 text-lux-red flex items-center justify-center text-xl hover:bg-lux-red hover:text-white">
+						  +
+						</button>
+					  </div>
+
+					  <div class="absolute bottom-6 left-6 z-10 pointer-events-none">
+						<span class="text-lux-red text-[10px] uppercase tracking-[0.2em] font-bold">Exclusive</span>
+						<h3 class="text-3xl font-serif text-white italic">Fiesta Móvil</h3>
+					  </div>
+
+					  <div class="info-panel border-t-2 border-lux-red">
+						<h4 class="text-2xl font-serif italic text-lux-red mb-2">Bus Party</h4>
+						<div class="w-10 h-[2px] bg-white mb-6"></div>
+
+						<!-- TEXTO "HAZ TU FIESTA..." -->
+						<div class="mb-5">
+						  <h5 class="text-xl md:text-2xl font-bold text-white leading-tight">
+							¡Haz de tu fiesta algo diferente e inolvidable!
+						  </h5>
+						  <p class="text-sm text-gray-300 mt-2">
+							recorriendo las principales avenidas de la ciudad de México
+						  </p>
+						  <p class="text-xs text-lux-red mt-2 font-semibold">
+							(Incluye show con 1 striper) Opcional
+						  </p>
+						</div>
+
+						<div class="mb-4 text-xs font-bold uppercase text-gray-400 border-b border-gray-700 pb-2">
+						  <p class="flex justify-between">30 Personas <span class="text-lux-red">$12,000</span></p>
+						  <p class="flex justify-between mt-1">45 Personas <span>$15,000</span></p>
+						</div>
+
+						<ul class="text-xs text-gray-300 space-y-2 mb-6 font-medium">
+						  <li class="flex gap-2"><i class="fa-solid fa-bus text-lux-red"></i> 5 hrs de servicio</li>
+						  <li class="flex gap-2"><i class="fa-solid fa-music text-lux-red"></i> Capacidad para 30 y 45 personas</li>
+						  <li class="flex gap-2"><i class="fa-solid fa-glass-cheers text-lux-red"></i> Iluminación en piso y toldo</li>
+						  <li class="flex gap-2"><i class="fa-solid fa-user-tie text-lux-red"></i> 10 refrescos de 3 litros</li>
+						  <li class="flex gap-2"><i class="fa-solid fa-location-dot text-lux-red"></i> 50 vasos fiesta fluorescentes</li>
+						  <li class="flex gap-2"><i class="fa-solid fa-location-dot text-lux-red"></i> 2 bolsas de hielo</li>
+						  <li class="flex gap-2"><i class="fa-solid fa-location-dot text-lux-red"></i> Un mesero</li>
+						  <li class="flex gap-2"><i class="fa-solid fa-location-dot text-lux-red"></i> Un dj que ambientará tu fiesta al gusto y estilo que quieras</li>
+						  <li class="flex gap-2"><i class="fa-solid fa-location-dot text-lux-red"></i> Karaoke</li>
+						  <li class="flex gap-2"><i class="fa-solid fa-location-dot text-lux-red"></i> Punto de partida a elegir</li>
+						</ul>
+
+						<p class="text-[9px] text-gray-500 mb-4">* Bebidas alcohólicas van por cuenta del cliente.</p>
+
+						<a href="https://wa.me/525520737605?text=Info%20Fiestabus"
+						   class="w-full py-4 bg-lux-red text-white text-center text-xs font-bold uppercase tracking-widest hover:bg-white hover:text-lux-red transition-colors">
+						  Reservar
+						</a>
+					  </div>
+					</div>
+
+			 
+				 </div>
 
             </div>
 			
@@ -964,7 +1103,7 @@
 
 				<div class="border border-white/10 p-6 bg-black/20">
 				  <p class="text-[10px] uppercase tracking-widest text-gray-500 mb-2">Zonas</p>
-				  <p class="text-gray-300 text-sm">CDMX y zona metropolitana. Otras ciudades con presupuesto.</p>
+				  <p class="text-gray-300 text-sm">Ciudad de México, Estado de México, Toluca, Pachuca y Puebla (otras ciudades previa cotización).</p>
 				</div>
 
 				<div class="border border-white/10 p-6 bg-black/20">
@@ -1087,138 +1226,93 @@
 		</section>
 
 
-    <!-- INFO SECTION (Gold Grid) -->
-    <section class="py-24 bg-[#0a0a0a] text-white">
-        <div class="max-w-6xl mx-auto px-6">
-            <div class="grid grid-cols-1 md:grid-cols-3 border-t border-b border-lux-gold/30 divide-y md:divide-y-0 md:divide-x divide-lux-gold/30">
-                
-                <!-- Col 1 -->
-                <div class="p-10 text-center hover:bg-black transition-colors group">
-                    <i class="fa-solid fa-diamond text-3xl text-gray-600 group-hover:text-lux-gold mb-6 transition-colors"></i>
-                    <h3 class="text-xl font-serif italic mb-2">Reserva</h3>
-                    <p class="text-[10px] uppercase tracking-widest text-gray-400 mb-6">Aparta con $500 MXN</p>
-                    <p class="text-2xl font-mono text-lux-gold">4152-3139-0107</p>
-                    <p class="text-xs text-gray-500 mt-2">BBVA Bancomer</p>
-                    <p class="text-[10px] text-gray-600 mt-4 tracking-widest uppercase">strippershym-mexico.com.mx</p>
-                </div>
+ <!-- INFO SECTION (Gold Grid) -->
+<section class="py-24 bg-[#0a0a0a] text-white">
+  <div class="max-w-6xl mx-auto px-6">
 
-                <!-- Col 2 -->
-                <div class="p-10 text-center hover:bg-black transition-colors group">
-                    <i class="fa-solid fa-star text-3xl text-gray-600 group-hover:text-lux-red mb-6 transition-colors"></i>
-                    <h3 class="text-xl font-serif italic mb-2">Promociones</h3>
-                    <p class="text-[10px] uppercase tracking-widest text-gray-400 mb-6">Beneficios VIP</p>
-                    <ul class="text-sm space-y-3 font-light text-gray-300">
-                        <li><strong class="text-white">-15% OFF</strong> reservando con 1 mes</li>
-                        <li><strong class="text-lux-gold">Lunes a Jueves:</strong> +20 min show</li>
-                        <li><span class="text-gray-500 text-xs">Servicio Exprés: $1,000 (3 canciones)</span></li>
-                    </ul>
-                </div>
+    <!-- Mini banda "Nota importante" (premium, sin gritar) -->
+    <div class="mb-10 rounded-xl border border-lux-gold/25 bg-black/40 px-6 py-5">
+      <p class="text-[11px] uppercase tracking-[0.28em] text-lux-gold/80 font-semibold">
+        Nota importante
+      </p>
+      <ul class="mt-3 text-sm text-gray-300 space-y-2 leading-relaxed">
+        <li><span class="text-lux-gold">•</span> Los costos van acorde a la calidad del servicio y de los chicos que manejamos.</li>
+        <li><span class="text-lux-gold">•</span> Los costos aplican solo en CDMX y Zona Metropolitana.</li>
+        <li><span class="text-lux-gold">•</span> Hacemos presupuesto para toda la República.</li>
+      </ul>
+    </div>
 
-                <!-- Col 3 -->
-                <div class="p-10 text-center hover:bg-black transition-colors group">
-                    <i class="fa-solid fa-shield-halved text-3xl text-gray-600 group-hover:text-white mb-6 transition-colors"></i>
-                    <h3 class="text-xl font-serif italic mb-2">Garantía</h3>
-                    <p class="text-[10px] uppercase tracking-widest text-gray-400 mb-6">Seguridad Total</p>
-                    <p class="text-sm font-light text-gray-400 leading-relaxed">
-                        Te damos contrato para tu seguridad.<br>
-                        Hacemos presupuesto para toda la República.<br>
-                        Costos aplican CDMX y Zona Metropolitana.
-                    </p>
-                </div>
+    <div class="grid grid-cols-1 md:grid-cols-3 border-t border-b border-lux-gold/30 divide-y md:divide-y-0 md:divide-x divide-lux-gold/30">
 
-            </div>
-        </div>
-    </section>
-	
-	<!-- FAQ -->
-		<section id="faq" class="py-28 bg-black text-white border-t border-white/5">
-		  <div class="max-w-6xl mx-auto px-6">
-			<div class="flex items-end justify-between gap-6 mb-10">
-			  <div>
-				<span class="text-lux-gold text-xs font-bold tracking-[0.4em] uppercase block mb-3">FAQ</span>
-				<h2 class="text-3xl md:text-5xl font-serif italic text-white">Preguntas frecuentes</h2>
-				<p class="text-gray-500 text-sm mt-3 max-w-2xl">
-				  Respuestas claras, sin humo. Toca una pregunta para ver detalles.
-				</p>
-			  </div>
-			  <p class="text-white/40 text-[10px] uppercase tracking-widest hidden md:block">Toca para abrir</p>
-			</div>
+      <!-- Col 1: Reserva / Aparta -->
+      <div class="p-10 text-center hover:bg-black transition-colors group">
+        <i class="fa-solid fa-diamond text-3xl text-gray-600 group-hover:text-lux-gold mb-6 transition-colors"></i>
 
-			<div class="space-y-3">
-			  <details class="group border border-white/10 bg-black/20 p-5">
-				<summary class="cursor-pointer list-none flex items-center justify-between gap-4">
-				  <span class="text-sm md:text-base font-semibold">¿Cómo reservo?</span>
-				  <i class="fa-solid fa-plus faq-icon text-lux-gold"></i>
-				</summary>
-				<div class="mt-3 text-gray-400 text-sm leading-relaxed">
-				  Escríbenos por WhatsApp con tu fecha, zona y tipo de evento. Se aparta con anticipo y se confirma por mensaje.
-				</div>
-			  </details>
+        <h3 class="text-xl font-serif italic mb-2">Reserva</h3>
+        <p class="text-[10px] uppercase tracking-widest text-gray-400 mb-6">
+          Aparta tu fecha con <span class="text-white font-semibold">$500 MXN</span>
+        </p>
 
-			  <details class="group border border-white/10 bg-black/20 p-5">
-				<summary class="cursor-pointer list-none flex items-center justify-between gap-4">
-				  <span class="text-sm md:text-base font-semibold">¿En qué zonas dan servicio?</span>
-				  <i class="fa-solid fa-plus faq-icon text-lux-gold"></i>
-				</summary>
-				<div class="mt-3 text-gray-400 text-sm leading-relaxed">
-				  CDMX y zona metropolitana. Otras ciudades se cotizan con presupuesto y logística.
-				</div>
-			  </details>
+        <div class="inline-flex flex-col items-center gap-1 rounded-lg border border-lux-gold/25 bg-black/40 px-5 py-4">
+          <p class="text-xs uppercase tracking-[0.22em] text-gray-400">BBVA Bancomer</p>
+          <p class="text-2xl font-mono text-lux-gold leading-tight">4152-3139-0107-4323</p>
+         </div>
 
-			  <details class="group border border-white/10 bg-black/20 p-5">
-				<summary class="cursor-pointer list-none flex items-center justify-between gap-4">
-				  <span class="text-sm md:text-base font-semibold">¿Qué incluye el servicio?</span>
-				  <i class="fa-solid fa-plus faq-icon text-lux-gold"></i>
-				</summary>
-				<div class="mt-3 text-gray-400 text-sm leading-relaxed">
-				  Talento profesional, show/animación según paquete, vestuario temático (si aplica) y opción de fotos.
-				</div>
-			  </details>
+        <p class="text-[10px] text-gray-600 mt-6 tracking-widest uppercase">
+          strippershym-mexico.com.mx
+        </p>
+      </div>
 
-			  <details class="group border border-white/10 bg-black/20 p-5">
-				<summary class="cursor-pointer list-none flex items-center justify-between gap-4">
-				  <span class="text-sm md:text-base font-semibold">¿Es para mayores de edad?</span>
-				  <i class="fa-solid fa-plus faq-icon text-lux-gold"></i>
-				</summary>
-				<div class="mt-3 text-gray-400 text-sm leading-relaxed">
-				  Sí. Entretenimiento adulto +18. (Y lo decimos sin poesía: NO es servicio sexual).
-				</div>
-			  </details>
+      <!-- Col 2: Promociones -->
+      <div class="p-10 text-center hover:bg-black transition-colors group">
+        <i class="fa-solid fa-star text-3xl text-gray-600 group-hover:text-lux-red mb-6 transition-colors"></i>
 
-			  <details class="group border border-white/10 bg-black/20 p-5">
-				<summary class="cursor-pointer list-none flex items-center justify-between gap-4">
-				  <span class="text-sm md:text-base font-semibold">¿Cómo funcionan cambios o cancelaciones?</span>
-				  <i class="fa-solid fa-plus faq-icon text-lux-gold"></i>
-				</summary>
-				<div class="mt-3 text-gray-400 text-sm leading-relaxed">
-				  Depende de la anticipación y disponibilidad. Lo ideal: avisar lo antes posible para reprogramar.
-				</div>
-			  </details>
-			</div>
-		  </div>
-		</section>
+        <h3 class="text-xl font-serif italic mb-2">Promociones</h3>
+        <p class="text-[10px] uppercase tracking-widest text-gray-400 mb-6">Beneficios VIP</p>
+
+        <ul class="text-sm space-y-3 font-light text-gray-300 leading-relaxed">
+          <li>
+            <span class="text-white font-semibold">-15% de descuento</span>
+            <span class="text-gray-400"> si agendas tu evento con 1 mes de anticipación.</span>
+          </li>
+          <li>
+            <span class="text-lux-gold font-semibold">Lunes a Jueves</span>
+            <span class="text-gray-400"> te regalamos </span>
+            <span class="text-white font-semibold">+20 min</span>
+            <span class="text-gray-400"> de show.</span>
+          </li>
+          <li class="text-gray-400 pt-2 border-t border-lux-gold/15">
+            Servicio exprés: <span class="text-white font-semibold">$1,000</span> (3 canciones)
+          </li>
+        </ul>
+      </div>
+
+      <!-- Col 3: Garantía -->
+      <div class="p-10 text-center hover:bg-black transition-colors group">
+        <i class="fa-solid fa-shield-halved text-3xl text-gray-600 group-hover:text-white mb-6 transition-colors"></i>
+
+        <h3 class="text-xl font-serif italic mb-2">Garantía</h3>
+        <p class="text-[10px] uppercase tracking-widest text-gray-400 mb-6">Seguridad Total</p>
+
+        <p class="text-sm font-light text-gray-400 leading-relaxed">
+          Calidad en el servicio
+          Hacemos presupuesto para toda la República.<br>
+          Costos aplican CDMX y Zona Metropolitana.
+        </p>
+      </div>
+
+    </div>
+
+    <!-- Línea “keywords” (opcional). Si no quieres SEO visible, bórrala. -->
+    <p class="mt-10 text-center text-[11px] text-gray-600 tracking-wide">
+      Strippers · Striper México · Agencia de Strippers CDMX · Striper · Agencia de Strippers en México
+    </p>
+
+  </div>
+</section>
 
 
-    <!-- CTA SECTION (Marquee) -->
-  <!--  <section id="contact" class="py-32 bg-lux-red overflow-hidden relative flex flex-col items-center justify-center">
-        <div class="absolute inset-0 bg-[url('img/cta.png')] bg-cover bg-center mix-blend-multiply opacity-50"></div>
-        
-        Marquee Background 
-        <div class="absolute inset-0 flex items-center opacity-10 pointer-events-none select-none">
-            <div class="whitespace-nowrap animate-marquee text-[20vh] font-bold font-serif italic text-black leading-none">
-                BOOK NOW  RESERVA AHORA  NO ESPERES  BOOK NOW  RESERVA AHORA  NO ESPERES
-            </div>
-        </div>
-        
-        <div class="relative z-10 text-center px-4">
-             <p class="text-xs tracking-[0.4em] font-bold text-white mb-6 uppercase animate-pulse">Tu fecha, tu evento, tu noche.</p>
-             <h2 class="text-5xl md:text-8xl font-serif text-white mb-10 drop-shadow-2xl">NO ESPERES.</h2>
-             <a href="https://wa.me/5211234567890" target="_blank" class="inline-block px-14 py-6 bg-black text-white text-sm font-bold tracking-[0.25em] uppercase hover:bg-white hover:text-black hover:scale-105 transition-all shadow-2xl border border-black">
-                Contactar Ahora
-            </a>
-            <p class="mt-6 text-white/80 text-xs tracking-widest uppercase">Respuesta inmediata</p>
-        </div>
-    </section> -->
+
 	<!-- CTA SECTION (Premium) -->
 		<section id="contact" class="relative py-28 md:py-32 bg-black overflow-hidden border-t border-white/5">
 		  <!-- Background image -->
@@ -1253,7 +1347,7 @@
 			</p>
 
 			<div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
-			  <a href="https://wa.me/5211234567890" target="_blank"
+			  <a href="https://wa.me/525520737605" target="_blank"
 				 class="inline-flex items-center justify-center px-12 py-5 bg-black text-white text-xs font-bold tracking-[0.25em] uppercase
 						border border-lux-gold/60 hover:border-lux-gold hover:bg-lux-gold hover:text-black transition-all shadow-glow-gold">
 				<i class="fa-brands fa-whatsapp mr-3 text-lg"></i>
@@ -1348,7 +1442,7 @@
 			 <nav class="w-full max-w-4xl mx-auto border-y border-white/10 py-6 flex flex-col md:flex-row items-center justify-center gap-6 text-[10px] uppercase tracking-[0.35em]">
 				  <a href="#packages" class="text-gray-600 hover:text-lux-gold transition-colors">Paquetes</a>
 				  <a href="#videos" class="text-gray-600 hover:text-lux-gold transition-colors">Videos</a>
-				  <a href="#faq" class="text-gray-600 hover:text-lux-gold transition-colors">FAQ</a>
+				  <a href="faq.html" class="text-gray-600 hover:text-lux-gold transition-colors">FAQ</a>
 				  <a href="#contact" class="text-gray-600 hover:text-lux-gold transition-colors">Contacto</a>
 				  <a href="#privacy" class="text-gray-600 hover:text-lux-gold transition-colors">Privacidad</a>
 				</nav>
@@ -1369,7 +1463,7 @@
 	
 
     <!-- FLOATING BUTTONS -->
-    <a href="tel:+521234567890" class="fixed bottom-8 left-8 z-50 w-14 h-14 bg-black text-lux-gold border border-lux-gold rounded-full shadow-glow-gold flex items-center justify-center hover:bg-lux-gold hover:text-black transition-all group">
+    <a href="tel:+525520737605" class="fixed bottom-8 left-8 z-50 w-14 h-14 bg-black text-lux-gold border border-lux-gold rounded-full shadow-glow-gold flex items-center justify-center hover:bg-lux-gold hover:text-black transition-all group">
         <i class="fa-solid fa-phone text-xl group-hover:rotate-12 transition-transform"></i>
     </a>
 
@@ -1383,7 +1477,7 @@
                 ¿Informes?
                 <div class="absolute right-[-4px] top-1/2 -translate-y-1/2 w-2 h-2 bg-lux-gold rotate-45"></div>
             </div>
-            <a href="https://wa.me/5211234567890" target="_blank" class="w-16 h-16 bg-[#25D366] text-white rounded-full shadow-glow-gold flex items-center justify-center hover:scale-110 transition-transform bubble-anim border-2 border-black relative overflow-hidden">
+            <a href="https://wa.me/525520737605" target="_blank" class="w-16 h-16 bg-[#25D366] text-white rounded-full shadow-glow-gold flex items-center justify-center hover:scale-110 transition-transform bubble-anim border-2 border-black relative overflow-hidden">
                 <div class="absolute inset-0 bg-gradient-to-tr from-transparent via-white/30 to-transparent transform -translate-x-full group-hover:translate-x-full transition-transform duration-700"></div>
                 <i class="fa-brands fa-whatsapp text-3xl z-10"></i>
             </a>
@@ -1436,7 +1530,8 @@
         const lightboxImg = document.getElementById('lightbox-img');
         const lightboxCaption = document.getElementById('lightbox-caption');
         
-        let currentLightboxIndex = 0;
+    
+		let currentLightboxIndex = 0;
         let currentLightboxCategory = 'ellos'; // 'ellos' or 'ellas'
         const totalImages = { ellos: 18, ellas: 12 };
 
@@ -1505,8 +1600,10 @@
             const name = currentLightboxCategory === 'ellos' ? 'Elite' : 'Goddess';
             
             lightboxImg.src = `img/${catFolder}/${folder}${currentLightboxIndex}.png`;
-            lightboxCaption.textContent = `${name} ${currentLightboxIndex < 10 ? '0'+currentLightboxIndex : currentLightboxIndex}`;
+             lightboxCaption.textContent = `${name} ${currentLightboxIndex < 10 ? '0'+currentLightboxIndex : currentLightboxIndex}`;
+	
         }
+        
 
         function nextImage() {
             currentLightboxIndex++;
@@ -1743,31 +1840,5 @@
 
     </script>
 	
-	<script type="application/ld+json">
-		{
-		  "@context": "https://schema.org",
-		  "@type": "EntertainmentBusiness",
-		  "name": "STRIPPERSHYM",
-		  "url": "https://strippershym-mexico.com.mx/",
-		  "logo": "https://strippershym-mexico.com.mx/img/logo.png",
-		  "image": "https://strippershym-mexico.com.mx/img/og-cover.jpg",
-		  "description": "Agencia profesional de strippers y bailarinas para despedidas, cumpleaños y eventos en CDMX y zona metropolitana. Servicio exclusivo +18.",
-		  "telephone": "+52 55 2073 7605",
-		  "areaServed": [
-			{ "@type": "City", "name": "Ciudad de México" },
-			{ "@type": "AdministrativeArea", "name": "Estado de México" },
-			{ "@type": "City", "name": "Toluca" },
-			{ "@type": "City", "name": "Pachuca" },
-			{ "@type": "City", "name": "Puebla" }
-		  ],
-		  "priceRange": "$$" //,
-		//  "sameAs": [
-	//		"https://facebook.com/TU_PAGINA",
-		//	"https://instagram.com/TU_PAGINA",
-			//"https://tiktok.com/@TU_PAGINA"
-		  ]
-		}
-</script>
-
 </body>
 </html>
