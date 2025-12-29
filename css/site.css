@@ -1,0 +1,341 @@
+
+        body {
+            background-color: #000000;
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+
+        /* Scrollbar Dorada Fina */
+        ::-webkit-scrollbar { width: 4px; height: 4px; }
+        ::-webkit-scrollbar-track { background: #000; }
+        ::-webkit-scrollbar-thumb { background: #D4AF37; }
+
+        .hide-scroll-bar::-webkit-scrollbar { display: none; }
+        .hide-scroll-bar { -ms-overflow-style: none; scrollbar-width: none; }
+
+      
+        /* --- Acordeón Gallery Styles (Dinámico) --- */
+        .accordion-container {
+            display: flex;
+            overflow-x: auto;
+            padding-bottom: 20px;
+            gap: 2px;
+            scroll-behavior: smooth;
+        }
+        .accordion-item {
+            min-width: 60px; /* Estrecho por defecto */
+            width: 80px;
+            height: 500px;
+            transition: all 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+            position: relative;
+            overflow: hidden;
+            filter: grayscale(100%) brightness(0.6);
+            cursor: pointer;
+            border-right: 1px solid #222;
+            flex-shrink: 0;
+        }
+        .accordion-item:hover, .accordion-item.active {
+            min-width: 300px; /* Expande al hover */
+            filter: grayscale(0%) brightness(1);
+            z-index: 10;
+            border-color: #D4AF37;
+        }
+        .accordion-item .content {
+            opacity: 0;
+            transition: opacity 0.4s ease 0.2s, transform 0.4s ease 0.2s;
+            transform: translateY(20px);
+            background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
+        }
+        .accordion-item:hover .content, .accordion-item.active .content {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* --- Reveal Card Styles --- */
+        .card-reveal {
+            position: relative;
+            overflow: hidden;
+            background-color: #0a0a0a;
+            border: 1px solid #222;
+            transition: all 0.3s ease;
+        }
+        .card-reveal:hover {
+            border-color: #D4AF37;
+            box-shadow: 0 0 15px rgba(212,175,55,0.1);
+        }
+        .card-reveal .info-panel {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.92); /* Casi opaco para leer texto */
+            backdrop-filter: blur(8px);
+            transform: translateY(100%);
+            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+            z-index: 20;
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            overflow-y: auto; /* Por si el texto es largo */
+        }
+        .card-reveal.active .info-panel {
+            transform: translateY(0);
+        }
+        .card-reveal .toggle-btn {
+            transition: transform 0.4s ease, background-color 0.3s;
+        }
+        .card-reveal.active .toggle-btn {
+            transform: rotate(45deg); 
+            background-color: #B30000;
+            color: white;
+            border-color: #B30000;
+        }
+
+        /* --- Utility & Hero --- */
+        .mix-blend-text { mix-blend-mode: overlay; }
+        
+        /* Mobile Menu: Netflix slide-in */
+			#mobile-menu{
+			  opacity: 0;
+			  visibility: hidden;
+			  transform: translateX(100%);
+			  transition: transform .45s cubic-bezier(.16,1,.3,1), opacity .35s ease, visibility .35s ease;
+			  backdrop-filter: blur(14px);
+			}
+			#mobile-menu.menu-open{
+			  opacity: 1;
+			  visibility: visible;
+			  transform: translateX(0);
+			}
+
+			/* Links con underline animado */
+			.menu-link{
+			  position: relative;
+			  display: inline-block;
+			}
+			.menu-link::after{
+			  content:"";
+			  position:absolute;
+			  left:0;
+			  bottom:-10px;
+			  width:0%;
+			  height:2px;
+			  background:#D4AF37;
+			  transition: width .35s ease;
+			  opacity:.9;
+			}
+			.menu-link:hover::after{ width:100%; }
+
+        /* Floating Bubble */
+        .bubble-anim { animation: floatBubble 4s ease-in-out infinite; }
+        @keyframes floatBubble {
+            0%, 100% { transform: translateY(0); box-shadow: 0 0 10px rgba(212,175,55,0.2); }
+            50% { transform: translateY(-8px); box-shadow: 0 0 20px rgba(212,175,55,0.6); }
+        }
+
+        /* Price Ribbon */
+        .price-ribbon {
+            position: absolute;
+            top: 20px;
+            right: 0px;
+            padding: 6px 16px;
+            background: #D4AF37; 
+            color: #000;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+            font-size: 0.9rem;
+            z-index: 20;
+            clip-path: polygon(100% 0, 100% 100%, 0 100%, 10px 50%, 0 0);
+        }
+        .price-ribbon-red { background: #B30000; color: #fff; }
+
+        /* Pestañas */
+        .tab-btn {
+            padding-bottom: 8px;
+            color: #666;
+            transition: all 0.3s;
+            border-bottom: 2px solid transparent;
+        }
+        .tab-btn.active {
+            color: #D4AF37;
+            border-bottom-color: #D4AF37;
+        }
+        
+        /* Corrección de Layout de Pestañas */
+        .hidden-view { display: none !important; }
+        .fade-enter { opacity: 0; transform: translateY(10px); }
+        .fade-enter-active { opacity: 1; transform: translateY(0); transition: opacity 0.5s, transform 0.5s; }
+		
+		/* FAQ / Privacy details */
+			details summary::-webkit-details-marker { display: none; }
+			details[open] .faq-icon { transform: rotate(45deg); }
+			.faq-icon { transition: transform .25s ease; }
+		
+					/* Botón Reservar: brillo premium */
+			.reserve-glow{
+			  position:relative;
+			  overflow:hidden;
+			}
+			.reserve-glow::before{
+			  content:"";
+			  position:absolute;
+			  inset:-2px;
+			  background: radial-gradient(circle at 30% 20%, rgba(212,175,55,.55), transparent 55%),
+						  radial-gradient(circle at 80% 60%, rgba(179,0,0,.35), transparent 60%);
+			  opacity:.35;
+			  filter: blur(10px);
+			  transition: opacity .3s ease;
+			  pointer-events:none;
+			}
+			.reserve-glow::after{
+			  content:"";
+			  position:absolute;
+			  top:-20%;
+			  left:-60%;
+			  width:60%;
+			  height:140%;
+			  background: linear-gradient(120deg, transparent 0%, rgba(255,255,255,.25) 45%, transparent 80%);
+			  transform: translateX(0) skewX(-18deg);
+			  transition: transform .8s ease;
+			  pointer-events:none;
+			}
+			.reserve-glow:hover::before{ opacity:.7; }
+			.reserve-glow:hover::after{ transform: translateX(260%) skewX(-18deg); }
+
+	  
+			@keyframes subtlePulse {
+			  0%,100% { box-shadow: 0 0 0 rgba(212,175,55,.0), 0 0 20px rgba(179,0,0,.0); }
+			  50%     { box-shadow: 0 0 18px rgba(212,175,55,.22), 0 0 26px rgba(179,0,0,.18); }
+			}
+			.reserve-pulse{ animation: subtlePulse 2.8s ease-in-out infinite; }
+			
+			.menu-link-premium{
+				  font-family: 'Montserrat', sans-serif;
+				  font-weight: 700;
+				  letter-spacing: .28em;
+				  text-transform: uppercase;
+				  font-size: 18px;
+				  line-height: 1.1;
+				  color: rgba(255,255,255,.90);
+				}
+				.menu-link-premium:hover{ color:#D4AF37; }
+				
+			
+/* === Mobile menu panel: entramado visible + premium === */
+.menu-panel{
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  background: rgba(0,0,0,.92);
+}
+
+/* Entramado visible (grid) 
+.menu-panel::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  z-index:0;
+
+  background-image:
+    linear-gradient(rgba(255,255,255,0.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.07) 1px, transparent 1px),
+    radial-gradient(circle at 20% 15%, rgba(212,175,55,0.10), transparent 45%),
+    radial-gradient(circle at 85% 85%, rgba(179,0,0,0.08), transparent 55%);
+  background-size: 22px 22px;
+  opacity: .22;
+*/
+
+.menu-panel::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  z-index:0;
+
+  /* GRID MÁS CLARO */
+  background-image:
+    linear-gradient(rgba(255,255,255,0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.08) 1px, transparent 1px),
+    radial-gradient(circle at 20% 15%, rgba(212,175,55,0.16), transparent 45%),
+    radial-gradient(circle at 85% 85%, rgba(179,0,0,0.10), transparent 55%);
+
+  background-size: 26px 26px;
+  opacity: .22;           /* 👈 más visible */
+   filter: blur(0.2px);
+}
+
+
+  /* CLAVE: overlay en negro “desaparece”; screen/normal sí se ve */
+  mix-blend-mode: screen;
+}
+
+/* Vignette suave (no lo mates, que no tape el grid) */
+.menu-panel::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  z-index:1;
+  background: radial-gradient(ellipse at center, transparent 0%, rgba(0,0,0,.55) 70%, rgba(0,0,0,.90) 100%);
+}
+
+.menu-panel > *{ position: relative; z-index:2; }
+.scanline{ z-index:3; }
+					
+					
+
+
+
+
+/* Scanner line */
+.scanline{
+  position: absolute;
+  left: -10%;
+  top: -25%;
+  width: 120%;
+  height: 70px;
+  z-index: 2;
+  pointer-events: none;
+
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(212,175,55,0.00) 35%,
+    rgba(212,175,55,0.22) 50%,
+    rgba(212,175,55,0.00) 65%,
+    transparent 100%
+  );
+
+  filter: blur(0.2px);
+  opacity: .55;
+  transform: skewX(-10deg);
+  animation: scanDown 3.8s ease-in-out infinite;
+  mix-blend-mode: screen;
+}
+
+/* Movimiento vertical */
+@keyframes scanDown{
+  0%   { transform: translateY(0) skewX(-10deg); opacity: 0; }
+  10%  { opacity: .55; }
+  50%  { opacity: .35; }
+  90%  { opacity: .55; }
+  100% { transform: translateY(165vh) skewX(-10deg); opacity: 0; }
+}
+
+/* Respeta usuarios que prefieren menos movimiento */
+@media (prefers-reduced-motion: reduce){
+  .scanline{ animation: none; display:none; }
+}
+
+
+/* Asegura que la scanline quede encima de todo */
+.scanline{
+  z-index: 3;
+}
+
+
+
+
+	
