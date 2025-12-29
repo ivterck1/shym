@@ -11,21 +11,35 @@
   <link href="https://fonts.googleapis.com/css2?family=Prata&family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-  <!-- Tailwind (si tu landing lo usa así) -->
-  <script src="https://cdn.tailwindcss.com"></script>
 
-  <!-- Si tú tienes tailwind.config en tu index para lux-gold/lux-red,
-       COPIA el mismo <script>tailwind.config = {...}</script> aquí también,
-       porque si no, no existirán text-lux-gold, etc. -->
+		<!-- FontAwesome -->
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+		<!-- Tailwind -->
+		<script src="https://cdn.tailwindcss.com"></script>
+
+		<!-- Tu CSS global -->
+		<link rel="stylesheet" href="css/site.css">
+
 </head>
 
 <body class="bg-black text-white">
 
-  <header class="max-w-6xl mx-auto px-6 py-8 flex items-center justify-between border-b border-white/5">
-    <a href="index1g.html" class="text-white font-semibold tracking-widest uppercase">StripersHyM</a>
-    <a href="index1g.html" class="text-xs uppercase tracking-[0.25em] text-gray-300 hover:text-white transition">
-      Volver a inicio
-    </a>
+    <!-- Header simple (igual vibe FAQ) -->
+  <header class="sticky top-0 z-50 bg-black/80 backdrop-blur border-b border-white/5">
+    <div class="max-w-6xl mx-auto px-6 py-5 flex items-center justify-between">
+      <a href="index1g.html" class="flex items-center gap-3">
+        <img src="img/logo.png" alt="STRIPPERSHYM" class="h-9 w-auto opacity-90 logo-filter">
+        <span class="sr-only">Inicio</span>
+      </a>
+
+      <div class="flex items-center gap-4">
+       
+        <a href="index1g.html" class="text-[10px] uppercase tracking-[0.25em] text-gray-300 hover:text-white transition">
+          Volver a inicio
+        </a>
+      </div>
+    </div>
   </header>
 
   <!-- Tu FAQ (tal cual) -->
@@ -100,11 +114,13 @@
   </main>
 
   <footer class="border-t border-white/5 py-10 text-center text-xs text-gray-500">
-    © <span id="y"></span> StripersHyM
+    © <span id="y"></span> StrippersHyM
   </footer>
 
+   <script src="js/site.js"></script>
   <script>
     document.getElementById('y').textContent = new Date().getFullYear();
+   
   </script>
 
 </body>
