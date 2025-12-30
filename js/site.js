@@ -47,12 +47,12 @@
     
 		let currentLightboxIndex = 0;
         let currentLightboxCategory = 'ellos'; // 'ellos' or 'ellas'
-        const totalImages = { ellos: 18, ellas: 12 };
+        const totalImages = { ellos: 23, ellas: 27 };
 
         function createAccordionItem(index, type) {
             const folder = type === 'ellos' ? 'h' : 'm';
             const catFolder = type === 'ellos' ? 'ellos' : 'ellas';
-            const name = type === 'ellos' ? 'Elite' : 'Goddess';
+            const name = type === 'ellos' ? 'Elite' : 'Diosas';
             
             const div = document.createElement('div');
             div.className = 'accordion-item group relative';
@@ -79,8 +79,8 @@
         }
 
         // Populate Galleries
-        for(let i=1; i<=18; i++) galleryEllos.appendChild(createAccordionItem(i, 'ellos'));
-        for(let i=1; i<=12; i++) galleryEllas.appendChild(createAccordionItem(i, 'ellas'));
+        for(let i=1; i<=23; i++) galleryEllos.appendChild(createAccordionItem(i, 'ellos'));
+        for(let i=1; i<=27; i++) galleryEllas.appendChild(createAccordionItem(i, 'ellas'));
 
         // Lightbox Functions
         function openLightbox(index, category) {
@@ -111,7 +111,7 @@
         function updateLightbox() {
             const folder = currentLightboxCategory === 'ellos' ? 'h' : 'm';
             const catFolder = currentLightboxCategory === 'ellos' ? 'ellos' : 'ellas';
-            const name = currentLightboxCategory === 'ellos' ? 'Elite' : 'Goddess';
+            const name = currentLightboxCategory === 'ellos' ? 'Elite' : 'Diosas';
             
             lightboxImg.src = `img/${catFolder}/${folder}${currentLightboxIndex}.png`;
              lightboxCaption.textContent = `${name} ${currentLightboxIndex < 10 ? '0'+currentLightboxIndex : currentLightboxIndex}`;
