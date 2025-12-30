@@ -336,6 +336,16 @@
 }
 
 
+/* Google rank card - editorial glow */
+.google-card{
+  box-shadow: 0 0 0 rgba(212,175,55,0);
+}
+.google-card:hover{
+  box-shadow: 0 0 30px rgba(212,175,55,0.12);
+}
 
 
+#reviews a.group:hover { box-shadow: 0 0 28px rgba(212,175,55,0.10); }
+#reviews a.group:active { transform: translateY(1px); }
+	
 	
