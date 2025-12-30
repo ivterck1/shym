@@ -61,28 +61,70 @@
 
             // Add Click Event to Open Lightbox
             div.onclick = () => openLightbox(index, type);
+			 const srcPng  = `img/${catFolder}/${folder}${index}.png`;
+            const srcWebp = `img/${catFolder}/${folder}${index}.webp`; // si lo generas
 
-            div.innerHTML = `
-                <img src="img/${catFolder}/${folder}${index}.png" class="absolute inset-0 w-full h-full object-cover object-top pointer-events-none" loading="lazy" onerror="this.src='https://via.placeholder.com/300x500/111/333?text=${name}+${index}'">
-                
-                <div class="absolute bottom-8 left-1/2 -translate-x-1/2 whitespace-nowrap transition-opacity duration-300 group-hover:opacity-0 pointer-events-none">
-                    <span class="text-xl font-serif text-white/50 uppercase tracking-widest vertical-text" style="writing-mode: vertical-rl; text-orientation: mixed;">${name} ${index < 10 ? '0'+index : index}</span>
-                </div>
+					  div.innerHTML = `
+			<img
+			  data-src="${srcWebp}"
+			  data-fallback="${srcPng}"
+			  src="img/placeholder-1x1.png"
+			  class="gallery-img absolute inset-0 w-full h-full object-cover object-top pointer-events-none"
+			  loading="lazy"
+			  decoding="async"
+			  alt="${type === 'ellos' ? 'Stripper' : 'Bailarina'} profesional ${name} ${index} en CDMX"
+			>
 
-                <div class="content absolute bottom-0 left-0 w-full p-6 pointer-events-none">
-                    <h3 class="text-3xl font-serif text-white italic mb-1">${name}</h3>
-                    <p class="text-lux-gold text-[10px] tracking-widest uppercase font-bold mb-3">Model 00${index}</p>
-                    <button class="px-4 py-2 border border-white text-white text-[9px] uppercase hover:bg-white hover:text-black transition-colors w-full">Ver Perfil</button>
-                </div>
-            `;
-            return div;
-        }
+			<div class="absolute bottom-8 left-1/2 -translate-x-1/2 whitespace-nowrap transition-opacity duration-300 group-hover:opacity-0 pointer-events-none">
+			  <span class="text-xl font-serif text-white/50 uppercase tracking-widest vertical-text" style="writing-mode: vertical-rl; text-orientation: mixed;">
+				${name} ${index < 10 ? '0'+index : index}
+			  </span>
+			</div>
+
+			<div class="content absolute bottom-0 left-0 w-full p-6 pointer-events-none">
+			  <h3 class="text-3xl font-serif text-white italic mb-1">${name}</h3>
+			  <p class="text-lux-gold text-[10px] tracking-widest uppercase font-bold mb-3">Model 00${index}</p>
+			  <button class="px-4 py-2 border border-white text-white text-[9px] uppercase hover:bg-white hover:text-black transition-colors w-full">
+				Ver Perfil
+			  </button>
+			</div>
+		  `;
+
+		  return div;
+		}	
 
         // Populate Galleries
         for(let i=1; i<=23; i++) galleryEllos.appendChild(createAccordionItem(i, 'ellos'));
         for(let i=1; i<=27; i++) galleryEllas.appendChild(createAccordionItem(i, 'ellas'));
 
-        // Lightbox Functions
+				// True lazy-load (solo carga cuando entra al viewport)
+		const io = new IntersectionObserver((entries, obs) => {
+		  entries.forEach(entry => {
+			if (!entry.isIntersecting) return;
+
+			const img = entry.target;
+			const src = img.dataset.src;
+			const fallback = img.dataset.fallback;
+
+			// intenta WebP primero
+			img.src = src;
+
+			img.onerror = () => {
+			  img.onerror = null;
+			  img.src = fallback; // cae a PNG
+			};
+
+			obs.unobserve(img);
+		  });
+		}, {
+		  root: null,
+		  rootMargin: "300px 0px", // precarga un poquito antes de que se vea
+		  threshold: 0.01
+		});
+
+		document.querySelectorAll('.gallery-img').forEach(img => io.observe(img));
+				
+		// Lightbox Functions
         function openLightbox(index, category) {
             currentLightboxIndex = index;
             currentLightboxCategory = category;
@@ -109,15 +151,23 @@
 		
 
         function updateLightbox() {
-            const folder = currentLightboxCategory === 'ellos' ? 'h' : 'm';
-            const catFolder = currentLightboxCategory === 'ellos' ? 'ellos' : 'ellas';
-            const name = currentLightboxCategory === 'ellos' ? 'Elite' : 'Diosas';
-            
-            lightboxImg.src = `img/${catFolder}/${folder}${currentLightboxIndex}.png`;
-             lightboxCaption.textContent = `${name} ${currentLightboxIndex < 10 ? '0'+currentLightboxIndex : currentLightboxIndex}`;
-	
-        }
-        
+			  const folder = currentLightboxCategory === 'ellos' ? 'h' : 'm';
+			  const catFolder = currentLightboxCategory === 'ellos' ? 'ellos' : 'ellas';
+			  const name = currentLightboxCategory === 'ellos' ? 'Elite' : 'Goddess';
+
+			  const webp = `img/${catFolder}/${folder}${currentLightboxIndex}.webp`;
+			  const png  = `img/${catFolder}/${folder}${currentLightboxIndex}.png`;
+
+			  lightboxImg.src = webp;
+			  lightboxImg.onerror = () => {
+				lightboxImg.onerror = null;
+				lightboxImg.src = png;
+			  };
+
+			  lightboxCaption.textContent =
+				`${name} ${currentLightboxIndex < 10 ? '0'+currentLightboxIndex : currentLightboxIndex}`;
+			}
+
 
         function nextImage() {
             currentLightboxIndex++;
@@ -147,27 +197,27 @@
         // --- Video Switcher ---
         // --- Video Playlist (20) ---
 		const videoPlaylist = [
-		  { title: "Show 1",          cat:"VIP",  src: "video/video1.mp4",  poster: "video/v1.jpg"  },
-		  { title: "Show 2",       cat:"VIP",  src: "video/video2.mp4",  poster: "video/v2.jpg"  },
-		  { title: "Show 3",    cat:"VIP",  src: "video/video3.mp4",  poster: "video/v3.jpg"  },
-		  { title: "Show 4",           cat:"VIP",  src: "video/video4.mp4",  poster: "video/v4.jpg"  },
-		  { title: "Show 5",      cat:"VIP",  src: "video/video5.mp4",  poster: "video/v5.jpg"  },
-		  { title: "Show 6",         cat:"VIP",  src: "video/video6.mp4",  poster: "video/v6.jpg"  },
-		  { title: "Show 7",  cat:"VIP",  src: "video/video7.mp4",  poster: "video/v7.jpg"  },
-		  { title: "Show 8",            cat:"VIP",  src: "video/video8.mp4",  poster: "video/v8.jpg"  },
-		  { title: "Show 9",           cat:"VIP",  src: "video/video9.mp4",  poster: "video/v9.jpg"  },
-		  { title: "Show 10",             cat:"VIP",  src: "video/video10.mp4", poster: "video/v10.jpg" },
+		  { title: "Show 1",          cat:"VIP",  src: "video/video1.mp4",  poster: "video/v1.webp"  },
+		  { title: "Show 2",       cat:"VIP",  src: "video/video2.mp4",  poster: "video/v2.webp"  },
+		  { title: "Show 3",    cat:"VIP",  src: "video/video3.mp4",  poster: "video/v3.webp"  },
+		  { title: "Show 4",           cat:"VIP",  src: "video/video4.mp4",  poster: "video/v4.webp"  },
+		  { title: "Show 5",      cat:"VIP",  src: "video/video5.mp4",  poster: "video/v5.webp"  },
+		  { title: "Show 6",         cat:"VIP",  src: "video/video6.mp4",  poster: "video/v6.webp"  },
+		  { title: "Show 7",  cat:"VIP",  src: "video/video7.mp4",  poster: "video/v7.webp"  },
+		  { title: "Show 8",            cat:"VIP",  src: "video/video8.mp4",  poster: "video/v8.webp"  },
+		  { title: "Show 9",           cat:"VIP",  src: "video/video9.mp4",  poster: "video/v9.webp"  },
+		  { title: "Show 10",             cat:"VIP",  src: "video/video10.mp4", poster: "video/v10.webp" },
 
-		  { title: "Fiesta 1",      cat:"FIESTA", src: "video/video11.mp4", poster: "video/v11.jpg" },
-		  { title: "Fiesta 2",            cat:"FIESTA", src: "video/video12.mp4", poster: "video/v12.jpg" },
-		  { title: "Fiesta 3",               cat:"FIESTA", src: "video/video13.mp4", poster: "video/v13.jpg" },
-		  { title: "Fiesta 4",           cat:"FIESTA", src: "video/video14.mp4", poster: "video/v14.jpg" },
-		  { title: "Fiesta 5",          cat:"FIESTA", src: "video/video15.mp4", poster: "video/v15.jpg" },
-		  { title: "Fiesta 6",          cat:"FIESTA", src: "video/video16.mp4", poster: "video/v16.jpg" },
-		  { title: "Fiesta 7",          cat:"FIESTA", src: "video/video17.mp4", poster: "video/v17.jpg" },
-		  { title: "Fiesta 8",              cat:"FIESTA", src: "video/video18.mp4", poster: "video/v18.jpg" },
-		  { title: "Fiesta 9",             cat:"FIESTA", src: "video/video19.mp4", poster: "video/v19.jpg" },
-		  { title: "Fiesta 10",               cat:"FIESTA", src: "video/video20.mp4", poster: "video/v20.jpg" }
+		  { title: "Fiesta 1",      cat:"FIESTA", src: "video/video11.mp4", poster: "video/v11.webp" },
+		  { title: "Fiesta 2",            cat:"FIESTA", src: "video/video12.mp4", poster: "video/v12.webp" },
+		  { title: "Fiesta 3",               cat:"FIESTA", src: "video/video13.mp4", poster: "video/v13.webp" },
+		  { title: "Fiesta 4",           cat:"FIESTA", src: "video/video14.mp4", poster: "video/v14.webp" },
+		  { title: "Fiesta 5",          cat:"FIESTA", src: "video/video15.mp4", poster: "video/v15.webp" },
+		  { title: "Fiesta 6",          cat:"FIESTA", src: "video/video16.mp4", poster: "video/v16.webp" },
+		  { title: "Fiesta 7",          cat:"FIESTA", src: "video/video17.mp4", poster: "video/v17.webp" },
+		  { title: "Fiesta 8",              cat:"FIESTA", src: "video/video18.mp4", poster: "video/v18.webp" },
+		  { title: "Fiesta 9",             cat:"FIESTA", src: "video/video19.mp4", poster: "video/v19.webp" },
+		  { title: "Fiesta 10",               cat:"FIESTA", src: "video/video20.mp4", poster: "video/v20.webp" }
 		];
 
 		
